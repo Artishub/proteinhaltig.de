@@ -1,0 +1,456 @@
+{
+  "notes": "Sourced product candidates for later verification. These are not part of the live product dataset until exact nutrition values are checked.",
+  "lastUpdatedAt": "2026-07-02",
+  "products": [
+    {
+      "id": "barebells-protein-bar-salty-peanut",
+      "name": "Protein Bar Salty Peanut",
+      "brandId": "barebells",
+      "brandName": "Barebells",
+      "categoryId": "protein-bar",
+      "sourceUrl": "https://shop.barebells.com/collections/protein-bars",
+      "sourceName": "Barebells Protein Bars collection"
+    },
+    {
+      "id": "barebells-protein-bar-cookies-and-cream",
+      "name": "Protein Bar Cookies & Cream",
+      "brandId": "barebells",
+      "brandName": "Barebells",
+      "categoryId": "protein-bar",
+      "sourceUrl": "https://shop.barebells.com/collections/protein-bars",
+      "sourceName": "Barebells Protein Bars collection"
+    },
+    {
+      "id": "barebells-protein-bar-white-chocolate-almond",
+      "name": "Protein Bar White Chocolate Almond",
+      "brandId": "barebells",
+      "brandName": "Barebells",
+      "categoryId": "protein-bar",
+      "sourceUrl": "https://shop.barebells.com/collections/protein-bars",
+      "sourceName": "Barebells Protein Bars collection"
+    },
+    {
+      "id": "barebells-protein-bar-chocolate-dough",
+      "name": "Protein Bar Chocolate Dough",
+      "brandId": "barebells",
+      "brandName": "Barebells",
+      "categoryId": "protein-bar",
+      "sourceUrl": "https://shop.barebells.com/collections/protein-bars",
+      "sourceName": "Barebells Protein Bars collection"
+    },
+    {
+      "id": "barebells-protein-bar-cookies-and-caramel",
+      "name": "Protein Bar Cookies & Caramel",
+      "brandId": "barebells",
+      "brandName": "Barebells",
+      "categoryId": "protein-bar",
+      "sourceUrl": "https://shop.barebells.com/collections/protein-bars",
+      "sourceName": "Barebells Protein Bars collection"
+    },
+    {
+      "id": "barebells-protein-bar-creamy-crisp",
+      "name": "Protein Bar Creamy Crisp",
+      "brandId": "barebells",
+      "brandName": "Barebells",
+      "categoryId": "protein-bar",
+      "sourceUrl": "https://shop.barebells.com/collections/protein-bars",
+      "sourceName": "Barebells Protein Bars collection"
+    },
+    {
+      "id": "barebells-protein-bar-hazelnut-nougat",
+      "name": "Protein Bar Hazelnut & Nougat",
+      "brandId": "barebells",
+      "brandName": "Barebells",
+      "categoryId": "protein-bar",
+      "sourceUrl": "https://shop.barebells.com/collections/protein-bars",
+      "sourceName": "Barebells Protein Bars collection"
+    },
+    {
+      "id": "barebells-protein-bar-peanut-butter",
+      "name": "Protein Bar Peanut Butter",
+      "brandId": "barebells",
+      "brandName": "Barebells",
+      "categoryId": "protein-bar",
+      "sourceUrl": "https://shop.barebells.com/collections/protein-bars",
+      "sourceName": "Barebells Protein Bars collection"
+    },
+    {
+      "id": "barebells-protein-bar-key-lime-pie",
+      "name": "Protein Bar Key Lime Pie",
+      "brandId": "barebells",
+      "brandName": "Barebells",
+      "categoryId": "protein-bar",
+      "sourceUrl": "https://shop.barebells.com/collections/protein-bars",
+      "sourceName": "Barebells Protein Bars collection"
+    },
+    {
+      "id": "barebells-protein-bar-birthday-cake",
+      "name": "Protein Bar Birthday Cake",
+      "brandId": "barebells",
+      "brandName": "Barebells",
+      "categoryId": "protein-bar",
+      "sourceUrl": "https://shop.barebells.com/collections/protein-bars",
+      "sourceName": "Barebells Protein Bars collection"
+    },
+    {
+      "id": "barebells-soft-bar-banana-caramel",
+      "name": "Soft Bar Banana Caramel",
+      "brandId": "barebells",
+      "brandName": "Barebells",
+      "categoryId": "protein-bar",
+      "sourceUrl": "https://barebells.com/our-products/",
+      "sourceName": "Barebells products page"
+    },
+    {
+      "id": "barebells-soft-bar-banana-dream",
+      "name": "Soft Bar Banana Dream",
+      "brandId": "barebells",
+      "brandName": "Barebells",
+      "categoryId": "protein-bar",
+      "sourceUrl": "https://barebells.com/our-products/",
+      "sourceName": "Barebells products page"
+    },
+    {
+      "id": "barebells-vegan-bar-caramel-choco-chip",
+      "name": "Vegan Protein Bar Caramel Choco Chip",
+      "brandId": "barebells",
+      "brandName": "Barebells",
+      "categoryId": "plant-protein",
+      "sourceUrl": "https://barebells.com/our-products/",
+      "sourceName": "Barebells products page"
+    },
+    {
+      "id": "barebells-protein-bar-orange-creamsicle",
+      "name": "Protein Bar Orange Creamsicle",
+      "brandId": "barebells",
+      "brandName": "Barebells",
+      "categoryId": "protein-bar",
+      "sourceUrl": "https://shop.barebells.com/",
+      "sourceName": "Barebells shop"
+    },
+    {
+      "id": "barebells-protein-bar-brownie-batter",
+      "name": "Protein Bar Brownie Batter",
+      "brandId": "barebells",
+      "brandName": "Barebells",
+      "categoryId": "protein-bar",
+      "sourceUrl": "https://shop.barebells.com/",
+      "sourceName": "Barebells shop"
+    },
+    {
+      "id": "barebells-protein-bar-mint-chocolate-crisp",
+      "name": "Protein Bar Mint Chocolate Crisp",
+      "brandId": "barebells",
+      "brandName": "Barebells",
+      "categoryId": "protein-bar",
+      "sourceUrl": "https://shop.barebells.com/",
+      "sourceName": "Barebells shop"
+    },
+    {
+      "id": "barebells-protein-bar-coco-caramel-almond",
+      "name": "Protein Bar Coco Caramel Almond",
+      "brandId": "barebells",
+      "brandName": "Barebells",
+      "categoryId": "protein-bar",
+      "sourceUrl": "https://shop.barebells.com/",
+      "sourceName": "Barebells shop"
+    },
+    {
+      "id": "ehrmann-high-protein-pudding-vanilla-200",
+      "name": "High Protein Pudding Vanilla",
+      "brandId": "ehrmann",
+      "brandName": "Ehrmann",
+      "categoryId": "protein-pudding",
+      "sourceUrl": "https://ehrmann.com/high-protein-3/",
+      "sourceName": "Ehrmann High Protein products"
+    },
+    {
+      "id": "ehrmann-high-protein-pudding-caramel-200",
+      "name": "High Protein Pudding Caramel",
+      "brandId": "ehrmann",
+      "brandName": "Ehrmann",
+      "categoryId": "protein-pudding",
+      "sourceUrl": "https://ehrmann.com/high-protein-3/",
+      "sourceName": "Ehrmann High Protein products"
+    },
+    {
+      "id": "ehrmann-high-protein-pudding-double-choc-200",
+      "name": "High Protein Pudding Double Choc",
+      "brandId": "ehrmann",
+      "brandName": "Ehrmann",
+      "categoryId": "protein-pudding",
+      "sourceUrl": "https://ehrmann.com/high-protein-3/",
+      "sourceName": "Ehrmann High Protein products"
+    },
+    {
+      "id": "ehrmann-high-protein-pudding-chocolate-topping-200",
+      "name": "High Protein Pudding Chocolate & Topping",
+      "brandId": "ehrmann",
+      "brandName": "Ehrmann",
+      "categoryId": "protein-pudding",
+      "sourceUrl": "https://ehrmann.com/high-protein-3/",
+      "sourceName": "Ehrmann High Protein products"
+    },
+    {
+      "id": "ehrmann-high-protein-pudding-vanilla-topping-200",
+      "name": "High Protein Pudding Vanilla & Topping",
+      "brandId": "ehrmann",
+      "brandName": "Ehrmann",
+      "categoryId": "protein-pudding",
+      "sourceUrl": "https://ehrmann.com/high-protein-3/",
+      "sourceName": "Ehrmann High Protein products"
+    },
+    {
+      "id": "ehrmann-high-protein-pudding-white-choc-chocsplits-230",
+      "name": "High Protein White Choc Pudding with Choc Splits",
+      "brandId": "ehrmann",
+      "brandName": "Ehrmann",
+      "categoryId": "protein-pudding",
+      "sourceUrl": "https://ehrmann.com/high-protein-3/",
+      "sourceName": "Ehrmann High Protein products"
+    },
+    {
+      "id": "ehrmann-high-protein-natural-300",
+      "name": "High Protein Natural",
+      "brandId": "ehrmann",
+      "brandName": "Ehrmann",
+      "categoryId": "protein-yogurt",
+      "sourceUrl": "https://ehrmann.com/high-protein-3/",
+      "sourceName": "Ehrmann High Protein products"
+    },
+    {
+      "id": "ehrmann-high-protein-drink-chocolate-250",
+      "name": "High Protein Drink Chocolate",
+      "brandId": "ehrmann",
+      "brandName": "Ehrmann",
+      "categoryId": "protein-drink",
+      "sourceUrl": "https://ehrmann.com/high-protein-3/",
+      "sourceName": "Ehrmann High Protein products"
+    },
+    {
+      "id": "ehrmann-high-protein-drink-cookie-style-250",
+      "name": "High Protein Drink Cookie Style",
+      "brandId": "ehrmann",
+      "brandName": "Ehrmann",
+      "categoryId": "protein-drink",
+      "sourceUrl": "https://ehrmann.com/high-protein-3/",
+      "sourceName": "Ehrmann High Protein products"
+    },
+    {
+      "id": "ehrmann-high-protein-drink-caffe-latte-250",
+      "name": "High Protein Drink Caffè Latte",
+      "brandId": "ehrmann",
+      "brandName": "Ehrmann",
+      "categoryId": "protein-drink",
+      "sourceUrl": "https://ehrmann.com/high-protein-3/",
+      "sourceName": "Ehrmann High Protein products"
+    },
+    {
+      "id": "ehrmann-high-protein-drink-chocolate-330",
+      "name": "High Protein Drink Chocolate 330 ml",
+      "brandId": "ehrmann",
+      "brandName": "Ehrmann",
+      "categoryId": "protein-drink",
+      "sourceUrl": "https://ehrmann.com/high-protein-3/",
+      "sourceName": "Ehrmann High Protein products"
+    },
+    {
+      "id": "ehrmann-high-protein-drink-pistachio-style-330",
+      "name": "High Protein Drink Pistachio Style",
+      "brandId": "ehrmann",
+      "brandName": "Ehrmann",
+      "categoryId": "protein-drink",
+      "sourceUrl": "https://ehrmann.com/high-protein-3/",
+      "sourceName": "Ehrmann High Protein products"
+    },
+    {
+      "id": "ehrmann-high-protein-yogurt-drink-strawberry-200",
+      "name": "High Protein Yogurt Drink Strawberry",
+      "brandId": "ehrmann",
+      "brandName": "Ehrmann",
+      "categoryId": "protein-drink",
+      "sourceUrl": "https://ehrmann.com/high-protein-3/",
+      "sourceName": "Ehrmann High Protein products"
+    },
+    {
+      "id": "ehrmann-high-protein-yogurt-drink-plain-200",
+      "name": "High Protein Yogurt Drink Plain",
+      "brandId": "ehrmann",
+      "brandName": "Ehrmann",
+      "categoryId": "protein-drink",
+      "sourceUrl": "https://ehrmann.com/high-protein-3/",
+      "sourceName": "Ehrmann High Protein products"
+    },
+    {
+      "id": "esn-designer-bar-white-chocolate-mango",
+      "name": "Designer Bar White Chocolate Mango",
+      "brandId": "esn",
+      "brandName": "ESN",
+      "categoryId": "protein-bar",
+      "sourceUrl": "https://www.esn.com/en/products/designer-bar",
+      "sourceName": "ESN Designer Bar product page"
+    },
+    {
+      "id": "esn-designer-bar-fudge-brownie",
+      "name": "Designer Bar Fudge Brownie",
+      "brandId": "esn",
+      "brandName": "ESN",
+      "categoryId": "protein-bar",
+      "sourceUrl": "https://service.esn.com/hc/en-us/articles/19555863768721-Designer-Bar",
+      "sourceName": "ESN Designer Bar helpcenter"
+    },
+    {
+      "id": "esn-designer-bar-dark-cookie-white-chocolate",
+      "name": "Designer Bar Dark Cookie White Chocolate",
+      "brandId": "esn",
+      "brandName": "ESN",
+      "categoryId": "protein-bar",
+      "sourceUrl": "https://www.stack3d.com/2025/01/esn-more-flavors-of-designer-protein-bar/",
+      "sourceName": "Stack3d ESN flavor coverage"
+    },
+    {
+      "id": "esn-designer-bar-vegan-cinnamon-cereal",
+      "name": "Designer Bar Vegan Cinnamon Cereal",
+      "brandId": "esn",
+      "brandName": "ESN",
+      "categoryId": "plant-protein",
+      "sourceUrl": "https://www.stack3d.com/2025/01/esn-more-flavors-of-designer-protein-bar/",
+      "sourceName": "Stack3d ESN flavor coverage"
+    },
+    {
+      "id": "esn-designer-bar-vegan-hazelnut-nougat",
+      "name": "Designer Bar Vegan Hazelnut Nougat",
+      "brandId": "esn",
+      "brandName": "ESN",
+      "categoryId": "plant-protein",
+      "sourceUrl": "https://www.stack3d.com/2025/01/esn-more-flavors-of-designer-protein-bar/",
+      "sourceName": "Stack3d ESN flavor coverage"
+    },
+    {
+      "id": "esn-designer-whey-banana-milk",
+      "name": "Designer Whey Banana Milk",
+      "brandId": "esn",
+      "brandName": "ESN",
+      "categoryId": "protein-powder",
+      "sourceUrl": "https://www.supplement-support.com/en/products/esn-designer-whey-30g-probe",
+      "sourceName": "Supplement Support ESN Designer Whey sample"
+    },
+    {
+      "id": "esn-designer-whey-milk-chocolate",
+      "name": "Designer Whey Milk Chocolate",
+      "brandId": "esn",
+      "brandName": "ESN",
+      "categoryId": "protein-powder",
+      "sourceUrl": "https://www.supplement-support.com/en/products/esn-designer-whey-30g-probe",
+      "sourceName": "Supplement Support ESN Designer Whey sample"
+    },
+    {
+      "id": "esn-designer-whey-cinnamon-cereal",
+      "name": "Designer Whey Cinnamon Cereal",
+      "brandId": "esn",
+      "brandName": "ESN",
+      "categoryId": "protein-powder",
+      "sourceUrl": "https://www.supplement-support.com/en/products/esn-designer-whey-30g-probe",
+      "sourceName": "Supplement Support ESN Designer Whey sample"
+    },
+    {
+      "id": "esn-designer-whey-strawberry",
+      "name": "Designer Whey Strawberry",
+      "brandId": "esn",
+      "brandName": "ESN",
+      "categoryId": "protein-powder",
+      "sourceUrl": "https://www.supplement-support.com/en/products/esn-designer-whey-30g-probe",
+      "sourceName": "Supplement Support ESN Designer Whey sample"
+    },
+    {
+      "id": "esn-designer-whey-stracciatella",
+      "name": "Designer Whey Stracciatella",
+      "brandId": "esn",
+      "brandName": "ESN",
+      "categoryId": "protein-powder",
+      "sourceUrl": "https://www.supplement-support.com/en/products/esn-designer-whey-30g-probe",
+      "sourceName": "Supplement Support ESN Designer Whey sample"
+    },
+    {
+      "id": "yfood-ready-to-drink-fruity-orange-500",
+      "name": "Ready-to-drink Meal Fruity Orange",
+      "brandId": "yfood",
+      "brandName": "YFood",
+      "categoryId": "protein-drink",
+      "sourceUrl": "https://yfood.com/en/collections/drinks",
+      "sourceName": "YFood drinks collection"
+    },
+    {
+      "id": "yfood-ready-to-drink-fruity-grapefruit-500",
+      "name": "Ready-to-drink Meal Fruity Grapefruit",
+      "brandId": "yfood",
+      "brandName": "YFood",
+      "categoryId": "protein-drink",
+      "sourceUrl": "https://yfood.com/en/collections/drinks",
+      "sourceName": "YFood drinks collection"
+    },
+    {
+      "id": "yfood-ready-to-drink-perfect-pistachio-500",
+      "name": "Ready-to-drink Meal Perfect Pistachio",
+      "brandId": "yfood",
+      "brandName": "YFood",
+      "categoryId": "protein-drink",
+      "sourceUrl": "https://yfood.com/en/collections/drinks",
+      "sourceName": "YFood drinks collection"
+    },
+    {
+      "id": "yfood-ready-to-drink-creamy-strawberry-500",
+      "name": "Ready-to-drink Meal Creamy Strawberry",
+      "brandId": "yfood",
+      "brandName": "YFood",
+      "categoryId": "protein-drink",
+      "sourceUrl": "https://yfood.com/en/collections/drinks",
+      "sourceName": "YFood drinks collection"
+    },
+    {
+      "id": "yfood-ready-to-drink-classic-choco-500",
+      "name": "Ready-to-drink Meal Classic Choco",
+      "brandId": "yfood",
+      "brandName": "YFood",
+      "categoryId": "protein-drink",
+      "sourceUrl": "https://yfood.com/en/collections/drinks",
+      "sourceName": "YFood drinks collection"
+    },
+    {
+      "id": "yfood-ready-to-drink-smooth-vanilla-500",
+      "name": "Ready-to-drink Meal Smooth Vanilla",
+      "brandId": "yfood",
+      "brandName": "YFood",
+      "categoryId": "protein-drink",
+      "sourceUrl": "https://yfood.com/en/collections/drinks",
+      "sourceName": "YFood drinks collection"
+    },
+    {
+      "id": "yfood-ready-to-drink-cold-brew-coffee-500",
+      "name": "Ready-to-drink Meal Cold Brew Coffee",
+      "brandId": "yfood",
+      "brandName": "YFood",
+      "categoryId": "protein-drink",
+      "sourceUrl": "https://yfood.com/en/collections/drinks",
+      "sourceName": "YFood drinks collection"
+    },
+    {
+      "id": "yfood-ready-to-drink-fresh-berry-500",
+      "name": "Ready-to-drink Meal Fresh Berry",
+      "brandId": "yfood",
+      "brandName": "YFood",
+      "categoryId": "protein-drink",
+      "sourceUrl": "https://yfood.com/en/collections/drinks",
+      "sourceName": "YFood drinks collection"
+    },
+    {
+      "id": "yfood-ready-to-drink-happy-banana-500",
+      "name": "Ready-to-drink Meal Happy Banana",
+      "brandId": "yfood",
+      "brandName": "YFood",
+      "categoryId": "protein-drink",
+      "sourceUrl": "https://yfood.com/en/collections/drinks",
+      "sourceName": "YFood drinks collection"
+    }
+  ]
+}
