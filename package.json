@@ -7,7 +7,10 @@
     "build": "npm run validate:data && next build",
     "start": "next start",
     "typecheck": "npm run validate:data && tsc --noEmit",
-    "validate:data": "node scripts/validate-drinks-data.mjs"
+    "validate:data": "node scripts/validate-drinks-data.mjs",
+    "validate:seo": "node scripts/validate-seo.mjs",
+    "validate:sources": "node scripts/validate-source-urls.mjs",
+    "validate:redirects": "node --no-warnings --experimental-strip-types scripts/validate-redirects.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.18.1",

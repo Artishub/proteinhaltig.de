@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Nutzungsbedingungen" };
+export const metadata: Metadata = pageMetadata({
+  title: "Nutzungsbedingungen",
+  description: "Nutzungsbedingungen für Proteinhaltig.de und Hinweise zu Nährwertangaben.",
+  path: "/de/nutzungsbedingungen",
+});
 
 export default function TermsPage() {
   return (

@@ -4,7 +4,8 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { brandById } from "@/lib/data/brands";
 import { categoryById } from "@/lib/data/categories";
-import { drinks, packageEnergyKcal, sugarCubes, totalSugarGrams, type Drink, type DrinkFaq } from "@/lib/data/drinks";
+import { drinks, packageEnergyKcal, sugarCubes, totalSugarGrams, verificationLabel, type Drink, type DrinkFaq } from "@/lib/data/drinks";
+import { pageMetadata } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
 
 type PageProps = {
@@ -25,19 +26,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const totalProtein = totalSugarGrams(drink);
   const packagePart = drink.sizeMl && totalProtein !== null ? `, ${formatNumber(totalProtein)} g pro ${sizeLabel(drink)}` : "";
   const proteinPart = drink.sugarPer100Ml === null ? "Proteinwert noch nicht verifiziert" : `${formatNumber(drink.sugarPer100Ml)} g Protein pro 100 g/ml${packagePart}`;
-  const description = `${drink.name} von ${brandName}: ${proteinPart}, Nährwerte und Quelle.`;
+  const description = `${drink.name} von ${brandName}: ${proteinPart}. Mit Nährwerten, Packung und Quelle.`;
+  const title = productMetaTitle(drink.name, brandName);
 
-  return {
-    title: `${drink.name}: Protein pro 100 g/ml und Nährwerte`,
+  return pageMetadata({
+    title,
     description,
-    alternates: { canonical: `/de/produkte/${drink.id}` },
-    openGraph: {
-      title: `${drink.name}: Protein pro 100 g/ml und Nährwerte`,
-      description,
-      url: `${siteUrl}/de/produkte/${drink.id}`,
-      type: "article",
-    },
-  };
+    path: `/de/produkte/${drink.id}`,
+    type: "article",
+    absoluteTitle: title,
+  });
 }
 
 export default async function ProductDetailPage({ params }: PageProps) {
@@ -111,6 +109,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
         <div>
           <h2 className="text-2xl font-semibold tracking-tight">Quelle</h2>
           <p className="mt-3 leading-7 text-slate">{drink.source}</p>
+          <p className="mt-2 text-sm font-medium text-slate">{verificationLabel(drink)}</p>
           {drink.sourceUrl && (
             <a href={drink.sourceUrl} target="_blank" rel="noreferrer" className="focus-ring mt-3 inline-flex items-center gap-2 rounded-md text-sm font-medium underline decoration-ash underline-offset-4 hover:decoration-marigold">
               Quelle öffnen <ExternalLink size={15} />
@@ -212,7 +211,7 @@ function generatedFaq(drink: Drink, brandName: string): DrinkFaq[] {
     },
     {
       question: `Woher stammen die Werte zu ${drink.name}?`,
-      answer: `Die gespeicherten Werte basieren auf der hinterlegten Quelle: ${drink.source}. Produktwerte können sich ändern und sollten bei Bedarf auf der Verpackung geprüft werden.`,
+      answer: `Die gespeicherten Werte basieren auf der hinterlegten Quelle: ${drink.source}. Status: ${verificationLabel(drink)}. Produktwerte können sich ändern und sollten bei Bedarf auf der Verpackung geprüft werden.`,
     },
   ];
 }
@@ -266,4 +265,17 @@ function sizeLabel(drink: Drink) {
 
 function formatDate(value: string) {
   return new Intl.DateTimeFormat("de-DE").format(new Date(value));
+}
+
+function shortTitle(value: string, maxLength: number) {
+  if (value.length <= maxLength) return value;
+  const shortened = value.slice(0, maxLength - 3);
+  const lastSpace = shortened.lastIndexOf(" ");
+  return `${shortened.slice(0, lastSpace > 20 ? lastSpace : maxLength - 3)}...`;
+}
+
+function productMetaTitle(productName: string, brandName: string) {
+  const suffix = ": Protein & Nährwerte";
+  const maxProductLength = 60 - brandName.length - suffix.length - 1;
+  return `${brandName} ${shortTitle(productName, maxProductLength)}${suffix}`;
 }

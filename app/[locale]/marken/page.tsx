@@ -3,14 +3,13 @@ import { BrandSearchGrid } from "@/components/brand-search-grid";
 import { brands } from "@/lib/data/brands";
 import { categories } from "@/lib/data/categories";
 import { drinks, totalSugarGrams, uniqueProductRepresentatives } from "@/lib/data/drinks";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Marken",
-  description: "Markenübersicht der Produktdatenbank.",
-  alternates: {
-    canonical: "/de/marken",
-  },
-};
+  description: "Markenübersicht der Produktdatenbank: Proteinprodukte nach Hersteller öffnen und direkt in der Suche filtern.",
+  path: "/de/marken",
+});
 
 export default function BrandsPage() {
   const uniqueByBrand = Object.fromEntries(

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { articleBySlug, articles } from "@/lib/content/articles";
+import { pageMetadata } from "@/lib/seo";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -15,11 +16,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const article = articleBySlug[slug];
   if (!article) return {};
-  return {
+  return pageMetadata({
     title: article.title,
     description: article.description,
-    alternates: { canonical: `/de/wissen/${article.slug}` },
-  };
+    path: `/de/wissen/${article.slug}`,
+    type: "article",
+  });
 }
 
 export default async function ArticlePage({ params }: Props) {

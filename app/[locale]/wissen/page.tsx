@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { articles } from "@/lib/content/articles";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Proteinprodukte verstehen",
   description: "Protein in Riegeln, Joghurt, Skyr, Drinks und Pulver nach 100 g/ml, Packung und Portion einordnen.",
-  alternates: { canonical: "/de/wissen" },
-};
+  path: "/de/wissen",
+});
 
 export default function KnowledgePage() {
   return (

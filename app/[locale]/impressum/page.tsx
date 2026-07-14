@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Impressum" };
+export const metadata: Metadata = pageMetadata({
+  title: "Impressum",
+  description: "Impressum von Proteinhaltig.de mit Anbieterkennzeichnung, Kontakt per E-Mail und Hinweis zur Verantwortung für Inhalte.",
+  path: "/de/impressum",
+});
 
 export default function ImpressumPage() {
   return (

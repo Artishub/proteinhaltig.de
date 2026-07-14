@@ -6,12 +6,13 @@ import { articles } from "@/lib/content/articles";
 import { drinks, groupedDrinkFamilies, totalSugarGrams } from "@/lib/data/drinks";
 import { brandById } from "@/lib/data/brands";
 import { categories, categoryById } from "@/lib/data/categories";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Proteinprodukte vergleichen: Riegel, Joghurt, Skyr, Drinks",
+export const metadata: Metadata = pageMetadata({
+  title: "Proteinprodukte vergleichen",
   description: "Vergleiche Proteinprodukte nach Protein pro 100 g/ml, pro Packung und pro Portion.",
-  alternates: { canonical: "/de" },
-};
+  path: "/de",
+});
 
 export default function HomePage() {
   const highest = groupedDrinkFamilies(drinks).sort((a, b) => (highestPer100(b) ?? -1) - (highestPer100(a) ?? -1)).slice(0, 4);

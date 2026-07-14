@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
 import { FaqNav } from "@/components/faq-nav";
 import { faq, faqCategories } from "@/lib/content/faq";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "FAQ: Proteinprodukte vergleichen",
   description: "Antworten zu Protein pro 100 g/ml, Protein pro Packung, Proteinportionen, Quellen und Produktvergleich.",
-  alternates: {
-    canonical: "/de/faq",
-  },
-};
+  path: "/de/faq",
+});
 
 export default function FaqPage() {
   const jsonLd = {

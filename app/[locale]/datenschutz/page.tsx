@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Datenschutz" };
+export const metadata: Metadata = pageMetadata({
+  title: "Datenschutz",
+  description: "Datenschutzhinweise für Proteinhaltig.de: Hosting, technische Zugriffsdaten und der aktuelle Stand ohne Nutzerkonten.",
+  path: "/de/datenschutz",
+});
 
 export default function DatenschutzPage() {
   return <LegalPage title="Datenschutz" text="Dieses MVP speichert keine Nutzerkonten, setzt keine eigenen Tracking-Cookies und verarbeitet keine Formulare. Server-Logs des Hostings können technisch notwendige Zugriffsdaten enthalten." />;

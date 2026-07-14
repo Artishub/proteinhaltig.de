@@ -3,9 +3,8 @@ import seed from "./drinks.seed.json";
 export type VerificationStatus =
   | "manufacturer_verified"
   | "retailer_verified"
-  | "manufacturer_or_retailer_verified"
-  | "manufacturer_verified_needs_field_check"
-  | "needs_label_check";
+  | "nutrition_database_verified"
+  | "manufacturer_or_retailer_verified";
 
 export type DrinkFaq = {
   question: string;
@@ -65,6 +64,14 @@ export function packageEnergyKcal(drink: Drink) {
 
 export function proteinPer100Value(drink: Drink) {
   return drink.sugarPer100Ml;
+}
+
+export function verificationLabel(drink: Drink) {
+  if (drink.verificationStatus === "manufacturer_verified") return "Herstellerquelle geprüft";
+  if (drink.verificationStatus === "retailer_verified") return "Händlerquelle geprüft";
+  if (drink.verificationStatus === "nutrition_database_verified") return "Nährwertdatenbank geprüft";
+  if (drink.verificationStatus === "manufacturer_or_retailer_verified") return "Hersteller- oder Händlerquelle geprüft";
+  return "Quelle noch nicht geprüft";
 }
 
 export function productKey(drink: Drink) {

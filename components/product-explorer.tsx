@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { BarChart3, ChevronDown, ChevronLeft, ChevronRight, LinkIcon, Search, X } from "lucide-react";
 import { brands } from "@/lib/data/brands";
 import { categories, categoryById } from "@/lib/data/categories";
-import { Drink, DrinkDisplayItem, drinks, groupedDrinkFamilies, packageEnergyKcal, sugarCubes, totalSugarGrams, uniqueProductRepresentatives } from "@/lib/data/drinks";
+import { Drink, DrinkDisplayItem, drinks, groupedDrinkFamilies, packageEnergyKcal, sugarCubes, totalSugarGrams, uniqueProductRepresentatives, verificationLabel } from "@/lib/data/drinks";
 
 type SortKey = "total-desc" | "total-asc" | "per100-desc" | "per100-asc" | "name-asc" | "name-desc";
 
@@ -600,7 +600,7 @@ function productSentence(drink: Drink, brandName: string, categoryName: string) 
   const packagePart = drink.sizeMl && total !== null ? `; daraus ergeben sich ${formatNumber(total)} g Protein pro Packung${energyPart}` : ". Die Packungsgröße ist noch nicht hinterlegt";
 
   const proteinPart = drink.sugarPer100Ml === null ? "ist der Proteinwert pro 100 g/ml noch nicht verifiziert" : `enthält es ${formatNumber(drink.sugarPer100Ml)} g Protein pro 100 g/ml${packagePart}`;
-  return `${drink.name} von ${brandName} ist ein Produkt aus der Kategorie ${categoryName} im ${sizeLabel(drink)}. Laut hinterlegter Quelle ${proteinPart}. Die Angabe basiert auf „${drink.source}“${checked}. ${drink.note}`;
+  return `${drink.name} von ${brandName} ist ein Produkt aus der Kategorie ${categoryName} im ${sizeLabel(drink)}. Laut hinterlegter Quelle ${proteinPart}. Die Angabe basiert auf „${drink.source}“${checked}. Status: ${verificationLabel(drink)}. ${drink.note}`;
 }
 
 function groupSentence(groupDrinks: Drink[], brandName: string, categoryName: string) {

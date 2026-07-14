@@ -9,6 +9,7 @@ Start with:
 - `.agents/handoff.md` before handing work back
 
 Hard rules:
+- Never spawn subagents unless the user explicitly requests them; default to `fork_turns="none"` when requested.
 - Keep responses and UI copy short, clear, and German-first.
 - Never invent verified nutrition values or sources.
 - Treat MVP demo values as unverified until checked against packaging or manufacturer pages.

@@ -2,14 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { categories } from "@/lib/data/categories";
 import { drinks, totalSugarGrams, uniqueProductRepresentatives } from "@/lib/data/drinks";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Kategorien",
   description: "Proteinprodukt-Kategorien von Riegeln bis Skyr, Pudding, Drinks und Pulver.",
-  alternates: {
-    canonical: "/de/kategorien",
-  },
-};
+  path: "/de/kategorien",
+});
 
 export default function CategoriesPage() {
   return (

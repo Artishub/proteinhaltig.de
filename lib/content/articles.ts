@@ -54,7 +54,7 @@ export const articles: Article[] = [
   {
     slug: "pflanzliches-protein-vergleichen",
     title: "Pflanzliches Protein vergleichen",
-    description: "Soja-, Erbsen- und andere pflanzliche Proteinprodukte fair einordnen.",
+    description: "Soja-, Erbsen- und andere pflanzliche Proteinprodukte nach Protein pro 100 g/ml, Packung und Quelle einordnen.",
     minutes: 3,
     body: [
       "Pflanzliche Proteinprodukte brauchen denselben nüchternen Vergleich wie Milchprodukte: Protein pro 100 g oder 100 ml, Packungsgröße, Nährwerte.",
