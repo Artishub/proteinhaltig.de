@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ExternalLink } from "lucide-react";
+import { ArrowLeft, ArrowRight, ExternalLink, Info } from "lucide-react";
 import { brandById } from "@/lib/data/brands";
 import { categoryById } from "@/lib/data/categories";
 import { drinks, packageEnergyKcal, sugarCubes, totalSugarGrams, verificationLabel, type Drink, type DrinkFaq } from "@/lib/data/drinks";
 import { pageMetadata } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
+import styles from "./product-detail.module.css";
 
 type PageProps = {
   params: Promise<{ productId: string; locale: string }>;
@@ -53,97 +54,91 @@ export default async function ProductDetailPage({ params }: PageProps) {
   const faqs = generatedFaq(drink, brandName);
 
   return (
-    <main className="mx-auto max-w-page px-4 py-10">
-      <Link href="/de/produkte" className="focus-ring inline-flex items-center gap-2 rounded-md text-sm text-slate hover:text-ink">
-        <ArrowLeft size={16} />
-        Zurück zur Suche
-      </Link>
-
-      <section className="mt-8 grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
-        <div>
-          <p className="text-sm font-medium text-slate">{categoryName}</p>
-          <h1 className="mt-3 text-4xl font-semibold leading-tight tracking-tight md:text-6xl">{drink.name}</h1>
-          <p className="mt-4 text-lg leading-8 text-slate">
-            {brandName} · {sizeLabel(drink)} · {formatOptionalGrams(drink.sugarPer100Ml)} Protein pro 100 g/ml
-          </p>
-          <p className="mt-6 max-w-2xl leading-7 text-slate">{introText(drink, brandName, categoryName)}</p>
-          {drink.note && <p className="mt-4 max-w-2xl leading-7 text-slate">{drink.note}</p>}
-          <div className="mt-6 flex flex-wrap gap-2 text-sm">
-            <Link href={`/de/produkte?brand=${drink.brandId}`} className="focus-ring rounded-md border border-ash bg-mist px-3 py-2 hover:border-marigold">
-              Mehr von {brandName}
-            </Link>
-            <Link href={`/de/produkte?category=${drink.categoryId}`} className="focus-ring rounded-md border border-ash bg-mist px-3 py-2 hover:border-marigold">
-              Kategorie {categoryName}
-            </Link>
-            <Link href={knowledgeLink(drink)} className="focus-ring rounded-md border border-ash bg-mist px-3 py-2 hover:border-marigold">
-              Passendes Wissen lesen
-            </Link>
+    <main className={styles.page}>
+      <section className={styles.hero}>
+        <Link href="/de/produkte" className={styles.back}><ArrowLeft size={16} /> Zur Produktsuche</Link>
+        <div className={styles.heroGrid}>
+          <div>
+            <p className={styles.category}>{categoryName} · {sizeLabel(drink)}</p>
+            <h1>Wie viel Protein hat {drink.name}?</h1>
+            <p className={styles.summary}>{introText(drink, brandName, categoryName)}</p>
+            {drink.note && <p className={styles.note}>{drink.note}</p>}
+            <p className={styles.sourceLine}><Info size={15} /> Quelle: {drink.source} · {verificationLabel(drink)}</p>
+            <div className={styles.topicLinks}>
+              <Link href={`/de/produkte?brand=${drink.brandId}`}>Mehr von {brandName}</Link>
+              <Link href={`/de/produkte?category=${drink.categoryId}`}>Kategorie {categoryName}</Link>
+            </div>
+          </div>
+          <div className={styles.proteinPanel}>
+            <p>{brandName}</p>
+            <div><strong>{formatOptionalNumber(totalProtein)}</strong><span>g Protein</span></div>
+            <div className={styles.portionSummary}>
+              <p>pro {sizeLabel(drink)} · {formatOptionalNumber(portions)} Portionen à 10 g</p>
+              <div className={styles.blocks} aria-hidden="true">
+                {Array.from({ length: proteinBlockCount(portions) }).map((_, index) => <i key={index} />)}
+              </div>
+            </div>
           </div>
         </div>
+      </section>
 
-        <section className="rounded-lg border border-ash bg-mist p-5">
-          <h2 className="text-xl font-semibold tracking-tight">Nährwerte</h2>
-          <div className="mt-5 grid grid-cols-2 gap-3">
-            <Nutrient label="Protein pro 100 g/ml" value={formatOptionalGrams(drink.sugarPer100Ml)} highlight />
-            <Nutrient label="Protein pro Packung" value={formatOptionalGrams(totalProtein)} highlight />
-            <Nutrient label="Proteinportionen" value={formatOptionalNumber(portions)} />
-            <Nutrient label="Energie pro Packung" value={energy === null ? "/" : `${formatNumber(energy)} kcal`} />
-            <Nutrient label="Energie pro 100 g/ml" value={drink.nutritionPer100Ml ? `${formatNumber(drink.nutritionPer100Ml.energyKcal)} kcal / ${formatNumber(drink.nutritionPer100Ml.energyKj)} kJ` : "/"} />
+      <section className={styles.facts} aria-label={`Werte für ${drink.name}`}>
+        <Nutrient label="Protein pro 100 g/ml" value={formatOptionalGrams(drink.sugarPer100Ml)} highlight />
+        <Nutrient label={`Protein pro ${sizeLabel(drink)}`} value={formatOptionalGrams(totalProtein)} highlight />
+        <Nutrient label="10-g-Proteinportionen" value={formatOptionalNumber(portions)} />
+        <Nutrient label="Energie pro Packung" value={energy === null ? "/" : `${formatNumber(energy)} kcal`} />
+      </section>
+
+      <section className={styles.contentGrid}>
+        <div className={styles.nutrition}>
+          <p className={styles.category}>Nährwerte</p>
+          <h2>Pro 100 g/ml</h2>
+          <div className={styles.nutrientGrid}>
+            <Nutrient label="Energie" value={drink.nutritionPer100Ml ? `${formatNumber(drink.nutritionPer100Ml.energyKcal)} kcal / ${formatNumber(drink.nutritionPer100Ml.energyKj)} kJ` : "/"} />
+            <Nutrient label="Protein" value={formatOptionalGrams(drink.sugarPer100Ml)} />
             <Nutrient label="Kohlenhydrate" value={drink.nutritionPer100Ml ? `${formatNumber(drink.nutritionPer100Ml.carbohydrates)} g` : "/"} />
             <Nutrient label="Fett" value={drink.nutritionPer100Ml ? `${formatNumber(drink.nutritionPer100Ml.fat)} g` : "/"} />
-            <Nutrient label="Eiweiß" value={drink.nutritionPer100Ml ? `${formatNumber(drink.nutritionPer100Ml.protein)} g` : "/"} />
+            <Nutrient label="Eiweiß laut Nährwerttabelle" value={drink.nutritionPer100Ml ? `${formatNumber(drink.nutritionPer100Ml.protein)} g` : "/"} />
             <Nutrient label="Salz" value={drink.nutritionPer100Ml ? `${formatNumber(drink.nutritionPer100Ml.salt)} g` : "/"} />
-            <Nutrient label="Packung" value={sizeLabel(drink)} />
           </div>
-          <p className="mt-4 text-xs leading-5 text-slate">Alle Angaben beziehen sich auf die hinterlegten Produktdaten und können sich durch Rezeptur- oder Verpackungsänderungen unterscheiden.</p>
-        </section>
+        </div>
+        <aside className={styles.sourceCard}>
+          <p className={styles.category}>Datenquelle</p>
+          <h2>Nachprüfbar.</h2>
+          <p>{drink.source}</p>
+          <p>{verificationLabel(drink)}</p>
+          <p className={styles.sourceNote}>Produktwerte können sich durch Rezeptur- oder Verpackungsänderungen ändern.</p>
+          {drink.lastCheckedAt && <p className={styles.checked}>Zuletzt geprüft: {formatDate(drink.lastCheckedAt)}</p>}
+          {drink.sourceUrl && <a href={drink.sourceUrl} target="_blank" rel="noreferrer">Quelle öffnen <ExternalLink size={16} /></a>}
+        </aside>
       </section>
 
-      <section className="mt-10 grid gap-6 border-t border-ash pt-8 lg:grid-cols-[1fr_1fr]">
-        <div>
-          <h2 className="text-2xl font-semibold tracking-tight">Einordnung</h2>
-          <p className="mt-3 leading-7 text-slate">
-            Der Wert pro 100 g/ml macht {drink.name} mit anderen Produkten vergleichbar. Das Gesamtprotein zeigt, welche Menge Protein in der ganzen Packung oder Portion steckt.
-          </p>
-        </div>
-        <div>
-          <h2 className="text-2xl font-semibold tracking-tight">Quelle</h2>
-          <p className="mt-3 leading-7 text-slate">{drink.source}</p>
-          <p className="mt-2 text-sm font-medium text-slate">{verificationLabel(drink)}</p>
-          {drink.sourceUrl && (
-            <a href={drink.sourceUrl} target="_blank" rel="noreferrer" className="focus-ring mt-3 inline-flex items-center gap-2 rounded-md text-sm font-medium underline decoration-ash underline-offset-4 hover:decoration-marigold">
-              Quelle öffnen <ExternalLink size={15} />
-            </a>
-          )}
-          {drink.lastCheckedAt && <p className="mt-3 text-sm text-slate">Zuletzt geprüft: {formatDate(drink.lastCheckedAt)}</p>}
-        </div>
-      </section>
-
-      <section className="mt-10 border-t border-ash pt-8">
-        <h2 className="text-2xl font-semibold tracking-tight">FAQ zu {drink.name}</h2>
-        <div className="mt-5 divide-y divide-ash">
-          {faqs.map((item) => (
-            <details key={item.question} className="group py-4">
-              <summary className="cursor-pointer list-none font-semibold">{item.question}</summary>
-              <p className="mt-3 max-w-3xl leading-7 text-slate">{item.answer}</p>
-            </details>
-          ))}
-        </div>
-      </section>
-
-      <section className="mt-10 border-t border-ash pt-8">
-        <h2 className="text-2xl font-semibold tracking-tight">Ähnliche Produkte</h2>
-        <div className="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      <section className={styles.compare}>
+        <div><h2>Ähnliche Produkte.</h2></div>
+        <div className={styles.related}>
           {similar.map((item) => {
             const similarBrand = brandById[item.brandId]?.name ?? "Marke";
             return (
-              <Link key={item.id} href={`/de/produkte/${item.id}`} className="rounded-lg border border-ash bg-paper p-4 hover:border-marigold">
-                <p className="font-semibold">{item.name}</p>
-                <p className="mt-1 text-sm text-slate">{similarBrand} · {sizeLabel(item)}</p>
-                <p className="mt-4 text-sm tabular-nums">{formatOptionalGrams(item.sugarPer100Ml)} / 100 g/ml</p>
+              <Link key={item.id} href={`/de/produkte/${item.id}`}>
+                <span>{similarBrand}</span>
+                <strong>{item.name}</strong>
+                <b>{formatOptionalGrams(item.sugarPer100Ml)} / 100 g/ml</b>
+                <ArrowRight size={16} />
               </Link>
             );
           })}
+        </div>
+      </section>
+
+      <section className={styles.faq}>
+        <p className={styles.category}>Fragen und Antworten</p>
+        <h2>FAQ zu {drink.name}</h2>
+        <div>
+          {faqs.map((item) => <details key={item.question}><summary>{item.question}</summary><p>{item.answer}</p></details>)}
+        </div>
+        <div className={styles.knowledgeLinks}>
+          <Link href={knowledgeLink(drink)} className={styles.knowledge}>Passendes Wissen <ArrowRight size={16} /></Link>
+          <Link href={`/de/produkte?brand=${drink.brandId}`} className={styles.knowledge}>Alle Produkte von {brandName} <ArrowRight size={16} /></Link>
         </div>
       </section>
 
@@ -170,11 +165,16 @@ export default async function ProductDetailPage({ params }: PageProps) {
 
 function Nutrient({ label, value, highlight = false }: { label: string; value: string; highlight?: boolean }) {
   return (
-    <div className="rounded-md border border-ash bg-paper p-3">
-      <p className="text-xs font-medium uppercase tracking-wide text-slate">{label}</p>
-      <p className={`mt-2 tabular-nums ${highlight ? "text-2xl font-semibold" : "text-lg font-semibold"}`}>{value}</p>
+    <div className={highlight ? styles.nutrientHighlight : styles.nutrient}>
+      <p>{label}</p>
+      <p>{value}</p>
     </div>
   );
+}
+
+function proteinBlockCount(portions: number | null) {
+  if (portions === null) return 0;
+  return Math.min(Math.max(Math.round(portions), 1), 24);
 }
 
 function similarDrinks(drink: Drink) {

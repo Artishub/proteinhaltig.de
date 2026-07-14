@@ -24,7 +24,7 @@ const config: Config = {
         lg: "8px",
       },
       maxWidth: {
-        page: "1080px",
+        page: "1200px",
       },
     },
   },

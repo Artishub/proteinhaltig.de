@@ -3,31 +3,31 @@
 @tailwind utilities;
 
 :root {
-  --ink: #1a1a1a;
-  --paper: #fafafa;
-  --mist: #f1f1ef;
-  --ash: #eaeaea;
-  --smoke: #e1e1e1;
-  --graphite: #838383;
-  --steel: #989898;
-  --slate: #6f6f6f;
-  --marigold: #ffb84d;
-  --buttercream: #ffe480;
-  --cream: #fff6d4;
+  --ink: #17201d;
+  --paper: #edf0e8;
+  --mist: #f8faf4;
+  --ash: #d4dbd2;
+  --smoke: #bdc8be;
+  --graphite: #748278;
+  --steel: #68786d;
+  --slate: #526158;
+  --marigold: #d8f36a;
+  --buttercream: #eaf9a8;
+  --cream: #e2f0bd;
 }
 
 .dark {
-  --ink: #f5f5f0;
-  --paper: #10100f;
-  --mist: #181817;
-  --ash: #2a2a27;
-  --smoke: #3a3a35;
-  --graphite: #aaa69c;
-  --steel: #8f8b82;
-  --slate: #c8c3b8;
-  --marigold: #ffb84d;
-  --buttercream: #ffe480;
-  --cream: #2a2518;
+  --ink: #f3f7ef;
+  --paper: #14221d;
+  --mist: #1c3028;
+  --ash: #30463b;
+  --smoke: #40564b;
+  --graphite: #a7b8ac;
+  --steel: #b8c8bc;
+  --slate: #cad6cc;
+  --marigold: #d8f36a;
+  --buttercream: #eaf9a8;
+  --cream: #2b442f;
 }
 
 * {
@@ -60,16 +60,56 @@ select {
 }
 
 ::selection {
-  background: #ffe480;
+  background: var(--marigold);
   color: var(--ink);
 }
 
 .page-grid {
-  background-image: linear-gradient(to right, color-mix(in srgb, var(--ink) 5%, transparent) 1px, transparent 1px);
-  background-size: 64px 1px;
+  background-image: radial-gradient(circle at 10% 0%, color-mix(in srgb, var(--marigold) 32%, transparent), transparent 22rem);
 }
 
 .focus-ring:focus-visible {
   outline: 2px solid var(--marigold);
   outline-offset: 2px;
+}
+
+.range-input {
+  height: 1.25rem;
+  appearance: none;
+  background: transparent;
+}
+
+.range-input::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--ash);
+}
+
+.range-input::-webkit-slider-thumb {
+  width: 18px;
+  height: 18px;
+  margin-top: -7px;
+  appearance: none;
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  background: var(--marigold);
+}
+
+.range-input::-moz-range-track {
+  height: 4px;
+  border-radius: 999px;
+  background: var(--ash);
+}
+
+.range-input::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: 3px solid var(--ink);
+  border-radius: 999px;
+  background: var(--marigold);
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 0.2s;
 }

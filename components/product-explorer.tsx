@@ -136,7 +136,7 @@ export function ProductExplorer() {
         <div className="space-y-4 p-4">
           <label className="block">
             <span className="text-xs font-medium uppercase tracking-wide text-slate">Suche</span>
-            <div className="mt-2 flex h-10 items-center gap-2 rounded-md border border-marigold px-3">
+            <div className="mt-2 flex h-10 items-center gap-2 rounded-md border-2 border-ink bg-paper px-3">
               <Search size={16} />
               <input
                 value={query}
@@ -692,7 +692,7 @@ function Range({ label, value, max, step, unit, onChange }: { label: string; val
         {label}
         <span>{value} {unit}</span>
       </span>
-      <input type="range" min="0" max={max} step={step} value={value} onChange={(event) => onChange(Number(event.target.value))} className="mt-3 w-full accent-marigold" />
+      <input type="range" min="0" max={max} step={step} value={value} onChange={(event) => onChange(Number(event.target.value))} className="range-input mt-3 w-full" />
     </label>
   );
 }

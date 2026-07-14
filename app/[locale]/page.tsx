@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Calculator, ListFilter } from "lucide-react";
+import { ArrowRight, ChevronRight, CircleHelp, Scale, Sparkles } from "lucide-react";
 import { homeContent } from "@/lib/content/home";
-import { articles } from "@/lib/content/articles";
-import { drinks, groupedDrinkFamilies, totalSugarGrams } from "@/lib/data/drinks";
+import { drinks, sugarCubes, totalSugarGrams, type Drink } from "@/lib/data/drinks";
 import { brandById } from "@/lib/data/brands";
-import { categories, categoryById } from "@/lib/data/categories";
+import { categoryById } from "@/lib/data/categories";
 import { pageMetadata } from "@/lib/seo";
+import styles from "./home.module.css";
 
 export const metadata: Metadata = pageMetadata({
   title: "Proteinprodukte vergleichen",
@@ -15,154 +15,147 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default function HomePage() {
-  const highest = groupedDrinkFamilies(drinks).sort((a, b) => (highestPer100(b) ?? -1) - (highestPer100(a) ?? -1)).slice(0, 4);
-  const popularProducts = drinks.slice(0, 6);
-  const categoryLinks = categories.slice(0, 5);
-  const featuredArticles = articles.slice(0, 4);
+  const selected = featuredProducts();
+  const heroProduct = selected[0] ?? drinks[0];
+
+  if (!heroProduct) return null;
 
   return (
-    <main>
-      <section className="page-grid border-b border-ash">
-        <div className="mx-auto grid max-w-page gap-10 px-4 py-16 md:grid-cols-[1.15fr_0.85fr] md:py-24">
-          <div>
-            <p className="mb-4 text-sm font-medium text-slate">{homeContent.eyebrow}</p>
-            <h1 className="max-w-3xl text-5xl font-semibold leading-[1.02] tracking-tight md:text-7xl">{homeContent.title}</h1>
-            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate">{homeContent.intro}</p>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <Link href="/de/produkte" className="focus-ring inline-flex h-11 items-center gap-2 rounded-md border border-ink bg-ink px-4 text-sm font-medium text-white dark:text-black">
-                Produkte ansehen <ArrowRight size={16} />
-              </Link>
+    <main className={styles.page}>
+      <section className={styles.hero}>
+        <div className={styles.heroGrid}>
+          <div className={styles.heroCopy}>
+            <p className={styles.kicker}><Sparkles size={14} aria-hidden="true" /> {homeContent.eyebrow}</p>
+            <h1>{homeContent.title}</h1>
+            <p className={styles.lede}>{homeContent.intro}</p>
+            <div className={styles.heroActions}>
+              <Link href="/de/produkte" className={styles.primaryButton}>Produkt finden <ArrowRight size={17} /></Link>
+              <a href="#proteinvergleich" className={styles.textButton}>So liest du die Werte <ChevronRight size={17} /></a>
             </div>
           </div>
-          <div className="self-end border border-ash bg-paper">
-            <div className="flex items-center justify-between border-b border-ash px-4 py-3">
-              <span className="text-sm font-medium">Viel Protein pro 100 g/ml</span>
-              <ListFilter size={16} />
+
+          <article className={styles.heroCard} aria-label={`${heroProduct.name}: Protein pro Packung`}>
+            <div className={styles.cardTopline}>
+              <span>Produkt im Blick</span>
+              <span>{sizeLabel(heroProduct)}</span>
             </div>
-            <div className="divide-y divide-ash">
-              {highest.map((item) => {
-                const drink = item.type === "drink" ? item.drink : item.representative;
-                const brandName = brandById[drink.brandId]?.name ?? "";
-                const categoryName = categoryById[drink.categoryId]?.name ?? "";
-                const title = item.type === "group" ? `${brandName} - Mehrere` : drink.name;
-                const subtitle = item.type === "group" ? `${categoryName} · ${item.drinks.length} Produkte` : `${brandName} · ${categoryName} · ${sizeLabel(drink)}`;
-                const href = item.type === "group" ? `/de/produkte?brand=${drink.brandId}&category=${drink.categoryId}` : `/de/produkte/${drink.id}`;
-
-                return (
-                  <Link key={item.id} href={href} className="grid grid-cols-[1fr_auto] gap-3 px-4 py-4 hover:bg-mist">
-                    <div>
-                      <p className="font-medium">{title}</p>
-                      <p className="mt-1 text-sm text-slate">{subtitle}</p>
-                    </div>
-                    <strong className="tabular-nums">{formatOptionalGrams(highestPer100(item))}</strong>
-                  </Link>
-                );
-              })}
+            <div className={styles.heroCardContent}>
+              <p className={styles.brand}>{brandById[heroProduct.brandId]?.name}</p>
+              <h2>{heroProduct.name}</h2>
+              <div className={styles.proteinNumber}>
+                <strong>{formatNumber(totalSugarGrams(heroProduct))}</strong><span>g Protein</span>
+              </div>
+              <p className={styles.cardHint}>pro Packung, {formatNumber(sugarCubes(heroProduct))} Portionen à 10 g</p>
+              <div className={styles.blockField} aria-hidden="true">
+                {Array.from({ length: proteinBlockCount(heroProduct) }).map((_, index) => <i key={index} />)}
+              </div>
             </div>
-          </div>
+            <Link href={`/de/produkte/${heroProduct.id}`} className={styles.cardLink}>Detail ansehen <ArrowRight size={16} /></Link>
+          </article>
         </div>
       </section>
 
-      <section className="mx-auto max-w-page px-4 py-10">
-        <div className="grid overflow-hidden rounded-lg border border-ash md:grid-cols-3">
-          {homeContent.guide.map((item, index) => (
-            <div key={item.title} className="border-b border-ash p-5 last:border-b-0 md:border-b-0 md:border-r md:last:border-r-0">
-              <p className="text-xs font-medium uppercase tracking-wide text-slate">0{index + 1}</p>
-              <h2 className="mt-4 text-lg font-semibold tracking-tight">{item.title}</h2>
-              <p className="mt-2 text-sm leading-6 text-slate">{item.text}</p>
-            </div>
-          ))}
-        </div>
-        <p className="mt-4 text-sm text-slate">Hinweis: Die MVP-Daten sind Beispieldaten. Prüfe vor Veröffentlichung die aktuelle Verpackung.</p>
-      </section>
+      <nav className={styles.quickNav} aria-label="Schnelleinstieg">
+        <Link href="/de/produkte"><span>Produkte</span><ArrowRight size={18} /></Link>
+        <Link href="/de/kategorien"><span>Kategorien</span><ArrowRight size={18} /></Link>
+        <Link href="/de/marken"><span>Marken</span><ArrowRight size={18} /></Link>
+        <Link href="/de/wissen"><span>Wissen</span><ArrowRight size={18} /></Link>
+      </nav>
 
-      <section className="mx-auto max-w-page px-4 py-10">
-        <div className="grid gap-8 md:grid-cols-[0.75fr_1.25fr]">
-          <div>
-            <h2 className="text-2xl font-semibold tracking-tight">Beliebte Vergleiche</h2>
-            <p className="mt-3 leading-7 text-slate">Proteinriegel, Pudding, Skyr, Drinks und Pulver direkt öffnen.</p>
-          </div>
-          <div className="grid gap-2 sm:grid-cols-2">
-            {popularProducts.map((drink) => {
-              const brandName = brandById[drink.brandId]?.name ?? "";
-              return (
-                <Link key={drink.id} href={`/de/produkte/${drink.id}`} className="rounded-lg border border-ash bg-paper p-4 hover:border-marigold">
-                  <p className="font-semibold">{drink.name}</p>
-                  <p className="mt-1 text-sm text-slate">{brandName} · {sizeLabel(drink)} · {formatOptionalGrams(totalSugarGrams(drink))}</p>
-                </Link>
-              );
-            })}
-          </div>
+      <section className={styles.snapshot} id="proteinvergleich">
+        <div className={styles.sectionIntro}>
+          <h2>Vier Proteinprodukte.<br />Direkt vergleichbar.</h2>
+          <p>Der Wert pro 100 g/ml schafft eine gemeinsame Basis. Die Packungsgröße zeigt, wie viel Protein tatsächlich enthalten ist.</p>
+        </div>
+        <div className={styles.productGrid}>
+          {selected.map((drink) => <ProductCard drink={drink} key={drink.id} />)}
         </div>
       </section>
 
-      <section className="border-y border-ash bg-mist">
-        <div className="mx-auto max-w-page px-4 py-10">
-          <div className="flex flex-wrap items-center justify-between gap-3">
-            <h2 className="text-2xl font-semibold tracking-tight">Nach Kategorie entdecken</h2>
-            <Link href="/de/kategorien" className="focus-ring inline-flex h-10 items-center gap-2 rounded-md border border-ash bg-paper px-4 text-sm font-medium hover:border-marigold">
-              Alle Kategorien anzeigen <ArrowRight size={16} />
-            </Link>
-          </div>
-          <div className="mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
-            {categoryLinks.map((category) => (
-              <Link key={category.id} href={`/de/produkte?category=${category.id}`} className="rounded-lg border border-ash bg-paper p-4 hover:border-marigold">
-                <p className="font-semibold">{category.name}</p>
-                <p className="mt-2 text-sm leading-6 text-slate">{category.description}</p>
-              </Link>
-            ))}
-          </div>
+      <section className={styles.explorer}>
+        <div>
+          <h2>Nach Produkt suchen.<br />Werte prüfen.</h2>
+        </div>
+        <div className={styles.explorerPanel}>
+          <p>Filtere nach Marke, Kategorie, Packung oder Proteinwert. Jede Detailseite nennt die hinterlegte Quelle und den Prüfstatus.</p>
+          <Link href="/de/produkte" className={styles.lightButton}>Alle Produkte <ArrowRight size={17} /></Link>
         </div>
       </section>
 
-      <section className="mx-auto max-w-page px-4 py-10">
-        <div className="grid gap-8 md:grid-cols-[0.75fr_1.25fr]">
-          <div>
-            <h2 className="text-2xl font-semibold tracking-tight">Protein verstehen</h2>
-            <p className="mt-3 leading-7 text-slate">Kurze Texte zu 100-g-Werten, Packungsgrößen, Proteinriegeln, Skyr und Pulver-Portionen.</p>
-            <Link href="/de/wissen" className="focus-ring mt-5 inline-flex h-10 items-center gap-2 rounded-md border border-ash bg-paper px-4 text-sm font-medium hover:border-marigold">
-              Weitere Artikel <ArrowRight size={16} />
-            </Link>
-          </div>
-          <div className="grid gap-2">
-            {featuredArticles.map((article) => (
-              <Link key={article.slug} href={`/de/wissen/${article.slug}`} className="grid gap-3 rounded-lg border border-ash bg-paper p-4 hover:border-marigold sm:grid-cols-[1fr_auto]">
-                <div>
-                  <p className="font-semibold">{article.title}</p>
-                  <p className="mt-2 text-sm leading-6 text-slate">{article.description}</p>
-                </div>
-                <span className="text-sm text-slate">{article.minutes} Min.</span>
-              </Link>
-            ))}
-          </div>
+      <section className={styles.method}>
+        <div className={styles.methodTitle}>
+          <p className={styles.kicker}><CircleHelp size={14} aria-hidden="true" /> Klare Berechnung</p>
+          <h2>So rechnet Proteinhaltig.</h2>
+        </div>
+        <div className={styles.methodSteps}>
+          {homeContent.guide.map((item) => <article key={item.title}><h3>{item.title}</h3><p>{item.text}</p></article>)}
         </div>
       </section>
 
-      <section className="border-y border-ash bg-mist">
-        <div className="mx-auto grid max-w-page gap-8 px-4 py-12 md:grid-cols-[0.8fr_1.2fr]">
-          <div>
-            <Calculator size={20} />
-            <h2 className="mt-4 text-2xl font-semibold tracking-tight">Rechnen statt schätzen.</h2>
-          </div>
-          <p className="text-lg leading-8 text-slate">
-            Die Datenbank nutzt Nährwertangaben und rechnet daraus Protein pro Packung und Proteinportionen. So wird der Unterschied zwischen 55-g-Riegel, 200-g-Becher und 30-g-Pulverportion sichtbar.
-          </p>
+      <section className={styles.closing}>
+        <Scale size={25} aria-hidden="true" />
+        <div>
+          <h2>Dein Produkt im Vergleich.</h2>
+          <p>Werte vergleichen, Quelle prüfen, passend einordnen.</p>
         </div>
+        <Link href="/de/produkte" className={styles.primaryButton}>Jetzt vergleichen <ArrowRight size={17} /></Link>
       </section>
     </main>
   );
 }
 
-function highestPer100(item: ReturnType<typeof groupedDrinkFamilies>[number]) {
-  if (item.type === "drink") return item.drink.sugarPer100Ml;
-  const values = item.drinks.map((drink) => drink.sugarPer100Ml).filter((value): value is number => value !== null);
-  return values.length ? Math.max(...values) : null;
+function ProductCard({ drink }: { drink: Drink }) {
+  const brandName = brandById[drink.brandId]?.name ?? "Marke";
+
+  return (
+    <Link href={`/de/produkte/${drink.id}`} className={styles.productCard}>
+      <div className={styles.productCardTop}><span>{categoryById[drink.categoryId]?.name}</span><span>{sizeLabel(drink)}</span></div>
+      <div>
+        <p className={styles.brand}>{brandName}</p>
+        <h3>{drink.name}</h3>
+      </div>
+      <div className={styles.measure}><strong>{formatNumber(totalSugarGrams(drink))} g</strong><span>Protein pro Packung</span></div>
+      <div className={styles.cardFoot}><span>{formatNumber(drink.sugarPer100Ml)} g / 100 g/ml</span><span>{formatNumber(sugarCubes(drink))} Portionen</span></div>
+    </Link>
+  );
 }
 
-function sizeLabel(drink: { sizeMl: number | null; packageUnit?: string }) {
+function featuredProducts() {
+  const maxSizeByCategory: Record<string, number> = {
+    "protein-bar": 100,
+    "protein-yogurt": 500,
+    "protein-pudding": 500,
+    "protein-drink": 500,
+    "skyr-quark": 500,
+    "protein-snack": 200,
+  };
+  const seenCategories = new Set<string>();
+  const selected: Drink[] = [];
+  const candidates = drinks
+    .filter((drink) => {
+      const maxSize = maxSizeByCategory[drink.categoryId];
+      return maxSize && drink.sizeMl && drink.sizeMl <= maxSize && drink.sugarPer100Ml !== null && drink.sugarPer100Ml <= 35;
+    })
+    .sort((a, b) => (totalSugarGrams(b) ?? 0) - (totalSugarGrams(a) ?? 0));
+
+  for (const drink of candidates) {
+    if (seenCategories.has(drink.categoryId)) continue;
+    selected.push(drink);
+    seenCategories.add(drink.categoryId);
+    if (selected.length === 4) break;
+  }
+
+  return selected;
+}
+
+function sizeLabel(drink: { sizeMl: number | null; packageUnit?: string | null }) {
   return drink.sizeMl ? `${drink.sizeMl} ${drink.packageUnit ?? "g"}` : "/";
 }
 
-function formatOptionalGrams(value: number | null) {
-  return value === null ? "/" : `${new Intl.NumberFormat("de-DE", { maximumFractionDigits: 1 }).format(value)} g Protein`;
+function formatNumber(value: number | null) {
+  return value === null ? "/" : new Intl.NumberFormat("de-DE", { maximumFractionDigits: 1 }).format(value);
+}
+
+function proteinBlockCount(drink: Drink) {
+  return Math.min(Math.max(Math.round(sugarCubes(drink) ?? 0), 1), 18);
 }
