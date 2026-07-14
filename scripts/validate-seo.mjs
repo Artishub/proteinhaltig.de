@@ -2,6 +2,9 @@ import fs from "node:fs";
 import path from "node:path";
 
 const appDir = path.join(process.cwd(), ".next/server/app");
+const routesManifestPath = path.join(process.cwd(), ".next/routes-manifest.json");
+const dataPath = path.join(process.cwd(), "lib/data/drinks.seed.json");
+const siteOrigin = "https://www.proteinhaltig.de";
 const errors = [];
 const warnings = [];
 
@@ -13,12 +16,16 @@ if (!fs.existsSync(appDir)) {
 const htmlFiles = walk(appDir).filter((file) => file.endsWith(".html") && !ignoredHtmlFile(file));
 const routes = new Set(htmlFiles.map(routeFromHtmlFile));
 const incomingLinks = new Map(Array.from(routes, (route) => [route, new Set()]));
+const sitemap = readSitemap();
+const sitemapRouteSet = new Set(sitemap.routes);
+const productIds = new Set(JSON.parse(fs.readFileSync(dataPath, "utf8")).drinks.map((drink) => drink.id));
 
 for (const file of htmlFiles) {
   const route = routeFromHtmlFile(file);
   const html = fs.readFileSync(file, "utf8");
   const title = textMatch(html, /<title>(.*?)<\/title>/);
   const description = attrMatch(html, /<meta\s+name="description"\s+content="([^"]*)"/);
+  const robots = attrMatch(html, /<meta\s+name="robots"\s+content="([^"]*)"/);
   const canonical = attrMatch(html, /<link\s+rel="canonical"\s+href="([^"]*)"/);
   const ogTitle = attrMatch(html, /<meta\s+property="og:title"\s+content="([^"]*)"/);
   const ogDescription = attrMatch(html, /<meta\s+property="og:description"\s+content="([^"]*)"/);
@@ -32,8 +39,11 @@ for (const file of htmlFiles) {
   if (description && decodeHtml(description).length < 70) warnings.push(`${route}: meta description short (${decodeHtml(description).length})`);
   if (description && decodeHtml(description).length > 170) warnings.push(`${route}: meta description long (${decodeHtml(description).length})`);
 
+  if (route.startsWith("/de/produkte/") && !robots) errors.push(`${route}: missing robots directive`);
+  if (/\bnoindex\b/i.test(robots)) errors.push(`${route}: contains noindex`);
+
   if (route !== "/" && !canonical) errors.push(`${route}: missing canonical`);
-  if (route !== "/" && canonical && !canonical.endsWith(route)) errors.push(`${route}: canonical does not match route`);
+  if (route !== "/" && canonical && canonical !== `${siteOrigin}${route}`) errors.push(`${route}: canonical does not match route`);
   if (route !== "/" && canonical && ogUrl && canonical !== ogUrl) errors.push(`${route}: og:url does not match canonical`);
 
   for (const [name, value] of [
@@ -53,9 +63,26 @@ for (const file of htmlFiles) {
   }
 }
 
-for (const route of sitemapRoutes()) {
+if (sitemap.urls.length !== sitemapRouteSet.size) errors.push(`sitemap.xml: contains ${sitemap.urls.length - sitemapRouteSet.size} duplicate URL(s)`);
+
+for (const route of sitemap.routes) {
   if (!routes.has(route)) errors.push(`${route}: sitemap route missing generated HTML`);
   if (route !== "/de" && !incomingLinks.get(route)?.size) errors.push(`${route}: sitemap route has no incoming internal links`);
+}
+
+const expectedProductRoutes = new Set(Array.from(productIds, (id) => `/de/produkte/${id}`));
+const sitemapProductRoutes = new Set(sitemap.routes.filter((route) => route.startsWith("/de/produkte/")));
+
+for (const route of expectedProductRoutes) {
+  if (!sitemapProductRoutes.has(route)) errors.push(`${route}: canonical product missing from sitemap`);
+}
+
+for (const route of sitemapProductRoutes) {
+  if (!expectedProductRoutes.has(route)) errors.push(`${route}: non-canonical product present in sitemap`);
+}
+
+for (const alias of productRedirectAliases()) {
+  if (sitemapRouteSet.has(alias)) errors.push(`${alias}: redirect alias present in sitemap`);
 }
 
 if (errors.length) {
@@ -70,7 +97,7 @@ if (warnings.length) {
   if (warnings.length > 25) console.warn(`- ... ${warnings.length - 25} more`);
 }
 
-console.log(`SEO validation passed: ${htmlFiles.length} HTML pages, ${routes.size} routes`);
+console.log(`SEO validation passed: ${htmlFiles.length} HTML pages, ${routes.size} routes, ${sitemap.urls.length} sitemap URLs, ${sitemapProductRoutes.size} canonical products`);
 
 function walk(dir) {
   return fs.readdirSync(dir, { withFileTypes: true }).flatMap((entry) => {
@@ -114,17 +141,29 @@ function ignoredTarget(target) {
   return target.startsWith("/_next/") || target.startsWith("/api/") || target === "/opengraph-image";
 }
 
-function sitemapRoutes() {
+function readSitemap() {
   const sitemapPath = path.join(appDir, "sitemap.xml.body");
   if (!fs.existsSync(sitemapPath)) {
     errors.push("sitemap.xml: missing generated sitemap body");
-    return [];
+    return { urls: [], routes: [] };
   }
 
   const xml = fs.readFileSync(sitemapPath, "utf8");
-  return Array.from(xml.matchAll(/<loc>https:\/\/www\.proteinhaltig\.de([^<]+)<\/loc>/g), (match) =>
-    normalizeInternalRoute(match[1]),
-  );
+  const urls = Array.from(xml.matchAll(/<loc>([^<]+)<\/loc>/g), (match) => match[1]);
+  const routes = urls.map((url) => normalizeInternalRoute(new URL(url).pathname));
+  return { urls, routes };
+}
+
+function productRedirectAliases() {
+  if (!fs.existsSync(routesManifestPath)) {
+    errors.push("routes-manifest.json: missing generated routes manifest");
+    return [];
+  }
+
+  const manifest = JSON.parse(fs.readFileSync(routesManifestPath, "utf8"));
+  return manifest.redirects
+    .map((redirect) => redirect.source)
+    .filter((source) => source.startsWith("/de/produkte/") && !source.includes(":"));
 }
 
 function decodeHtml(value) {

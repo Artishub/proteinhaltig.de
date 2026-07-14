@@ -10,7 +10,9 @@
     "validate:data": "node scripts/validate-drinks-data.mjs",
     "validate:seo": "node scripts/validate-seo.mjs",
     "validate:sources": "node scripts/validate-source-urls.mjs",
-    "validate:redirects": "node --no-warnings --experimental-strip-types scripts/validate-redirects.mjs"
+    "validate:redirects": "node --no-warnings --experimental-strip-types scripts/validate-redirects.mjs",
+    "test": "npm run validate:seo && npm run validate:redirects",
+    "test:indexability": "node scripts/validate-indexability.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.18.1",

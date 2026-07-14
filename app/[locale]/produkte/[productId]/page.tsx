@@ -30,13 +30,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const description = `${drink.name} von ${brandName}: ${proteinPart}. Mit Nährwerten, Packung und Quelle.`;
   const title = productMetaTitle(drink.name, brandName);
 
-  return pageMetadata({
-    title,
-    description,
-    path: `/de/produkte/${drink.id}`,
-    type: "article",
-    absoluteTitle: title,
-  });
+  return {
+    ...pageMetadata({
+      title,
+      description,
+      path: `/de/produkte/${drink.id}`,
+      type: "article",
+      absoluteTitle: title,
+    }),
+    robots: { index: true, follow: true },
+  };
 }
 
 export default async function ProductDetailPage({ params }: PageProps) {
