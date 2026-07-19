@@ -1,18 +1,20 @@
 .page { --detail-panel:#1f4539; --detail-panel-text:#f5f8f2; --detail-lime:#d8f36a; --detail-line:color-mix(in srgb, var(--ink) 14%, transparent); background:var(--paper); color:var(--ink); }
-.hero, .facts, .contentGrid, .compare, .faq { max-width:1200px; margin:0 auto; padding-left:1rem; padding-right:1rem; }
+.hero, .facts, .contentGrid, .compare, .faq { max-width:1280px; margin:0 auto; padding-left:1.25rem; padding-right:1.25rem; }
 .hero { padding-top:2rem; padding-bottom:5.5rem; }
 .back { display:inline-flex; align-items:center; gap:.45rem; color:var(--slate); font-size:.85rem; font-weight:700; }
 .back:hover { color:var(--ink); }
 .heroGrid { display:grid; grid-template-columns:.93fr 1.07fr; gap:4rem; align-items:center; margin-top:2.5rem; }
-.category { margin:0 0 1rem; color:var(--slate); font-size:.7rem; font-weight:750; letter-spacing:.1em; text-transform:uppercase; }
-.hero h1, .contentGrid h2, .compare h2, .faq h2 { margin:0; letter-spacing:-.07em; line-height:.9; font-weight:650; }
+.category { margin:0 0 1rem; color:var(--slate); font-size:.75rem; font-weight:600; }
+.hero h1, .contentGrid h2, .compare h2, .faq h2 { margin:0; letter-spacing:-.02em; line-height:.95; }
+.hero h1 { font-weight:650; }
+.contentGrid h2, .compare h2, .faq h2 { font-weight:500; }
 .hero h1 { max-width:14ch; font-size:clamp(3rem,5vw,5.2rem); text-wrap:balance; }
 .summary, .note { max-width:36rem; margin:1.55rem 0; color:var(--slate); font-size:1.02rem; line-height:1.6; }
 .note { margin-top:-.65rem; font-size:.9rem; }
 .sourceLine { display:flex; max-width:34rem; align-items:flex-start; gap:.5rem; color:var(--slate); font-size:.78rem; line-height:1.45; }
 .sourceLine svg { flex:none; margin-top:.05rem; }
 .topicLinks { display:flex; flex-wrap:wrap; gap:.55rem; margin-top:1.25rem; }
-.topicLinks a { padding:.65rem .85rem; border:1px solid var(--detail-line); border-radius:999px; font-size:.78rem; font-weight:700; }
+.topicLinks a { padding:.65rem .85rem; border:1px solid var(--detail-line); border-radius:999px; background:var(--mist); font-size:.78rem; font-weight:700; }
 .topicLinks a:hover { border-color:var(--marigold); }
 .proteinPanel { display:flex; min-height:430px; flex-direction:column; justify-content:space-between; overflow:hidden; padding:1.5rem; border-radius:22px; background:var(--detail-panel); color:var(--detail-panel-text); box-shadow:0 25px 65px rgba(36,65,55,.2); }
 .proteinPanel>p:first-child { margin:0; color:#b9d4c3; font-size:.78rem; font-weight:700; }
@@ -31,13 +33,13 @@
 .facts>div:nth-child(2) p { color:#31463d; }
 .facts p:last-child { color:inherit; font-size:clamp(1.6rem,3vw,2.7rem); font-weight:700; letter-spacing:-.07em; }
 .contentGrid { display:grid; grid-template-columns:1.05fr .95fr; gap:.8rem; padding-top:7rem; }
-.nutrition, .sourceCard { padding:2rem; border:1px solid var(--detail-line); border-radius:20px; background:color-mix(in srgb, var(--mist) 76%, transparent); }
+.nutrition, .sourceCard { padding:2rem; border:1px solid var(--detail-line); border-radius:20px; background:var(--mist); }
 .contentGrid h2 { font-size:2.4rem; }
 .nutrientGrid { display:grid; grid-template-columns:1fr 1fr; gap:.6rem; margin-top:2rem; }
 .nutrientGrid>div { padding:.95rem 1rem; border-top:1px solid var(--detail-line); }
 .nutrientGrid p { margin:0; }
 .nutrientGrid p:first-child { color:var(--slate); font-size:.74rem; }
-.nutrientGrid p:last-child { margin-top:.3rem; font-size:1rem; font-weight:700; letter-spacing:-.025em; }
+.nutrientGrid p:last-child { margin-top:.3rem; font-size:1rem; font-weight:500; letter-spacing:-.015em; }
 .nutrient, .nutrientHighlight { font-variant-numeric:tabular-nums; }
 .sourceCard { display:flex; flex-direction:column; background:var(--detail-panel); color:var(--detail-panel-text); }
 .sourceCard .category { margin-bottom:.75rem; color:#bbd3c2; }

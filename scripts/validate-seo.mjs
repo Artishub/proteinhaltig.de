@@ -71,7 +71,9 @@ for (const route of sitemap.routes) {
 }
 
 const expectedProductRoutes = new Set(Array.from(productIds, (id) => `/de/produkte/${id}`));
-const sitemapProductRoutes = new Set(sitemap.routes.filter((route) => route.startsWith("/de/produkte/")));
+const sitemapProductRoutes = new Set(
+  sitemap.routes.filter((route) => productIds.has(route.split("/").at(-1))),
+);
 
 for (const route of expectedProductRoutes) {
   if (!sitemapProductRoutes.has(route)) errors.push(`${route}: canonical product missing from sitemap`);

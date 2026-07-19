@@ -26,8 +26,8 @@ export default function ProductsPage() {
     <main className="mx-auto max-w-page px-4 py-10 md:py-14">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <div className="mb-10 max-w-3xl">
-        <p className="text-xs font-bold uppercase tracking-[0.14em] text-slate">Produktdatenbank</p>
-        <h1 className="mt-3 text-5xl font-semibold leading-[.94] tracking-[-0.06em] md:text-6xl">Proteinwerte vergleichen.</h1>
+        <p className="text-xs font-medium text-slate">Produktdatenbank</p>
+        <h1 className="mt-3 text-5xl font-semibold leading-[.96] tracking-[-0.02em] md:text-6xl">Proteinwerte vergleichen.</h1>
         <p className="mt-4 leading-7 text-slate">
           <span className="block">Filtere nach Marke, Kategorie, Packung und Protein.</span>
           <span className="block">Alle Berechnungen passieren lokal im Browser.</span>
@@ -44,7 +44,7 @@ export default function ProductsPage() {
 function ProductDirectory() {
   return (
     <section className="mt-12 border-t border-ash pt-8">
-      <h2 className="text-2xl font-semibold tracking-tight">Alle Produkte nach Kategorie</h2>
+      <h2 className="text-2xl font-medium tracking-[-0.02em]">Alle Produkte nach Kategorie</h2>
       <p className="mt-2 max-w-2xl text-sm leading-6 text-slate">Öffne eine Kategorie und rufe jedes Produkt direkt auf.</p>
       <div className="mt-5 grid gap-3 md:grid-cols-2">
         {categories.map((category) => {
@@ -58,8 +58,8 @@ function ProductDirectory() {
           if (!items.length) return null;
 
           return (
-            <details key={category.id} className="rounded-lg border border-ash bg-paper px-4 py-3">
-              <summary className="focus-ring cursor-pointer rounded-md font-semibold">
+            <details key={category.id} className="rounded-lg border border-ash bg-mist px-4 py-3">
+              <summary className="focus-ring cursor-pointer rounded-md font-medium">
                 {categoryById[category.id]?.name ?? category.name} <span className="font-normal text-slate">({items.length})</span>
               </summary>
               <ul className="mt-4 grid gap-x-5 gap-y-2 text-sm sm:grid-cols-2">

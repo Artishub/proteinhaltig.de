@@ -8,3 +8,4 @@
 :global(.dark) .mark i { background:#1f4539; }
 :global(.dark) .mark i:last-child { background:#f5f8f2; }
 :global(.dark) .wordmark span { color:#b9d4c3; }
+@media (max-width:360px) { .wordmark { display:none; } }

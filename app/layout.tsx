@@ -15,10 +15,7 @@ export const metadata: Metadata = {
   },
   description,
   icons: {
-    icon: [
-      { url: "/favicon.ico" },
-      { url: "/favicon.svg", type: "image/svg+xml" },
-    ],
+    icon: [{ url: "/favicon.svg", type: "image/svg+xml" }],
   },
   openGraph: {
     title: "Proteinhaltig.de",

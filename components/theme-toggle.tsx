@@ -28,7 +28,7 @@ export function ThemeToggle() {
       aria-label={dark ? "Hellen Modus aktivieren" : "Dunklen Modus aktivieren"}
       title={dark ? "Hellen Modus aktivieren" : "Dunklen Modus aktivieren"}
     >
-      {dark ? <Sun size={16} /> : <Moon size={16} />}
+      {dark ? <Sun size={16} strokeWidth={1.75} aria-hidden="true" /> : <Moon size={16} strokeWidth={1.75} aria-hidden="true" />}
     </button>
   );
 }

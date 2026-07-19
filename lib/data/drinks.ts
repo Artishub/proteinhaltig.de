@@ -48,15 +48,21 @@ export type DrinkDisplayItem =
   | { type: "drink"; id: string; drink: Drink }
   | { type: "group"; id: string; brandId: string; categoryId: string; drinks: Drink[]; representative: Drink };
 
-export function totalSugarGrams(drink: Drink) {
+export function totalProteinGrams(drink: Drink) {
   if (!drink.sizeMl || drink.sugarPer100Ml === null) return null;
   return Math.round(drink.sugarPer100Ml * (drink.sizeMl / 100) * 10) / 10;
 }
 
-export function sugarCubes(drink: Drink) {
-  const total = totalSugarGrams(drink);
+export function proteinPortions(drink: Drink) {
+  const total = totalProteinGrams(drink);
   return total === null ? null : Math.round((total / 10) * 10) / 10;
 }
+
+/** @deprecated Use totalProteinGrams. Kept for compatibility with existing data scripts. */
+export const totalSugarGrams = totalProteinGrams;
+
+/** @deprecated Use proteinPortions. Kept for compatibility with existing data scripts. */
+export const sugarCubes = proteinPortions;
 
 export function packageEnergyKcal(drink: Drink) {
   return drink.nutritionPer100Ml && drink.sizeMl ? Math.round(drink.nutritionPer100Ml.energyKcal * (drink.sizeMl / 100) * 10) / 10 : null;

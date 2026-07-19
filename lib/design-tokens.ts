@@ -1,16 +1,16 @@
 export const designTokens = {
   colors: {
-    ink: "#1a1a1a",
-    paper: "#ffffff",
-    mist: "#f7f7f7",
-    ash: "#eaeaea",
-    smoke: "#e1e1e1",
-    graphite: "#838383",
-    steel: "#989898",
-    slate: "#6f6f6f",
-    marigold: "#ffb84d",
-    buttercream: "#ffe480",
-    cream: "#fff6d4",
+    ink: "#17201d",
+    paper: "#edf0e8",
+    mist: "#f8faf4",
+    ash: "#d4dbd2",
+    smoke: "#bdc8be",
+    graphite: "#748278",
+    steel: "#68786d",
+    slate: "#526158",
+    marigold: "#d8f36a",
+    buttercream: "#eaf9a8",
+    cream: "#e2f0bd",
   },
   radii: {
     sm: "1px",
@@ -29,6 +29,6 @@ export const designTokens = {
     52: "52px",
   },
   layout: {
-    pageMaxWidth: "1080px",
+    pageMaxWidth: "1280px",
   },
 };

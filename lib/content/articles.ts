@@ -4,6 +4,12 @@ export type Article = {
   description: string;
   minutes: number;
   body: string[];
+  image?: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+  };
 };
 
 export const articles: Article[] = [
@@ -12,6 +18,12 @@ export const articles: Article[] = [
     title: "Protein pro 100 g verstehen",
     description: "Warum Protein pro 100 g der faire Startpunkt für Riegel, Joghurt, Skyr und Pulver ist.",
     minutes: 3,
+    image: {
+      src: "/images/wissen/protein-pro-100g.webp",
+      alt: "Küchenwaage mit proteinreichen Lebensmitteln",
+      width: 1200,
+      height: 800,
+    },
     body: [
       "Proteinprodukte wirken erst vergleichbar, wenn alle Werte auf derselben Basis stehen. Darum startet Proteinhaltig.de mit Protein pro 100 g oder 100 ml.",
       "Ein Riegel mit 35 g Protein pro 100 g klingt hoch. Bei 55 g Packungsgröße sind es aber rund 19 g pro Riegel. Ein Skyr mit 11 g pro 100 g liefert in einem 500-g-Becher deutlich mehr Gesamtprotein.",
@@ -23,6 +35,12 @@ export const articles: Article[] = [
     title: "Proteinriegel vergleichen",
     description: "Proteinriegel nach Protein pro 100 g, Protein pro Riegel und Nährwerten einordnen.",
     minutes: 3,
+    image: {
+      src: "/images/wissen/proteinriegel-vergleichen.webp",
+      alt: "Vier neutrale Proteinriegel auf Backpapier",
+      width: 1200,
+      height: 800,
+    },
     body: [
       "Proteinriegel unterscheiden sich stark: Manche liefern vor allem Protein, andere sind eher ein Snack mit Proteinclaim.",
       "Vergleiche zuerst Protein pro 100 g, dann die Riegelgröße. Ein kleiner Riegel mit hohem Prozentwert kann weniger Protein liefern als ein größerer Riegel mit moderatem Wert.",
@@ -34,6 +52,12 @@ export const articles: Article[] = [
     title: "Protein-Joghurt, Skyr und Quark",
     description: "Kühlregal-Produkte nach Protein pro 100 g und Bechergröße vergleichen.",
     minutes: 3,
+    image: {
+      src: "/images/wissen/protein-joghurt-skyr-quark.webp",
+      alt: "Drei Schalen mit Joghurt, Skyr und Quark",
+      width: 1200,
+      height: 800,
+    },
     body: [
       "Protein-Joghurt, Skyr und Quark sind oft alltagstauglicher als Spezialprodukte, weil die Packungen größer und die Zutatenlisten kürzer sein können.",
       "Der 100-g-Wert zeigt die Dichte. Die Bechergröße zeigt, wie viel Protein tatsächlich zusammenkommt.",
@@ -65,3 +89,9 @@ export const articles: Article[] = [
 ];
 
 export const articleBySlug = Object.fromEntries(articles.map((article) => [article.slug, article]));
+
+export const homepageArticleSlugs = [
+  "protein-pro-100g-verstehen",
+  "proteinriegel-vergleichen",
+  "protein-joghurt-skyr-quark",
+];

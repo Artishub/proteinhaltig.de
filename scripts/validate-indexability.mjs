@@ -19,7 +19,10 @@ if (errors.length) {
   process.exit(1);
 }
 
-const productCount = sitemapUrls.filter((url) => new URL(url).pathname.startsWith("/de/produkte/")).length;
+const productCount = sitemapUrls.filter((url) => {
+  const path = new URL(url).pathname;
+  return path.startsWith("/de/produkte/") && path !== "/de/produkte/vergleich";
+}).length;
 console.log(`Indexability validation passed: ${sitemapUrls.length} sitemap URLs, ${productCount} canonical products`);
 
 async function validateWorker() {

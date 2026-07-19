@@ -1,15 +1,22 @@
 import Link from "next/link";
+import { HeaderNav, type HeaderNavItem } from "@/components/header-nav";
 import { HeaderSearch } from "@/components/header-search";
 import { MobileNav } from "@/components/mobile-nav";
 import { SiteLogo } from "@/components/site-logo";
 import { ThemeToggle } from "@/components/theme-toggle";
 
-const nav = [
+const nav: HeaderNavItem[] = [
   { href: "/de/produkte", label: "Produkte" },
+  { href: "/de/produkte/vergleich", label: "Vergleichen" },
   { href: "/de/marken", label: "Alle Marken" },
   { href: "/de/kategorien", label: "Produkte nach Kategorie" },
-  { href: "/de/wissen", label: "Wissenswertes" },
-  { href: "/de/faq", label: "FAQ" },
+  {
+    label: "Ratgeber",
+    children: [
+      { href: "/de/wissen", label: "Wissenswertes" },
+      { href: "/de/faq", label: "FAQ" },
+    ],
+  },
 ];
 
 export const dynamicParams = false;
@@ -21,22 +28,12 @@ export function generateStaticParams() {
 export default function LocaleLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-paper text-ink">
-      <header className="sticky top-0 z-30 border-b border-ash/70 bg-paper/85 px-2 py-2 backdrop-blur-xl sm:px-3 sm:py-3">
-        <div className="mx-auto flex min-h-12 max-w-page items-center justify-between gap-2 px-2 py-1 sm:gap-3 sm:px-3">
+      <header className="sticky top-0 z-30 border-b border-ash/70 bg-paper/85 px-2 py-2 backdrop-blur-xl">
+        <div className="mx-auto flex min-h-12 max-w-page items-center justify-between gap-2 py-1 sm:gap-3">
           <Link href="/de" className="focus-ring flex shrink-0 rounded-md">
             <SiteLogo />
           </Link>
-          <nav className="hidden items-center gap-2 text-sm text-slate lg:flex" aria-label="Hauptnavigation">
-            {nav.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="focus-ring rounded-full border border-transparent px-3 py-1.5 hover:bg-mist hover:text-ink"
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
+          <HeaderNav items={nav} />
           <div className="flex min-w-0 items-center gap-1.5 sm:gap-2">
             <HeaderSearch />
             <ThemeToggle />

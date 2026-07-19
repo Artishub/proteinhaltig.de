@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ChevronRight, CircleHelp, Scale, Sparkles } from "lucide-react";
+import { ArrowRight, ChevronRight, Search } from "lucide-react";
+import { articleBySlug, homepageArticleSlugs, type Article } from "@/lib/content/articles";
 import { homeContent } from "@/lib/content/home";
-import { drinks, sugarCubes, totalSugarGrams, type Drink } from "@/lib/data/drinks";
+import { drinks, proteinPer100Value, proteinPortions, totalProteinGrams, type Drink } from "@/lib/data/drinks";
 import { brandById } from "@/lib/data/brands";
 import { categoryById } from "@/lib/data/categories";
 import { pageMetadata } from "@/lib/seo";
@@ -14,23 +16,29 @@ export const metadata: Metadata = pageMetadata({
   path: "/de",
 });
 
-export default function HomePage() {
-  const selected = featuredProducts();
-  const heroProduct = selected[0] ?? drinks[0];
+const featuredProductIds = [
+  "ehrmann-high-protein-pudding-schoko-200",
+  "barebells-protein-bar-caramel-cashew-55",
+  "alpro-high-protein-soja-schoko-250",
+  "milbona-high-protein-skyr-natur-500",
+];
 
-  if (!heroProduct) return null;
+export default function HomePage() {
+  const selected = featuredProductIds.map(findProduct);
+  const heroProduct = selected[0];
+  const featuredArticles = homepageArticleSlugs.map(findArticle);
 
   return (
     <main className={styles.page}>
       <section className={styles.hero}>
         <div className={styles.heroGrid}>
           <div className={styles.heroCopy}>
-            <p className={styles.kicker}><Sparkles size={14} aria-hidden="true" /> {homeContent.eyebrow}</p>
+            <p className={styles.kicker}>Protein-Check für den Alltag</p>
             <h1>{homeContent.title}</h1>
-            <p className={styles.lede}>{homeContent.intro}</p>
+            <p className={styles.lede}>Proteinprodukte, lesbar gemacht. Vergleiche Werte pro 100 g/ml, pro Packung und als 10-g-Portion.</p>
             <div className={styles.heroActions}>
-              <Link href="/de/produkte" className={styles.primaryButton}>Produkt finden <ArrowRight size={17} /></Link>
-              <a href="#proteinvergleich" className={styles.textButton}>So liest du die Werte <ChevronRight size={17} /></a>
+              <Link href="/de/produkte" className={styles.primaryButton}>Produkt finden <ArrowRight size={17} strokeWidth={1.75} aria-hidden="true" /></Link>
+              <a href="#proteinvergleich" className={styles.textButton}>So liest du die Werte <ChevronRight size={17} strokeWidth={1.75} aria-hidden="true" /></a>
             </div>
           </div>
 
@@ -43,23 +51,23 @@ export default function HomePage() {
               <p className={styles.brand}>{brandById[heroProduct.brandId]?.name}</p>
               <h2>{heroProduct.name}</h2>
               <div className={styles.proteinNumber}>
-                <strong>{formatNumber(totalSugarGrams(heroProduct))}</strong><span>g Protein</span>
+                <strong>{formatNumber(totalProteinGrams(heroProduct))}</strong><span>g Protein</span>
               </div>
-              <p className={styles.cardHint}>pro Packung, {formatNumber(sugarCubes(heroProduct))} Portionen à 10 g</p>
+              <p className={styles.cardHint}>pro Packung · {formatNumber(proteinPortions(heroProduct))} Portionen à 10 g</p>
               <div className={styles.blockField} aria-hidden="true">
                 {Array.from({ length: proteinBlockCount(heroProduct) }).map((_, index) => <i key={index} />)}
               </div>
             </div>
-            <Link href={`/de/produkte/${heroProduct.id}`} className={styles.cardLink}>Detail ansehen <ArrowRight size={16} /></Link>
+            <Link href={`/de/produkte/${heroProduct.id}`} className={styles.cardLink}>Detail ansehen <ArrowRight size={17} strokeWidth={1.75} aria-hidden="true" /></Link>
           </article>
         </div>
       </section>
 
       <nav className={styles.quickNav} aria-label="Schnelleinstieg">
-        <Link href="/de/produkte"><span>Produkte</span><ArrowRight size={18} /></Link>
-        <Link href="/de/kategorien"><span>Kategorien</span><ArrowRight size={18} /></Link>
-        <Link href="/de/marken"><span>Marken</span><ArrowRight size={18} /></Link>
-        <Link href="/de/wissen"><span>Wissen</span><ArrowRight size={18} /></Link>
+        <Link href="/de/produkte"><span>Produkte</span><ArrowRight size={17} strokeWidth={1.75} aria-hidden="true" /></Link>
+        <Link href="/de/produkte/vergleich"><span>Vergleichen</span><ArrowRight size={17} strokeWidth={1.75} aria-hidden="true" /></Link>
+        <Link href="/de/kategorien"><span>Kategorien</span><ArrowRight size={17} strokeWidth={1.75} aria-hidden="true" /></Link>
+        <Link href="/de/wissen"><span>Wissen</span><ArrowRight size={17} strokeWidth={1.75} aria-hidden="true" /></Link>
       </nav>
 
       <section className={styles.snapshot} id="proteinvergleich">
@@ -72,19 +80,34 @@ export default function HomePage() {
         </div>
       </section>
 
+      <section className={styles.knowledge} aria-labelledby="knowledge-title">
+        <div className={styles.knowledgeHeader}>
+          <h2 id="knowledge-title">Proteinwerte besser einordnen.</h2>
+          <Link href="/de/wissen" className={styles.textButton}>
+            Alle Artikel <ArrowRight size={17} strokeWidth={1.75} aria-hidden="true" />
+          </Link>
+        </div>
+        <div className={styles.knowledgeGrid}>
+          <KnowledgeTeaser article={featuredArticles[0]} />
+          <div className={styles.knowledgeStack}>
+            {featuredArticles.slice(1).map((article) => <KnowledgeTeaser key={article.slug} article={article} />)}
+          </div>
+        </div>
+      </section>
+
       <section className={styles.explorer}>
         <div>
-          <h2>Nach Produkt suchen.<br />Werte prüfen.</h2>
+          <p className={styles.explorerLabel}><Search size={14} strokeWidth={1.75} aria-hidden="true" /> Durchsuche unsere Produktdatenbank</p>
+          <h2>Vergleiche nicht nur den Claim.<br />Schau auf die Packung.</h2>
         </div>
         <div className={styles.explorerPanel}>
           <p>Filtere nach Marke, Kategorie, Packung oder Proteinwert. Jede Detailseite nennt die hinterlegte Quelle und den Prüfstatus.</p>
-          <Link href="/de/produkte" className={styles.lightButton}>Alle Produkte <ArrowRight size={17} /></Link>
+          <Link href="/de/produkte" className={styles.lightButton}>Alle Produkte <ArrowRight size={17} strokeWidth={1.75} aria-hidden="true" /></Link>
         </div>
       </section>
 
       <section className={styles.method}>
         <div className={styles.methodTitle}>
-          <p className={styles.kicker}><CircleHelp size={14} aria-hidden="true" /> Klare Berechnung</p>
           <h2>So rechnet Proteinhaltig.</h2>
         </div>
         <div className={styles.methodSteps}>
@@ -93,14 +116,37 @@ export default function HomePage() {
       </section>
 
       <section className={styles.closing}>
-        <Scale size={25} aria-hidden="true" />
         <div>
           <h2>Dein Produkt im Vergleich.</h2>
           <p>Werte vergleichen, Quelle prüfen, passend einordnen.</p>
         </div>
-        <Link href="/de/produkte" className={styles.primaryButton}>Jetzt vergleichen <ArrowRight size={17} /></Link>
+        <Link href="/de/produkte/vergleich" className={styles.primaryButton}>Jetzt vergleichen <ArrowRight size={17} strokeWidth={1.75} aria-hidden="true" /></Link>
       </section>
     </main>
+  );
+}
+
+function KnowledgeTeaser({ article }: { article: Article }) {
+  return (
+    <Link href={`/de/wissen/${article.slug}`} className={styles.knowledgeTeaser}>
+      {article.image && (
+        <div className={styles.knowledgeTeaserImage}>
+          <Image
+            src={article.image.src}
+            alt=""
+            width={article.image.width}
+            height={article.image.height}
+            sizes="(max-width: 767px) calc(100vw - 2.5rem), 280px"
+          />
+        </div>
+      )}
+      <div className={styles.knowledgeTeaserBody}>
+        <p className={styles.knowledgeMeta}>{article.minutes} Min. Lesezeit</p>
+        <h3>{article.title}</h3>
+        <p className={styles.knowledgeDescription}>{article.description}</p>
+        <span>Lesen <ArrowRight size={17} strokeWidth={1.75} aria-hidden="true" /></span>
+      </div>
+    </Link>
   );
 }
 
@@ -109,43 +155,27 @@ function ProductCard({ drink }: { drink: Drink }) {
 
   return (
     <Link href={`/de/produkte/${drink.id}`} className={styles.productCard}>
-      <div className={styles.productCardTop}><span>{categoryById[drink.categoryId]?.name}</span><span>{sizeLabel(drink)}</span></div>
+      <div className={styles.productCardTop}><span className={styles.productChip}>{categoryById[drink.categoryId]?.name}</span><span>{sizeLabel(drink)}</span></div>
       <div>
         <p className={styles.brand}>{brandName}</p>
         <h3>{drink.name}</h3>
       </div>
-      <div className={styles.measure}><strong>{formatNumber(totalSugarGrams(drink))} g</strong><span>Protein pro Packung</span></div>
-      <div className={styles.cardFoot}><span>{formatNumber(drink.sugarPer100Ml)} g / 100 g/ml</span><span>{formatNumber(sugarCubes(drink))} Portionen</span></div>
+      <div className={styles.measure}><strong>{formatNumber(totalProteinGrams(drink))} g</strong><span>Protein pro Packung</span></div>
+      <div className={styles.cardFoot}><span>{formatNumber(proteinPer100Value(drink))} g / 100 g/ml</span><span>{formatNumber(proteinPortions(drink))} Portionen</span></div>
     </Link>
   );
 }
 
-function featuredProducts() {
-  const maxSizeByCategory: Record<string, number> = {
-    "protein-bar": 100,
-    "protein-yogurt": 500,
-    "protein-pudding": 500,
-    "protein-drink": 500,
-    "skyr-quark": 500,
-    "protein-snack": 200,
-  };
-  const seenCategories = new Set<string>();
-  const selected: Drink[] = [];
-  const candidates = drinks
-    .filter((drink) => {
-      const maxSize = maxSizeByCategory[drink.categoryId];
-      return maxSize && drink.sizeMl && drink.sizeMl <= maxSize && drink.sugarPer100Ml !== null && drink.sugarPer100Ml <= 35;
-    })
-    .sort((a, b) => (totalSugarGrams(b) ?? 0) - (totalSugarGrams(a) ?? 0));
+function findProduct(id: string) {
+  const drink = drinks.find((item) => item.id === id);
+  if (!drink) throw new Error(`Produkt ${id} fehlt.`);
+  return drink;
+}
 
-  for (const drink of candidates) {
-    if (seenCategories.has(drink.categoryId)) continue;
-    selected.push(drink);
-    seenCategories.add(drink.categoryId);
-    if (selected.length === 4) break;
-  }
-
-  return selected;
+function findArticle(slug: string) {
+  const article = articleBySlug[slug];
+  if (!article) throw new Error(`Artikel ${slug} fehlt.`);
+  return article;
 }
 
 function sizeLabel(drink: { sizeMl: number | null; packageUnit?: string | null }) {
@@ -157,5 +187,5 @@ function formatNumber(value: number | null) {
 }
 
 function proteinBlockCount(drink: Drink) {
-  return Math.min(Math.max(Math.round(sugarCubes(drink) ?? 0), 1), 18);
+  return Math.min(Math.max(Math.round(proteinPortions(drink) ?? 0), 1), 18);
 }

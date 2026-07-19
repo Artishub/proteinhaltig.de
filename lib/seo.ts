@@ -14,13 +14,24 @@ export function pageMetadata({
   path,
   type = "website",
   absoluteTitle,
+  image,
 }: {
   title: string;
   description: string;
   path: string;
   type?: "website" | "article";
   absoluteTitle?: string;
+  image?: {
+    src: string;
+    alt: string;
+    width: number;
+    height: number;
+  };
 }): Metadata {
+  const images = image
+    ? [{ url: image.src, width: image.width, height: image.height, alt: image.alt }]
+    : [ogImage];
+
   return {
     title: absoluteTitle ? { absolute: absoluteTitle } : title,
     description,
@@ -30,7 +41,7 @@ export function pageMetadata({
       description,
       url: `${siteUrl}${path}`,
       siteName: "Proteinhaltig.de",
-      images: [ogImage],
+      images,
       locale: "de_DE",
       type,
     },
@@ -38,7 +49,7 @@ export function pageMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: [ogImage.url],
+      images: [images[0].url],
     },
   };
 }

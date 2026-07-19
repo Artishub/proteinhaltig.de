@@ -9,7 +9,7 @@ import type { DrinkCategory } from "@/lib/data/categories";
 type BrandSearchGridProps = {
   brands: Brand[];
   counts: Record<string, number>;
-  topDrinks: Record<string, { id: string; name: string; sugar: number | null }[]>;
+  topDrinks: Record<string, { id: string; name: string }[]>;
   searchData: Record<string, { categories: string[]; text: string }>;
   categories: DrinkCategory[];
 };
@@ -37,7 +37,7 @@ export function BrandSearchGrid({ brands, counts, topDrinks, searchData, categor
     <section className="mt-8">
       <div className="grid gap-3 rounded-lg border border-ash bg-mist p-3 md:grid-cols-[1fr_260px_auto]">
         <label className="flex h-11 min-w-0 items-center gap-2 rounded-md border border-ash bg-paper px-3 transition focus-within:border-marigold">
-          <Search size={16} />
+          <Search size={16} strokeWidth={1.75} aria-hidden="true" />
           <input
             value={query}
             onChange={(event) => setQuery(event.target.value)}
@@ -58,7 +58,7 @@ export function BrandSearchGrid({ brands, counts, topDrinks, searchData, categor
               <option key={item.id} value={item.id}>{item.name}</option>
             ))}
           </select>
-          <ChevronDown size={16} className="pointer-events-none absolute right-3 text-slate" />
+          <ChevronDown size={16} strokeWidth={1.75} className="pointer-events-none absolute right-3 text-slate" aria-hidden="true" />
         </label>
         <p className="flex h-11 items-center rounded-md border border-ash bg-paper px-3 text-sm text-slate">
           {filteredBrands.length} Marken
@@ -73,17 +73,17 @@ export function BrandSearchGrid({ brands, counts, topDrinks, searchData, categor
           const actionLabel = remaining > 0 ? `${remaining} weitere` : "Produkte ansehen";
 
           return (
-          <article key={brand.id} className="flex min-h-[236px] flex-col rounded-lg border border-ash p-4">
+          <article key={brand.id} className="flex min-h-[236px] flex-col rounded-lg border border-ash bg-mist p-4">
             <div>
-              <h2 className="font-semibold">{brand.name}</h2>
+              <h2 className="font-medium">{brand.name}</h2>
               <p className="mt-1 text-sm text-slate">{brand.note}</p>
             </div>
             {!!products.length && (
               <div className="mt-4 flex flex-1 flex-col border-t border-ash pt-3">
-                <p className="text-xs font-medium uppercase tracking-wide text-slate">Produkte</p>
+                <p className="text-xs font-medium text-slate">Produkte</p>
                 <div className="mb-5 mt-2 flex flex-col items-start gap-2">
                 {products.map((drink) => (
-                  <Link key={drink.id} href={`/de/produkte/${drink.id}`} className="focus-ring max-w-full truncate rounded-md bg-mist px-2.5 py-1.5 text-sm leading-5 hover:bg-cream">
+                  <Link key={drink.id} href={`/de/produkte/${drink.id}`} className="focus-ring max-w-full truncate rounded-md bg-paper px-2.5 py-1.5 text-sm leading-5 hover:bg-cream">
                     {drink.name}
                   </Link>
                 ))}

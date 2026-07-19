@@ -4,7 +4,16 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, ExternalLink, Info } from "lucide-react";
 import { brandById } from "@/lib/data/brands";
 import { categoryById } from "@/lib/data/categories";
-import { drinks, packageEnergyKcal, sugarCubes, totalSugarGrams, verificationLabel, type Drink, type DrinkFaq } from "@/lib/data/drinks";
+import {
+  drinks,
+  packageEnergyKcal,
+  proteinPer100Value,
+  proteinPortions,
+  totalProteinGrams,
+  verificationLabel,
+  type Drink,
+  type DrinkFaq,
+} from "@/lib/data/drinks";
 import { pageMetadata } from "@/lib/seo";
 import { siteUrl } from "@/lib/site";
 import styles from "./product-detail.module.css";
@@ -24,9 +33,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!drink) return { title: "Produkt nicht gefunden" };
 
   const brandName = brandById[drink.brandId]?.name ?? "Unbekannte Marke";
-  const totalProtein = totalSugarGrams(drink);
+  const proteinPer100 = proteinPer100Value(drink);
+  const totalProtein = totalProteinGrams(drink);
   const packagePart = drink.sizeMl && totalProtein !== null ? `, ${formatNumber(totalProtein)} g pro ${sizeLabel(drink)}` : "";
-  const proteinPart = drink.sugarPer100Ml === null ? "Proteinwert noch nicht verifiziert" : `${formatNumber(drink.sugarPer100Ml)} g Protein pro 100 g/ml${packagePart}`;
+  const proteinPart = proteinPer100 === null ? "Proteinwert noch nicht verifiziert" : `${formatNumber(proteinPer100)} g Protein pro 100 g/ml${packagePart}`;
   const description = `${drink.name} von ${brandName}: ${proteinPart}. Mit Nährwerten, Packung und Quelle.`;
   const title = productMetaTitle(drink.name, brandName);
 
@@ -50,8 +60,8 @@ export default async function ProductDetailPage({ params }: PageProps) {
 
   const brandName = brandById[drink.brandId]?.name ?? "Unbekannte Marke";
   const categoryName = categoryById[drink.categoryId]?.name ?? "Produkt";
-  const totalProtein = totalSugarGrams(drink);
-  const portions = sugarCubes(drink);
+  const totalProtein = totalProteinGrams(drink);
+  const portions = proteinPortions(drink);
   const energy = packageEnergyKcal(drink);
   const similar = similarDrinks(drink);
   const faqs = generatedFaq(drink, brandName);
@@ -59,17 +69,18 @@ export default async function ProductDetailPage({ params }: PageProps) {
   return (
     <main className={styles.page}>
       <section className={styles.hero}>
-        <Link href="/de/produkte" className={styles.back}><ArrowLeft size={16} /> Zur Produktsuche</Link>
+        <Link href="/de/produkte" className={styles.back}><ArrowLeft size={16} strokeWidth={1.75} aria-hidden="true" /> Zur Produktsuche</Link>
         <div className={styles.heroGrid}>
           <div>
             <p className={styles.category}>{categoryName} · {sizeLabel(drink)}</p>
             <h1>Wie viel Protein hat {drink.name}?</h1>
             <p className={styles.summary}>{introText(drink, brandName, categoryName)}</p>
             {drink.note && <p className={styles.note}>{drink.note}</p>}
-            <p className={styles.sourceLine}><Info size={15} /> Quelle: {drink.source} · {verificationLabel(drink)}</p>
+            <p className={styles.sourceLine}><Info size={15} strokeWidth={1.75} aria-hidden="true" /> Quelle: {drink.source} · {verificationLabel(drink)}</p>
             <div className={styles.topicLinks}>
               <Link href={`/de/produkte?brand=${drink.brandId}`}>Mehr von {brandName}</Link>
               <Link href={`/de/produkte?category=${drink.categoryId}`}>Kategorie {categoryName}</Link>
+              <Link href={`/de/produkte/vergleich?product=${drink.id}`}>Vergleichen</Link>
             </div>
           </div>
           <div className={styles.proteinPanel}>
@@ -86,7 +97,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
       </section>
 
       <section className={styles.facts} aria-label={`Werte für ${drink.name}`}>
-        <Nutrient label="Protein pro 100 g/ml" value={formatOptionalGrams(drink.sugarPer100Ml)} highlight />
+        <Nutrient label="Protein pro 100 g/ml" value={formatOptionalGrams(proteinPer100Value(drink))} highlight />
         <Nutrient label={`Protein pro ${sizeLabel(drink)}`} value={formatOptionalGrams(totalProtein)} highlight />
         <Nutrient label="10-g-Proteinportionen" value={formatOptionalNumber(portions)} />
         <Nutrient label="Energie pro Packung" value={energy === null ? "/" : `${formatNumber(energy)} kcal`} />
@@ -98,7 +109,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
           <h2>Pro 100 g/ml</h2>
           <div className={styles.nutrientGrid}>
             <Nutrient label="Energie" value={drink.nutritionPer100Ml ? `${formatNumber(drink.nutritionPer100Ml.energyKcal)} kcal / ${formatNumber(drink.nutritionPer100Ml.energyKj)} kJ` : "/"} />
-            <Nutrient label="Protein" value={formatOptionalGrams(drink.sugarPer100Ml)} />
+            <Nutrient label="Protein" value={formatOptionalGrams(proteinPer100Value(drink))} />
             <Nutrient label="Kohlenhydrate" value={drink.nutritionPer100Ml ? `${formatNumber(drink.nutritionPer100Ml.carbohydrates)} g` : "/"} />
             <Nutrient label="Fett" value={drink.nutritionPer100Ml ? `${formatNumber(drink.nutritionPer100Ml.fat)} g` : "/"} />
             <Nutrient label="Eiweiß laut Nährwerttabelle" value={drink.nutritionPer100Ml ? `${formatNumber(drink.nutritionPer100Ml.protein)} g` : "/"} />
@@ -112,7 +123,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
           <p>{verificationLabel(drink)}</p>
           <p className={styles.sourceNote}>Produktwerte können sich durch Rezeptur- oder Verpackungsänderungen ändern.</p>
           {drink.lastCheckedAt && <p className={styles.checked}>Zuletzt geprüft: {formatDate(drink.lastCheckedAt)}</p>}
-          {drink.sourceUrl && <a href={drink.sourceUrl} target="_blank" rel="noreferrer">Quelle öffnen <ExternalLink size={16} /></a>}
+          {drink.sourceUrl && <a href={drink.sourceUrl} target="_blank" rel="noreferrer">Quelle öffnen <ExternalLink size={16} strokeWidth={1.75} aria-hidden="true" /></a>}
         </aside>
       </section>
 
@@ -125,8 +136,8 @@ export default async function ProductDetailPage({ params }: PageProps) {
               <Link key={item.id} href={`/de/produkte/${item.id}`}>
                 <span>{similarBrand}</span>
                 <strong>{item.name}</strong>
-                <b>{formatOptionalGrams(item.sugarPer100Ml)} / 100 g/ml</b>
-                <ArrowRight size={16} />
+                <b>{formatOptionalGrams(proteinPer100Value(item))} / 100 g/ml</b>
+                <ArrowRight size={16} strokeWidth={1.75} aria-hidden="true" />
               </Link>
             );
           })}
@@ -140,8 +151,8 @@ export default async function ProductDetailPage({ params }: PageProps) {
           {faqs.map((item) => <details key={item.question}><summary>{item.question}</summary><p>{item.answer}</p></details>)}
         </div>
         <div className={styles.knowledgeLinks}>
-          <Link href={knowledgeLink(drink)} className={styles.knowledge}>Passendes Wissen <ArrowRight size={16} /></Link>
-          <Link href={`/de/produkte?brand=${drink.brandId}`} className={styles.knowledge}>Alle Produkte von {brandName} <ArrowRight size={16} /></Link>
+          <Link href={knowledgeLink(drink)} className={styles.knowledge}>Passendes Wissen <ArrowRight size={16} strokeWidth={1.75} aria-hidden="true" /></Link>
+          <Link href={`/de/produkte?brand=${drink.brandId}`} className={styles.knowledge}>Alle Produkte von {brandName} <ArrowRight size={16} strokeWidth={1.75} aria-hidden="true" /></Link>
         </div>
       </section>
 
@@ -181,25 +192,27 @@ function proteinBlockCount(portions: number | null) {
 }
 
 function similarDrinks(drink: Drink) {
+  const proteinPer100 = proteinPer100Value(drink) ?? 0;
   return drinks
     .filter((item) => item.id !== drink.id && (item.categoryId === drink.categoryId || item.brandId === drink.brandId))
-    .sort((a, b) => Math.abs((a.sugarPer100Ml ?? 0) - (drink.sugarPer100Ml ?? 0)) - Math.abs((b.sugarPer100Ml ?? 0) - (drink.sugarPer100Ml ?? 0)))
+    .sort((a, b) => Math.abs((proteinPer100Value(a) ?? 0) - proteinPer100) - Math.abs((proteinPer100Value(b) ?? 0) - proteinPer100))
     .slice(0, 4);
 }
 
 function generatedFaq(drink: Drink, brandName: string): DrinkFaq[] {
-  const totalProtein = totalSugarGrams(drink);
-  const portions = sugarCubes(drink);
+  const proteinPer100 = proteinPer100Value(drink);
+  const totalProtein = totalProteinGrams(drink);
+  const portions = proteinPortions(drink);
 
   return [
     {
       question: `Wie viel Protein hat ${drink.name}?`,
       answer:
-        drink.sugarPer100Ml === null
+        proteinPer100 === null
           ? `${drink.name} von ${brandName} hat bereits eine Quelle, der Proteinwert ist aber noch nicht verifiziert.`
           : totalProtein === null || !drink.sizeMl
-          ? `${drink.name} von ${brandName} enthält ${formatNumber(drink.sugarPer100Ml)} g Protein pro 100 g/ml. Eine Packungsgröße ist noch nicht hinterlegt.`
-          : `${drink.name} von ${brandName} enthält ${formatNumber(drink.sugarPer100Ml)} g Protein pro 100 g/ml. Bei ${sizeLabel(drink)} ergibt das rechnerisch ${formatNumber(totalProtein)} g Protein pro Packung.`,
+          ? `${drink.name} von ${brandName} enthält ${formatNumber(proteinPer100)} g Protein pro 100 g/ml. Eine Packungsgröße ist noch nicht hinterlegt.`
+          : `${drink.name} von ${brandName} enthält ${formatNumber(proteinPer100)} g Protein pro 100 g/ml. Bei ${sizeLabel(drink)} ergibt das rechnerisch ${formatNumber(totalProtein)} g Protein pro Packung.`,
     },
     {
       question: `Wie viele Proteinportionen stecken in ${drink.name}?`,
@@ -220,8 +233,8 @@ function generatedFaq(drink: Drink, brandName: string): DrinkFaq[] {
 }
 
 function introText(drink: Drink, brandName: string, categoryName: string) {
-  const totalProtein = totalSugarGrams(drink);
-  const portions = sugarCubes(drink);
+  const totalProtein = totalProteinGrams(drink);
+  const portions = proteinPortions(drink);
   const base =
     totalProtein === null || portions === null || !drink.sizeMl
       ? "Eine Packungsgröße ist noch nicht hinterlegt; Gesamtprotein und Proteinportionen werden deshalb als / angezeigt."

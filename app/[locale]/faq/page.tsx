@@ -26,7 +26,7 @@ export default function FaqPage() {
       <div className="grid gap-10 lg:grid-cols-[240px_1fr]">
         <FaqNav categories={faqCategories} />
         <div>
-          <h1 className="text-4xl font-semibold tracking-tight">FAQ: Proteinprodukte</h1>
+          <h1 className="text-4xl font-semibold tracking-[-0.02em]">FAQ: Proteinprodukte</h1>
           <p className="mt-4 max-w-2xl leading-7 text-slate">
             Antworten auf Suchfragen wie „Wie viel Protein hat ein Riegel?“, „Wie vergleiche ich Skyr?“ und „Was bedeutet Protein pro 100 g?“.
           </p>
@@ -34,13 +34,13 @@ export default function FaqPage() {
             {faqCategories.map((category) => (
               <section key={category.id} id={category.id} className="scroll-mt-28">
                 <div className="border-b border-ash pb-4">
-                  <h2 className="text-2xl font-semibold tracking-tight">{category.title}</h2>
+                  <h2 className="text-2xl font-medium tracking-[-0.02em]">{category.title}</h2>
                   <p className="mt-2 text-sm leading-6 text-slate">{category.intro}</p>
                 </div>
                 <div className="divide-y divide-ash">
                   {category.items.map((item) => (
                     <article key={item.question} className="py-5">
-                      <h3 className="font-semibold">{item.question}</h3>
+                      <h3 className="font-medium">{item.question}</h3>
                       <p className="mt-2 leading-7 text-slate">{item.answer}</p>
                     </article>
                   ))}

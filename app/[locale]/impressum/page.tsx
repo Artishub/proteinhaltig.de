@@ -13,7 +13,7 @@ export default function ImpressumPage() {
       <h1 className="text-4xl font-semibold tracking-tight">Impressum</h1>
       <section className="mt-6 space-y-6 leading-7 text-slate">
         <div>
-          <h2 className="text-lg font-semibold text-ink">Angaben gemäß § 5 DDG</h2>
+          <h2 className="text-lg font-medium text-ink">Angaben gemäß § 5 DDG</h2>
           <p className="mt-2">
             Artjom Gasarov
             <br />
@@ -23,7 +23,7 @@ export default function ImpressumPage() {
           </p>
         </div>
         <div>
-          <h2 className="text-lg font-semibold text-ink">Kontakt</h2>
+          <h2 className="text-lg font-medium text-ink">Kontakt</h2>
           <p className="mt-2">
             E-Mail:{" "}
             <a className="underline decoration-ash underline-offset-4 hover:decoration-marigold" href="mailto:artjomgasarov@gmail.com">
@@ -32,7 +32,7 @@ export default function ImpressumPage() {
           </p>
         </div>
         <div>
-          <h2 className="text-lg font-semibold text-ink">Haftung für Inhalte</h2>
+          <h2 className="text-lg font-medium text-ink">Haftung für Inhalte</h2>
           <p className="mt-2">
             Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Angaben übernehmen wir jedoch keine Gewähr.
           </p>

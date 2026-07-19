@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { BrandSearchGrid } from "@/components/brand-search-grid";
 import { brands } from "@/lib/data/brands";
 import { categories } from "@/lib/data/categories";
-import { drinks, totalSugarGrams, uniqueProductRepresentatives } from "@/lib/data/drinks";
+import { drinks, totalProteinGrams, uniqueProductRepresentatives } from "@/lib/data/drinks";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -22,9 +22,9 @@ export default function BrandsPage() {
     brands.map((brand) => [
       brand.id,
       uniqueByBrand[brand.id]
-        .sort((a, b) => (totalSugarGrams(b) ?? -1) - (totalSugarGrams(a) ?? -1))
+        .sort((a, b) => (totalProteinGrams(b) ?? -1) - (totalProteinGrams(a) ?? -1))
         .slice(0, 3)
-        .map((drink) => ({ id: drink.id, name: drink.name, sugar: totalSugarGrams(drink) })),
+        .map((drink) => ({ id: drink.id, name: drink.name })),
     ]),
   );
   const brandSearchData = Object.fromEntries(
@@ -42,7 +42,7 @@ export default function BrandsPage() {
 
   return (
     <main className="mx-auto max-w-page px-4 py-10">
-      <h1 className="text-4xl font-semibold tracking-tight">Marken</h1>
+      <h1 className="text-4xl font-semibold tracking-[-0.02em]">Marken</h1>
       <p className="mt-4 max-w-2xl leading-7 text-slate">
         Vergleiche Produktemarken nach Proteinwerten, Produktvarianten und Packungsgrößen. Jede Marke führt direkt zur gefilterten Produktesuche.
       </p>
