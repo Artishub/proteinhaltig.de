@@ -88,10 +88,7 @@ export default function HomePage() {
           </Link>
         </div>
         <div className={styles.knowledgeGrid}>
-          <KnowledgeTeaser article={featuredArticles[0]} />
-          <div className={styles.knowledgeStack}>
-            {featuredArticles.slice(1).map((article) => <KnowledgeTeaser key={article.slug} article={article} />)}
-          </div>
+          {featuredArticles.map((article) => <KnowledgeTeaser key={article.slug} article={article} />)}
         </div>
       </section>
 

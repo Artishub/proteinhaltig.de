@@ -20,7 +20,7 @@ export const articles: Article[] = [
     minutes: 3,
     image: {
       src: "/images/wissen/protein-pro-100g.webp",
-      alt: "Küchenwaage mit proteinreichen Lebensmitteln",
+      alt: "Messgefäß mit Hülsenfrüchten, Ei, Tofu und Joghurt in einer geometrischen Illustration",
       width: 1200,
       height: 800,
     },
@@ -37,7 +37,7 @@ export const articles: Article[] = [
     minutes: 3,
     image: {
       src: "/images/wissen/proteinriegel-vergleichen.webp",
-      alt: "Vier neutrale Proteinriegel auf Backpapier",
+      alt: "Vier neutrale Proteinriegel in einer geometrischen Illustration",
       width: 1200,
       height: 800,
     },
@@ -54,7 +54,7 @@ export const articles: Article[] = [
     minutes: 3,
     image: {
       src: "/images/wissen/protein-joghurt-skyr-quark.webp",
-      alt: "Drei Schalen mit Joghurt, Skyr und Quark",
+      alt: "Drei Schalen mit Joghurt, Skyr und Quark in einer geometrischen Illustration",
       width: 1200,
       height: 800,
     },
