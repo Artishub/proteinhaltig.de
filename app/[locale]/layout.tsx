@@ -44,7 +44,15 @@ export default function LocaleLayout({ children }: { children: React.ReactNode }
       {children}
       <footer className="border-t border-ash bg-mist">
         <div className="mx-auto grid max-w-page gap-6 px-4 py-12 text-sm text-slate md:grid-cols-[1fr_auto]">
-          <p>Proteinhaltig.de ist ein unabhängiges Informationsprojekt.<br />Angaben ohne Gewähr.</p>
+          <div className="space-y-4">
+            <p>Proteinhaltig.de ist ein unabhängiges Informationsprojekt.<br />Angaben ohne Gewähr.</p>
+            <nav aria-label="Weitere Projekte" className="flex flex-wrap gap-x-4 gap-y-2">
+              <span className="text-ink">Weitere Projekte</span>
+              <a href="https://aivergleich.de" className="hover:text-ink">AIvergleich.de</a>
+              <a href="https://www.zuckerhaltig.de" className="hover:text-ink">Zuckerhaltig.de</a>
+              <span aria-current="page">Proteinhaltig.de</span>
+            </nav>
+          </div>
           <div className="flex flex-wrap gap-4">
             <Link href="/de/impressum" className="hover:text-ink">Impressum</Link>
             <Link href="/de/datenschutz" className="hover:text-ink">Datenschutz</Link>
