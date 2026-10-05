@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { BrandSearchGrid } from "@/components/brand-search-grid";
 import { brands } from "@/lib/data/brands";
 import { categories } from "@/lib/data/categories";
-import { drinks, totalProteinGrams, uniqueProductRepresentatives } from "@/lib/data/drinks";
+import { products, packageProtein, uniqueProductRepresentatives } from "@/lib/data/products";
+import { productPageHref } from "@/lib/page-routing";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -13,28 +14,28 @@ export const metadata: Metadata = pageMetadata({
 
 export default function BrandsPage() {
   const uniqueByBrand = Object.fromEntries(
-    brands.map((brand) => [brand.id, uniqueProductRepresentatives(drinks.filter((drink) => drink.brandId === brand.id))]),
+    brands.map((brand) => [brand.id, uniqueProductRepresentatives(products.filter((product) => product.brandId === brand.id))]),
   );
   const counts = Object.fromEntries(
     brands.map((brand) => [brand.id, uniqueByBrand[brand.id].length]),
   );
-  const topDrinks = Object.fromEntries(
+  const topProducts = Object.fromEntries(
     brands.map((brand) => [
       brand.id,
       uniqueByBrand[brand.id]
-        .sort((a, b) => (totalProteinGrams(b) ?? -1) - (totalProteinGrams(a) ?? -1))
+        .sort((a, b) => (packageProtein(b) ?? -1) - (packageProtein(a) ?? -1))
         .slice(0, 3)
-        .map((drink) => ({ id: drink.id, name: drink.name })),
+        .map((product) => ({ id: product.id, name: product.name, href: productPageHref(product) })),
     ]),
   );
   const brandSearchData = Object.fromEntries(
     brands.map((brand) => {
-      const brandDrinks = uniqueByBrand[brand.id];
+      const brandProducts = uniqueByBrand[brand.id];
       return [
         brand.id,
         {
-          categories: Array.from(new Set(brandDrinks.map((drink) => drink.categoryId))),
-          text: brandDrinks.map((drink) => drink.name).join(" "),
+          categories: Array.from(new Set(brandProducts.map((product) => product.categoryId))),
+          text: brandProducts.map((product) => product.name).join(" "),
         },
       ];
     }),
@@ -44,9 +45,9 @@ export default function BrandsPage() {
     <main className="mx-auto max-w-page px-4 py-10">
       <h1 className="text-4xl font-semibold tracking-[-0.02em]">Marken</h1>
       <p className="mt-4 max-w-2xl leading-7 text-slate">
-        Vergleiche Produktemarken nach Proteinwerten, Produktvarianten und Packungsgrößen. Jede Marke führt direkt zur gefilterten Produktesuche.
+        Vergleiche Proteinmarken nach Proteinwerten, Produktvarianten und Packungsgrößen. Jede Marke führt direkt zur gefilterten Produktsuche.
       </p>
-      <BrandSearchGrid brands={brands} counts={counts} topDrinks={topDrinks} searchData={brandSearchData} categories={categories} />
+      <BrandSearchGrid brands={brands} counts={counts} topProducts={topProducts} searchData={brandSearchData} categories={categories} />
     </main>
   );
 }

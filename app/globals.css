@@ -14,6 +14,10 @@
   --marigold: #d8f36a;
   --buttercream: #eaf9a8;
   --cream: #e2f0bd;
+  --accent: #d8f36a;
+  --stage: #1f4539;
+  --stage-ink: #f5f8f2;
+  --stage-muted: #c3d6c9;
 }
 
 .dark {
@@ -28,6 +32,10 @@
   --marigold: #d8f36a;
   --buttercream: #eaf9a8;
   --cream: #2b442f;
+  --accent: #d8f36a;
+  --stage: #102a21;
+  --stage-ink: #f5f8f2;
+  --stage-muted: #b9cdbf;
 }
 
 * {

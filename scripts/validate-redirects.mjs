@@ -15,18 +15,6 @@ const expectedRedirects = new Map([
   ["/nutzungsbedingungen", "/de/nutzungsbedingungen"],
   ["/de/getraenke", "/de/produkte"],
   ["/de/getraenke/:productId", "/de/produkte/:productId"],
-  ["/de/produkte/more-total-protein-sahne-1000", "/de/produkte/more-saucen-back-protein-sahne-50"],
-  ["/de/produkte/yfood-high-protein-drink-chocolate-500", "/de/produkte/yfood-ready-to-drink-classic-choco-500"],
-  ["/de/produkte/powerbar-protein-plus-52-chocolate-55", "/de/produkte/powerbar-protein-plus-52-chocolate-nut-50"],
-  ["/de/produkte/esn-designer-bar-crunchy-fudge-45", "/de/produkte/esn-designer-bar-fudge-brownie-45"],
-  ["/de/produkte/foodspring-protein-bar-extra-chocolate-60", "/de/produkte/foodspring-protein-bar-extra-chocolate-crispy-coconut-45"],
-  ["/de/produkte/dm-sportness-protein-muesli-schoko-60", "/de/produkte/dm-sportness-protein-waffel-60"],
-  ["/de/produkte/optimum-nutrition-clear-protein-dark-berry-280", "/de/produkte/optimum-nutrition-clear-protein-dark-berry-240"],
-  ["/de/produkte/optimum-nutrition-clear-protein-mango-passionfruit-280", "/de/produkte/optimum-nutrition-clear-protein-mango-passionfruit-240"],
-  ["/de/produkte/optimum-nutrition-clear-protein-peach-iced-tea-280", "/de/produkte/optimum-nutrition-clear-protein-peach-240"],
-  ["/de/produkte/optimum-nutrition-protein-water-tropical-500", "/de/produkte/optimum-nutrition-protein-water-tropical-350"],
-  ["/de/produkte/optimum-nutrition-protein-water-apple-raspberry-500", "/de/produkte/optimum-nutrition-protein-water-apple-raspberry-350"],
-  ["/de/produkte/grenade-creme-egg-protein-bar-60", "/de/produkte/grenade-creme-egg-protein-bar-45"],
   ["/de/produkte/ehrmann-high-protein-joghurt-vanille-200", "/de/produkte?brand=ehrmann&category=protein-yogurt"],
 ]);
 

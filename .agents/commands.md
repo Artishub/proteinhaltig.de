@@ -3,23 +3,12 @@
 Run from repo root.
 
 - Dev: `npm run dev`
-- Data validation: `npm run validate:data`
+- Data: `npm run validate:data` (`VERBOSE=1` lists kcal warnings)
 - Typecheck: `npm run typecheck`
+- Lint: `npm run lint`
+- Tests: `npm run test`
 - Build: `npm run build`
+- SEO smoke test after a build: `npm run seo:check`
+- Product lookup: `npm run product -- <term>`
 
-Notes:
-- `typecheck` and `build` both run `validate:data`.
-- No lint or test script exists unless `package.json` changes.
-- Before finishing code or data edits, run:
-
-```bash
-npm run typecheck
-npm run build
-```
-
-If local dev shows stale Next chunk/runtime errors after a build:
-
-```bash
-lsof -tiTCP:3000 -sTCP:LISTEN | xargs -r kill
-npm run dev -- --hostname 127.0.0.1 --port 3000
-```
+Before finishing code or data edits run typecheck, lint, test and build; add `seo:check` for indexing, redirect, sitemap or metadata changes.

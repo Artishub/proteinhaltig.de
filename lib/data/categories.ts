@@ -1,13 +1,13 @@
-import seed from "./drinks.seed.json";
+import seed from "./products.seed.json";
 
-export type DrinkCategory = {
+export type ProductCategory = {
   id: string;
   name: string;
   description: string;
   color: string;
 };
 
-const categoryMeta: Record<string, Pick<DrinkCategory, "description" | "color">> = {
+const categoryMeta: Record<string, Pick<ProductCategory, "description" | "color">> = {
   "protein-bar": {
     description: "Riegel mit hohem Proteinanteil für unterwegs.",
     color: "#1a1a1a",
@@ -42,7 +42,7 @@ const categoryMeta: Record<string, Pick<DrinkCategory, "description" | "color">>
   },
 };
 
-export const categories: DrinkCategory[] = seed.categories.map((category) => ({
+export const categories: ProductCategory[] = seed.categories.map((category) => ({
   ...category,
   description: categoryMeta[category.id]?.description ?? "Proteinprodukt-Kategorie.",
   color: categoryMeta[category.id]?.color ?? "#838383",

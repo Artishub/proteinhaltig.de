@@ -4,7 +4,9 @@ import Link from "next/link";
 import { ArrowRight, ChevronRight, Search } from "lucide-react";
 import { articleBySlug, homepageArticleSlugs, type Article } from "@/lib/content/articles";
 import { homeContent } from "@/lib/content/home";
-import { drinks, proteinPer100Value, proteinPortions, totalProteinGrams, type Drink } from "@/lib/data/drinks";
+import { products, proteinPer100, proteinPer100Kcal, packageProtein, sizeLabel, type Product } from "@/lib/data/products";
+import { productPageHref } from "@/lib/page-routing";
+import { proteinReferenceIntakeGrams, referenceIntakeShare } from "@/lib/protein-context";
 import { brandById } from "@/lib/data/brands";
 import { categoryById } from "@/lib/data/categories";
 import { pageMetadata } from "@/lib/seo";
@@ -51,14 +53,11 @@ export default function HomePage() {
               <p className={styles.brand}>{brandById[heroProduct.brandId]?.name}</p>
               <h2>{heroProduct.name}</h2>
               <div className={styles.proteinNumber}>
-                <strong>{formatNumber(totalProteinGrams(heroProduct))}</strong><span>g Protein</span>
+                <strong>{formatNumber(packageProtein(heroProduct))}</strong><span>g Protein</span>
               </div>
-              <p className={styles.cardHint}>pro Packung · {formatNumber(proteinPortions(heroProduct))} Portionen à 10 g</p>
-              <div className={styles.blockField} aria-hidden="true">
-                {Array.from({ length: proteinBlockCount(heroProduct) }).map((_, index) => <i key={index} />)}
-              </div>
+              <p className={styles.cardHint}>pro Packung · {referenceIntakeShare(packageProtein(heroProduct) ?? 0)} % der Referenzmenge von {proteinReferenceIntakeGrams} g</p>
             </div>
-            <Link href={`/de/produkte/${heroProduct.id}`} className={styles.cardLink}>Detail ansehen <ArrowRight size={17} strokeWidth={1.75} aria-hidden="true" /></Link>
+            <Link href={productPageHref(heroProduct)} className={styles.cardLink}>Detail ansehen <ArrowRight size={17} strokeWidth={1.75} aria-hidden="true" /></Link>
           </article>
         </div>
       </section>
@@ -76,7 +75,7 @@ export default function HomePage() {
           <p>Der Wert pro 100 g/ml schafft eine gemeinsame Basis. Die Packungsgröße zeigt, wie viel Protein tatsächlich enthalten ist.</p>
         </div>
         <div className={styles.productGrid}>
-          {selected.map((drink) => <ProductCard drink={drink} key={drink.id} />)}
+          {selected.map((product) => <ProductCard product={product} key={product.id} />)}
         </div>
       </section>
 
@@ -147,26 +146,26 @@ function KnowledgeTeaser({ article }: { article: Article }) {
   );
 }
 
-function ProductCard({ drink }: { drink: Drink }) {
-  const brandName = brandById[drink.brandId]?.name ?? "Marke";
+function ProductCard({ product }: { product: Product }) {
+  const brandName = brandById[product.brandId]?.name ?? "Marke";
 
   return (
-    <Link href={`/de/produkte/${drink.id}`} className={styles.productCard}>
-      <div className={styles.productCardTop}><span className={styles.productChip}>{categoryById[drink.categoryId]?.name}</span><span>{sizeLabel(drink)}</span></div>
+    <Link href={productPageHref(product)} className={styles.productCard}>
+      <div className={styles.productCardTop}><span className={styles.productChip}>{categoryById[product.categoryId]?.name}</span><span>{sizeLabel(product)}</span></div>
       <div>
         <p className={styles.brand}>{brandName}</p>
-        <h3>{drink.name}</h3>
+        <h3>{product.name}</h3>
       </div>
-      <div className={styles.measure}><strong>{formatNumber(totalProteinGrams(drink))} g</strong><span>Protein pro Packung</span></div>
-      <div className={styles.cardFoot}><span>{formatNumber(proteinPer100Value(drink))} g / 100 g/ml</span><span>{formatNumber(proteinPortions(drink))} Portionen</span></div>
+      <div className={styles.measure}><strong>{formatNumber(packageProtein(product))} g</strong><span>Protein pro Packung</span></div>
+      <div className={styles.cardFoot}><span>{formatNumber(proteinPer100(product))} g / 100 {product.unit}</span><span>{formatNumber(proteinPer100Kcal(product))} g / 100 kcal</span></div>
     </Link>
   );
 }
 
 function findProduct(id: string) {
-  const drink = drinks.find((item) => item.id === id);
-  if (!drink) throw new Error(`Produkt ${id} fehlt.`);
-  return drink;
+  const product = products.find((item) => item.id === id);
+  if (!product) throw new Error(`Produkt ${id} fehlt.`);
+  return product;
 }
 
 function findArticle(slug: string) {
@@ -175,14 +174,6 @@ function findArticle(slug: string) {
   return article;
 }
 
-function sizeLabel(drink: { sizeMl: number | null; packageUnit?: string | null }) {
-  return drink.sizeMl ? `${drink.sizeMl} ${drink.packageUnit ?? "g"}` : "/";
-}
-
 function formatNumber(value: number | null) {
   return value === null ? "/" : new Intl.NumberFormat("de-DE", { maximumFractionDigits: 1 }).format(value);
-}
-
-function proteinBlockCount(drink: Drink) {
-  return Math.min(Math.max(Math.round(proteinPortions(drink) ?? 0), 1), 18);
 }

@@ -7,19 +7,21 @@ import { ArrowRight, BarChart3, ChevronDown, ChevronLeft, ChevronRight, LinkIcon
 import { brands } from "@/lib/data/brands";
 import { categories, categoryById } from "@/lib/data/categories";
 import {
-  Drink,
-  DrinkDisplayItem,
-  drinks,
-  groupedDrinkFamilies,
+  Product,
+  ProductDisplayItem,
+  products,
+  groupedProductFamilies,
   packageEnergyKcal,
-  proteinPer100Value,
-  proteinPortions,
-  totalProteinGrams,
+  proteinPer100,
+  proteinPer100Kcal,
+  packageProtein,
+  sizeLabel,
   uniqueProductRepresentatives,
   verificationLabel,
-} from "@/lib/data/drinks";
+} from "@/lib/data/products";
+import { productPageHref } from "@/lib/page-routing";
 
-type SortKey = "total-desc" | "total-asc" | "per100-desc" | "per100-asc" | "name-asc" | "name-desc";
+type SortKey = "total-desc" | "total-asc" | "per100-desc" | "per100-asc" | "kcal-desc" | "name-asc" | "name-desc";
 
 const sizes = [
   { label: "Alle Packungen", value: "all" },
@@ -29,11 +31,11 @@ const sizes = [
 ];
 const minProteinWhenExcludingLow = 5;
 
-function matchesSize(drink: Drink, size: string) {
-  if (!drink.sizeMl) return size === "all";
-  if (size === "small") return drink.sizeMl <= 60;
-  if (size === "medium") return drink.sizeMl > 60 && drink.sizeMl <= 250;
-  if (size === "large") return drink.sizeMl > 250;
+function matchesSize(product: Product, size: string) {
+  if (!product.packageSize) return size === "all";
+  if (size === "small") return product.packageSize <= 60;
+  if (size === "medium") return product.packageSize > 60 && product.packageSize <= 250;
+  if (size === "large") return product.packageSize > 250;
   return true;
 }
 
@@ -43,14 +45,12 @@ export function ProductExplorer() {
   const [brand, setBrand] = useState("all");
   const [category, setCategory] = useState("all");
   const [size, setSize] = useState("all");
-  const [maxPer100, setMaxPer100] = useState(80);
-  const [maxTotal, setMaxTotal] = useState(60);
   const [sort, setSort] = useState<SortKey>("per100-desc");
   const [compactGroups, setCompactGroups] = useState(false);
   const [excludeLowProtein, setExcludeLowProtein] = useState(false);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(15);
-  const [openId, setOpenId] = useState<string | null>(drinks[0]?.id ?? null);
+  const [openId, setOpenId] = useState<string | null>(products[0]?.id ?? null);
 
   useEffect(() => {
     const nextQuery = searchParams.get("q") ?? "";
@@ -65,40 +65,37 @@ export function ProductExplorer() {
 
   const filtered = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
-    const matching = drinks
-      .filter((drink) => {
-        const brandName = brands.find((item) => item.id === drink.brandId)?.name ?? "";
-        const haystack = `${drink.name} ${brandName}`.toLowerCase();
+    const matching = products
+      .filter((product) => {
+        const brandName = brands.find((item) => item.id === product.brandId)?.name ?? "";
+        const haystack = `${product.name} ${brandName}`.toLowerCase();
         return (
           (!normalizedQuery || haystack.includes(normalizedQuery)) &&
-          (brand === "all" || drink.brandId === brand) &&
-          (category === "all" || drink.categoryId === category) &&
-          matchesSize(drink, size) &&
-          (!excludeLowProtein || (proteinPer100Value(drink) ?? 0) >= minProteinWhenExcludingLow) &&
-          (proteinPer100Value(drink) ?? 0) <= maxPer100 &&
-          (totalProteinGrams(drink) ?? 0) <= maxTotal
+          (brand === "all" || product.brandId === brand) &&
+          (category === "all" || product.categoryId === category) &&
+          matchesSize(product, size) &&
+          (!excludeLowProtein || proteinPer100(product) >= minProteinWhenExcludingLow)
         );
       });
 
-    const sortedItems = sort.startsWith("per100") ? uniqueProductRepresentatives(matching) : matching;
+    const sortedItems = sort.startsWith("per100") || sort === "kcal-desc" ? uniqueProductRepresentatives(matching) : matching;
 
     return sortedItems.sort((a, b) => {
-      if (sort === "per100-desc") return compareNullable(proteinPer100Value(a), proteinPer100Value(b), "desc");
-      if (sort === "per100-asc") return compareNullable(proteinPer100Value(a), proteinPer100Value(b), "asc");
+      if (sort === "per100-desc") return compareNullable(proteinPer100(a), proteinPer100(b), "desc");
+      if (sort === "per100-asc") return compareNullable(proteinPer100(a), proteinPer100(b), "asc");
+      if (sort === "kcal-desc") return compareNullable(proteinPer100Kcal(a), proteinPer100Kcal(b), "desc");
       if (sort === "name-asc") return a.name.localeCompare(b.name, "de");
       if (sort === "name-desc") return b.name.localeCompare(a.name, "de");
-      if (sort === "total-asc") return compareNullable(totalProteinGrams(a), totalProteinGrams(b), "asc");
-      return compareNullable(totalProteinGrams(a), totalProteinGrams(b), "desc");
+      if (sort === "total-asc") return compareNullable(packageProtein(a), packageProtein(b), "asc");
+      return compareNullable(packageProtein(a), packageProtein(b), "desc");
     });
-  }, [brand, category, excludeLowProtein, maxPer100, maxTotal, query, size, sort]);
+  }, [brand, category, excludeLowProtein, query, size, sort]);
 
   const reset = () => {
     setQuery("");
     setBrand("all");
     setCategory("all");
     setSize("all");
-    setMaxPer100(80);
-    setMaxTotal(60);
     setSort("per100-desc");
     setExcludeLowProtein(false);
     setPage(1);
@@ -107,10 +104,10 @@ export function ProductExplorer() {
 
   useEffect(() => {
     setPage(1);
-  }, [brand, category, compactGroups, excludeLowProtein, maxPer100, maxTotal, query, size, sort, pageSize]);
+  }, [brand, category, compactGroups, excludeLowProtein, query, size, sort, pageSize]);
 
   const displayItems = useMemo(
-    () => (compactGroups ? groupedDrinkFamilies(filtered) : filtered.map((drink) => ({ type: "drink", id: drink.id, drink }) as DrinkDisplayItem)),
+    () => (compactGroups ? groupedProductFamilies(filtered) : filtered.map((product) => ({ type: "product", id: product.id, product }) as ProductDisplayItem)),
     [compactGroups, filtered],
   );
   const showPagination = displayItems.length > 15;
@@ -157,8 +154,6 @@ export function ProductExplorer() {
               { label: "Ja", value: "yes" },
             ]}
           />
-          <Range label="Max. Protein pro 100 g/ml" value={maxPer100} max={80} step={1} unit="g" onChange={setMaxPer100} />
-          <Range label="Max. Gesamtprotein" value={maxTotal} max={60} step={1} unit="g" onChange={setMaxTotal} />
           <button onClick={reset} className="focus-ring inline-flex h-9 w-full items-center justify-center gap-2 rounded-md border border-ash text-sm hover:border-marigold">
             <X size={15} strokeWidth={1.75} aria-hidden="true" />
             Zurücksetzen
@@ -196,6 +191,7 @@ export function ProductExplorer() {
               options={[
                 { label: "pro 100 g/ml absteigend", value: "per100-desc" },
                 { label: "pro 100 g/ml aufsteigend", value: "per100-asc" },
+                { label: "pro 100 kcal absteigend", value: "kcal-desc" },
                 { label: "Gesamtprotein absteigend", value: "total-desc" },
                 { label: "Gesamtprotein aufsteigend", value: "total-asc" },
                 { label: "Name A-Z", value: "name-asc" },
@@ -206,17 +202,17 @@ export function ProductExplorer() {
         </div>
         <div className="space-y-3" aria-live="polite">
           {visibleItems.map((item) => {
-            const drink = item.type === "drink" ? item.drink : item.representative;
-            const brandName = brands.find((brandItem) => brandItem.id === drink.brandId)?.name ?? "";
-            const categoryData = categoryById[drink.categoryId];
+            const product = item.type === "product" ? item.product : item.representative;
+            const brandName = brands.find((brandItem) => brandItem.id === product.brandId)?.name ?? "";
+            const categoryData = categoryById[product.categoryId];
             const isOpen = openId === item.id;
-            const title = item.type === "group" ? `${brandName} - Mehrere` : drink.name;
+            const title = item.type === "group" ? `${brandName} - Mehrere` : product.name;
             const subtitle =
               item.type === "group"
-                ? `${categoryData?.name ?? "Produkt"} · ${item.drinks.length} Produkte`
-                : `${brandName} · ${sizeLabel(drink)}`;
-            const per100 = item.type === "group" ? maxNullable(item.drinks.map(proteinPer100Value)) : proteinPer100Value(drink);
-            const total = item.type === "group" ? maxNullable(item.drinks.map(totalProteinGrams)) : totalProteinGrams(drink);
+                ? `${categoryData?.name ?? "Produkt"} · ${item.products.length} Produkte`
+                : `${brandName} · ${sizeLabel(product)}`;
+            const per100 = item.type === "group" ? maxNullable(item.products.map(proteinPer100)) : proteinPer100(product);
+            const total = item.type === "group" ? maxNullable(item.products.map(packageProtein)) : packageProtein(product);
 
             return (
               <article
@@ -246,39 +242,39 @@ export function ProductExplorer() {
                     <div>
                       {item.type === "group" && (
                         <div className="mb-4 flex flex-wrap gap-2">
-                          {item.drinks.map((groupDrink) => (
-                            <Link key={groupDrink.id} href={`/de/produkte/${groupDrink.id}`} className="rounded-md bg-paper px-2 py-1 text-xs text-slate hover:text-ink">
-                              {groupDrink.name}
+                          {item.products.map((groupProduct) => (
+                            <Link key={groupProduct.id} href={productPageHref(groupProduct)} className="rounded-md bg-paper px-2 py-1 text-xs text-slate hover:text-ink">
+                              {groupProduct.name}
                             </Link>
                           ))}
                         </div>
                       )}
                       <p className="leading-6">
                         {item.type === "group"
-                          ? groupSentence(item.drinks, brandName, categoryData?.name ?? "Produkt")
-                          : productSentence(drink, brandName, categoryData?.name ?? "Produkt")}
+                          ? groupSentence(item.products, brandName, categoryData?.name ?? "Produkt")
+                          : productSentence(product, brandName, categoryData?.name ?? "Produkt")}
                       </p>
                     </div>
                     <div className="space-y-2 leading-6">
-                      <p><span className="text-ink">{formatOptionalNumber(item.type === "group" ? maxNullable(item.drinks.map(proteinPortions)) : proteinPortions(drink))} Proteinportionen</span> bei 10 g pro Portion.</p>
-                      <p>{item.type === "group" ? rangeLine(item.drinks) : calculationLine(drink)}</p>
+                      <p><span className="text-ink">{formatOptionalGrams(item.type === "group" ? maxNullable(item.products.map(proteinPer100Kcal)) : proteinPer100Kcal(product))} Protein</span> pro 100 kcal</p>
+                      <p>{item.type === "group" ? rangeLine(item.products) : calculationLine(product)}</p>
                       <div className="mt-7 flex flex-col items-start gap-2">
                         <Link
-                          href={`/de/produkte/vergleich?product=${drink.id}`}
+                          href={`/de/produkte/vergleich?product=${product.id}`}
                           className="focus-ring inline-flex h-10 items-center justify-center rounded-md border border-ash bg-paper px-4 text-sm font-medium hover:border-marigold"
                         >
                           Zum Vergleich
                         </Link>
-                        <Link href={`/de/produkte/${drink.id}`} className="focus-ring inline-flex h-10 items-center justify-center rounded-md border border-ink bg-ink px-4 text-sm font-medium text-white hover:bg-paper hover:text-ink dark:text-black dark:hover:text-ink">
+                        <Link href={productPageHref(product)} className="focus-ring inline-flex h-10 items-center justify-center rounded-md border border-ink bg-ink px-4 text-sm font-medium text-white hover:bg-paper hover:text-ink dark:text-black dark:hover:text-ink">
                           Zur Detailseite
                         </Link>
-                        {drink.sourceUrl ? (
-                          <a href={drink.sourceUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-sm text-ink underline decoration-ash underline-offset-4 hover:decoration-marigold">
+                        {product.sourceUrl ? (
+                          <a href={product.sourceUrl} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-sm text-ink underline decoration-ash underline-offset-4 hover:decoration-marigold">
                             <LinkIcon size={14} />
                             Quelle öffnen
                           </a>
                         ) : (
-                          <p className="text-sm text-slate">{drink.source}</p>
+                          <p className="text-sm text-slate">{product.source}</p>
                         )}
                       </div>
                     </div>
@@ -337,54 +333,36 @@ export function ProductExplorer() {
   );
 }
 
-function productSentence(drink: Drink, brandName: string, categoryName: string) {
-  const energy = packageEnergyKcal(drink);
-  const checked = drink.lastCheckedAt ? ` zuletzt geprüft am ${formatDate(drink.lastCheckedAt)}` : "";
-  const energyPart = energy === null ? "" : ` und rechnerisch etwa ${formatNumber(energy)} kcal`;
-  const proteinPer100 = proteinPer100Value(drink);
-  const total = totalProteinGrams(drink);
-  const packagePart = drink.sizeMl && total !== null ? `; daraus ergeben sich ${formatNumber(total)} g Protein pro Packung${energyPart}` : ". Die Packungsgröße ist noch nicht hinterlegt";
-
-  const proteinPart = proteinPer100 === null ? "ist der Proteinwert pro 100 g/ml noch nicht verifiziert" : `enthält es ${formatNumber(proteinPer100)} g Protein pro 100 g/ml${packagePart}`;
-  return `${drink.name} von ${brandName} ist ein Produkt aus der Kategorie ${categoryName} im ${sizeLabel(drink)}. Laut hinterlegter Quelle ${proteinPart}. Die Angabe basiert auf „${drink.source}“${checked}. Status: ${verificationLabel(drink)}. ${drink.note}`;
+function productSentence(product: Product, brandName: string, categoryName: string) {
+  const energy = packageEnergyKcal(product);
+  const parts = [`${brandName} · ${categoryName} · ${sizeLabel(product)}`];
+  if (energy !== null) parts.push(`${formatNumber(energy)} kcal pro Packung`);
+  parts.push(`Quelle: ${product.source} (${verificationLabel(product)}, geprüft am ${formatDate(product.lastCheckedAt)})`);
+  return parts.join(". ") + ".";
 }
 
-function groupSentence(groupDrinks: Drink[], brandName: string, categoryName: string) {
-  const values = groupDrinks.map(proteinPer100Value).filter((value): value is number => value !== null);
-  const sizes = Array.from(new Set(groupDrinks.map(sizeLabel))).join(", ");
-  const products = groupDrinks.length;
-  const valuePart = values.length ? `Die hinterlegten Varianten liegen zwischen ${formatNumber(Math.min(...values))} und ${formatNumber(Math.max(...values))} g Protein pro 100 g/ml` : "Für diese Varianten sind Proteinwerte noch nicht verifiziert";
-
-  return `${brandName} - Mehrere fasst ${products} Produkte aus der Kategorie ${categoryName} zusammen. ${valuePart}; gespeicherte Packungen in dieser Gruppe sind ${sizes}. Öffne die einzelnen Varianten über die Suche oder deaktiviere die Zusammenfassung, wenn du Packungsgrößen und Produktdetails separat vergleichen möchtest.`;
+function groupSentence(groupProducts: Product[], brandName: string, categoryName: string) {
+  const sizes = Array.from(new Set(groupProducts.map(sizeLabel))).join(", ");
+  return `${brandName} · ${categoryName} · ${groupProducts.length} Produkte in ${sizes}.`;
 }
 
 function formatNumber(value: number) {
   return new Intl.NumberFormat("de-DE", { maximumFractionDigits: 1 }).format(value);
 }
 
-function formatOptionalNumber(value: number | null) {
-  return value === null ? "/" : formatNumber(value);
-}
-
 function formatOptionalGrams(value: number | null) {
   return value === null ? "/" : `${formatNumber(value)} g`;
 }
 
-function sizeLabel(drink: Drink) {
-  return drink.sizeMl ? `${drink.sizeMl} ${drink.packageUnit ?? "g"}` : "/";
+function calculationLine(product: Product) {
+  const per100 = proteinPer100(product);
+  const total = packageProtein(product);
+  if (!product.packageSize || total === null) return `${formatNumber(per100)} g Protein pro 100 ${product.unit}`;
+  return `${formatNumber(per100)} g × ${sizeLabel(product)} / 100 = ${formatNumber(total)} g Protein`;
 }
 
-function calculationLine(drink: Drink) {
-  const proteinPer100 = proteinPer100Value(drink);
-  const total = totalProteinGrams(drink);
-  if (proteinPer100 === null) return "Proteinwert noch nicht verifiziert; Gesamtprotein wird nachgetragen.";
-  if (!drink.sizeMl || total === null) return "Packungsgröße noch nicht hinterlegt; Gesamtprotein wird nachgetragen.";
-  return `${formatNumber(proteinPer100)} g × ${sizeLabel(drink)} / 100 = ${formatNumber(total)} g Protein`;
-}
-
-function rangeLine(drinks: Drink[]) {
-  const values = drinks.map(proteinPer100Value).filter((value): value is number => value !== null);
-  if (!values.length) return "Proteinwerte in dieser Gruppe sind noch nicht verifiziert.";
+function rangeLine(products: Product[]) {
+  const values = products.map(proteinPer100);
   return `Spanne: ${formatNumber(Math.min(...values))} bis ${formatNumber(Math.max(...values))} g Protein pro 100 g/ml.`;
 }
 
@@ -428,18 +406,6 @@ function Select({
         </select>
         <ChevronDown className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-ink" size={16} />
       </div>
-    </label>
-  );
-}
-
-function Range({ label, value, max, step, unit, onChange }: { label: string; value: number; max: number; step: number; unit: string; onChange: (value: number) => void }) {
-  return (
-    <label className="block">
-      <span className="flex justify-between text-xs font-medium text-slate">
-        {label}
-        <span>{value} {unit}</span>
-      </span>
-      <input type="range" min="0" max={max} step={step} value={value} onChange={(event) => onChange(Number(event.target.value))} className="range-input mt-3 w-full" />
     </label>
   );
 }

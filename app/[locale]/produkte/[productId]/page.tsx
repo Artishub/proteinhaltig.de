@@ -1,21 +1,33 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, ExternalLink, Info } from "lucide-react";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import { brandById } from "@/lib/data/brands";
 import { categoryById } from "@/lib/data/categories";
 import {
-  drinks,
   packageEnergyKcal,
-  proteinPer100Value,
-  proteinPortions,
-  totalProteinGrams,
+  packageProtein,
+  products,
+  proteinEnergyShare,
+  proteinPer100,
+  proteinPer100Kcal,
+  servingProtein,
+  sizeLabel,
   verificationLabel,
-  type Drink,
-  type DrinkFaq,
-} from "@/lib/data/drinks";
+  type Product,
+} from "@/lib/data/products";
+import { isProductPage, productPageHref, productPageSizes, sizeAnchor } from "@/lib/page-routing";
+import { productFacts } from "@/lib/product-facts";
+import {
+  categoryPeers,
+  higherProteinAlternatives,
+  proteinReferenceIntakeGrams,
+  euLabellingRegulationUrl,
+  referenceIntakeShare,
+} from "@/lib/protein-context";
 import { pageMetadata } from "@/lib/seo";
-import { siteUrl } from "@/lib/site";
+import { isSearchIndexableProduct } from "@/lib/seo-index";
+import { contactEmail, siteUrl } from "@/lib/site";
 import styles from "./product-detail.module.css";
 
 type PageProps = {
@@ -23,260 +35,324 @@ type PageProps = {
 };
 
 export function generateStaticParams() {
-  return drinks.map((drink) => ({ productId: drink.id }));
+  return products.filter(isProductPage).map((product) => ({ productId: product.id }));
+}
+
+function findProduct(productId: string) {
+  return products.find((item) => item.id === productId);
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { productId } = await params;
-  const drink = drinks.find((item) => item.id === productId);
+  const product = findProduct(productId);
+  if (!product) return { title: "Produkt nicht gefunden", robots: { index: false, follow: true } };
 
-  if (!drink) return { title: "Produkt nicht gefunden" };
-
-  const brandName = brandById[drink.brandId]?.name ?? "Unbekannte Marke";
-  const proteinPer100 = proteinPer100Value(drink);
-  const totalProtein = totalProteinGrams(drink);
-  const packagePart = drink.sizeMl && totalProtein !== null ? `, ${formatNumber(totalProtein)} g pro ${sizeLabel(drink)}` : "";
-  const proteinPart = proteinPer100 === null ? "Proteinwert noch nicht verifiziert" : `${formatNumber(proteinPer100)} g Protein pro 100 g/ml${packagePart}`;
-  const description = `${drink.name} von ${brandName}: ${proteinPart}. Mit Nährwerten, Packung und Quelle.`;
-  const title = productMetaTitle(drink.name, brandName);
+  const brandName = brandById[product.brandId]?.name ?? "";
+  const hero = heroAmount(product);
+  const per100 = `${formatNumber(proteinPer100(product))} g pro 100 ${product.unit}`;
+  const lead = hero.basis === "per100" ? per100 : `${formatNumber(hero.grams)} g Protein ${hero.label}, ${per100}`;
+  const description = `${brandName} ${product.name}: ${lead}, ${Math.round(product.nutritionPer100.energyKcal)} kcal pro 100 ${product.unit}. Mit Nährwerten, Quelle und Vergleich.`;
+  const title = productMetaTitle(product.name, brandName);
 
   return {
-    ...pageMetadata({
-      title,
-      description,
-      path: `/de/produkte/${drink.id}`,
-      type: "article",
-      absoluteTitle: title,
-    }),
-    robots: { index: true, follow: true },
+    ...pageMetadata({ title, description, path: `/de/produkte/${product.id}`, type: "article", absoluteTitle: title }),
+    robots: isSearchIndexableProduct(product) ? { index: true, follow: true } : { index: false, follow: true },
   };
 }
 
 export default async function ProductDetailPage({ params }: PageProps) {
   const { productId } = await params;
-  const drink = drinks.find((item) => item.id === productId);
+  const product = findProduct(productId);
+  if (!product) notFound();
 
-  if (!drink) notFound();
-
-  const brandName = brandById[drink.brandId]?.name ?? "Unbekannte Marke";
-  const categoryName = categoryById[drink.categoryId]?.name ?? "Produkt";
-  const totalProtein = totalProteinGrams(drink);
-  const portions = proteinPortions(drink);
-  const energy = packageEnergyKcal(drink);
-  const similar = similarDrinks(drink);
-  const faqs = generatedFaq(drink, brandName);
+  const brandName = brandById[product.brandId]?.name ?? "";
+  const categoryName = categoryById[product.categoryId]?.name ?? "Produkt";
+  const fullName = `${brandName} ${product.name}`.trim();
+  const hero = heroAmount(product);
+  const nutrition = product.nutritionPer100;
+  const energyShare = proteinEnergyShare(product);
+  const density = proteinPer100Kcal(product);
+  const facts = productFacts(product);
+  const alternatives = higherProteinAlternatives(product);
+  const sizes = productPageSizes(product);
+  const similar = similarProducts(product, new Set(alternatives.map((item) => item.id)));
+  const portionColumn = hero.basis === "per100" ? null : hero;
+  const referenceShare = portionColumn ? referenceIntakeShare(portionColumn.grams) : null;
 
   return (
     <main className={styles.page}>
-      <section className={styles.hero}>
-        <Link href="/de/produkte" className={styles.back}><ArrowLeft size={16} strokeWidth={1.75} aria-hidden="true" /> Zur Produktsuche</Link>
-        <div className={styles.heroGrid}>
+      <div className={styles.wrap}>
+        <nav aria-label="Brotkrumen" className={styles.breadcrumb}>
+          <Link href="/de">Startseite</Link>
+          <span aria-hidden="true">/</span>
+          <Link href="/de/produkte">Produkte</Link>
+          <span aria-hidden="true">/</span>
+          <span aria-current="page">{product.name}</span>
+        </nav>
+
+        <header className={styles.header}>
           <div>
-            <p className={styles.category}>{categoryName} · {sizeLabel(drink)}</p>
-            <h1>Wie viel Protein hat {drink.name}?</h1>
-            <p className={styles.summary}>{introText(drink, brandName, categoryName)}</p>
-            {drink.note && <p className={styles.note}>{drink.note}</p>}
-            <p className={styles.sourceLine}><Info size={15} strokeWidth={1.75} aria-hidden="true" /> Quelle: {drink.source} · {verificationLabel(drink)}</p>
-            <div className={styles.topicLinks}>
-              <Link href={`/de/produkte?brand=${drink.brandId}`}>Mehr von {brandName}</Link>
-              <Link href={`/de/produkte?category=${drink.categoryId}`}>Kategorie {categoryName}</Link>
-              <Link href={`/de/produkte/vergleich?product=${drink.id}`}>Vergleichen</Link>
-            </div>
+            <p className={styles.meta}>{brandName} · {categoryName} · {sizeLabel(product)}</p>
+            <h1>Wie viel Protein hat {fullName}?</h1>
+            <p className={styles.answer}>{answerText(product, fullName, hero)}</p>
+            <p className={styles.sourceLine}>
+              Quelle: {product.source} · {verificationLabel(product)} · geprüft am {formatDate(product.lastCheckedAt)}
+            </p>
           </div>
-          <div className={styles.proteinPanel}>
-            <p>{brandName}</p>
-            <div><strong>{formatOptionalNumber(totalProtein)}</strong><span>g Protein</span></div>
-            <div className={styles.portionSummary}>
-              <p>pro {sizeLabel(drink)} · {formatOptionalNumber(portions)} Portionen à 10 g</p>
-              <div className={styles.blocks} aria-hidden="true">
-                {Array.from({ length: proteinBlockCount(portions) }).map((_, index) => <i key={index} />)}
+
+          <section className={styles.factCard} aria-label={`Protein in ${fullName}`}>
+            <p className={styles.factLabel}>{hero.basis === "per100" ? `Protein pro 100 ${product.unit}` : `Protein ${hero.label}`}</p>
+            <p className={styles.heroNumber}><strong>{formatNumber(hero.grams)}</strong><span>g</span></p>
+            {referenceShare !== null && (
+              <div className={styles.reference}>
+                <div className={styles.referenceBar} aria-hidden="true">
+                  <i style={{ width: `${Math.min(referenceShare, 100)}%` }} />
+                </div>
+                <p>
+                  {referenceShare} % der <a href={euLabellingRegulationUrl} target="_blank" rel="noreferrer">Referenzmenge</a> von {proteinReferenceIntakeGrams} g pro Tag
+                </p>
               </div>
+            )}
+            <dl className={styles.factGrid}>
+              {hero.basis !== "per100" && (
+                <div><dt>pro 100 {product.unit}</dt><dd>{formatNumber(proteinPer100(product))} g</dd></div>
+              )}
+              <div><dt>Energie pro 100 {product.unit}</dt><dd>{Math.round(nutrition.energyKcal)} kcal</dd></div>
+              {energyShare !== null && <div><dt>Energie aus Protein</dt><dd>{Math.round(energyShare * 100)} %</dd></div>}
+              {density !== null && <div><dt>Protein pro 100 kcal</dt><dd>{formatNumber(density)} g</dd></div>}
+              {hero.basis === "per100" && product.packageSize && (
+                <div><dt>pro Packung ({product.packageSize} {product.unit})</dt><dd>{formatNumber(packageProtein(product) ?? 0)} g</dd></div>
+              )}
+            </dl>
+          </section>
+        </header>
+
+        {facts.length > 0 && (
+          <section className={styles.section} aria-labelledby="einordnung">
+            <h2 id="einordnung">Ist das viel?</h2>
+            <ul className={styles.factList}>
+              {facts.map((fact) => (
+                <li key={fact.id}>
+                  <span>{fact.label}</span>
+                  <p>{fact.text}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {alternatives.length > 0 && (
+          <section className={styles.section} aria-labelledby="mehr-protein">
+            <h2 id="mehr-protein">Mehr Protein, ähnliche Kalorien</h2>
+            <p className={styles.sectionLead}>
+              Gleiche Kategorie, mindestens 10 % mehr Protein und höchstens 10 % mehr kcal pro 100 {product.unit}.
+            </p>
+            <div className={styles.swapGrid}>
+              {alternatives.map((item) => (
+                <article key={item.id} className={styles.swapCard}>
+                  <p className={styles.swapBrand}>{brandById[item.brandId]?.name}</p>
+                  <h3><Link href={productPageHref(item)}>{item.name}</Link></h3>
+                  <p className={styles.swapValue}>
+                    <strong>{formatNumber(proteinPer100(item))} g</strong> statt {formatNumber(proteinPer100(product))} g pro 100 {item.unit}
+                  </p>
+                  <p className={styles.swapMeta}>{Math.round(item.nutritionPer100.energyKcal)} kcal statt {Math.round(nutrition.energyKcal)} kcal</p>
+                  <div data-buy-slot={item.id} />
+                </article>
+              ))}
             </div>
+          </section>
+        )}
+
+        {sizes.length > 1 && (
+          <section className={styles.section} aria-labelledby="groessen">
+            <h2 id="groessen">Packungsgrößen</h2>
+            <div className={styles.tableWrap}>
+              <table className={styles.table}>
+                <thead>
+                  <tr><th scope="col">Größe</th><th scope="col">Protein pro 100 {product.unit}</th><th scope="col">Protein gesamt</th><th scope="col">kcal gesamt</th></tr>
+                </thead>
+                <tbody>
+                  {sizes.map((item) => (
+                    <tr key={item.id} id={sizeAnchor(item)} className={item.id === product.id ? styles.activeRow : undefined}>
+                      <th scope="row">{sizeLabel(item)}</th>
+                      <td>{formatNumber(proteinPer100(item))} g</td>
+                      <td>{formatOptional(packageProtein(item) ?? servingProtein(item), " g")}</td>
+                      <td>{formatOptional(packageEnergyKcal(item), " kcal")}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        )}
+
+        <section className={styles.twoColumn} aria-label="Nährwerte und Quelle">
+          <div className={styles.labelCard}>
+            <h2>Nährwerte</h2>
+            <table className={styles.nutritionTable}>
+              <thead>
+                <tr>
+                  <th scope="col"><span className="sr-only">Nährstoff</span></th>
+                  <th scope="col">pro 100 {product.unit}</th>
+                  {portionColumn && <th scope="col">{portionColumn.label.replace(/^pro /, "")}</th>}
+                </tr>
+              </thead>
+              <tbody>
+                <NutritionRow label="Energie" per100={`${formatNumber(nutrition.energyKcal)} kcal`} portion={portionColumn && `${formatNumber(Math.round(scale(nutrition.energyKcal, portionColumn.size)))} kcal`} />
+                <NutritionRow label="Fett" per100={`${formatNumber(nutrition.fat)} g`} portion={portionColumn && `${formatNumber(scale(nutrition.fat, portionColumn.size))} g`} />
+                <NutritionRow label="Kohlenhydrate" per100={`${formatNumber(nutrition.carbohydrates)} g`} portion={portionColumn && `${formatNumber(scale(nutrition.carbohydrates, portionColumn.size))} g`} />
+                <NutritionRow label="davon Zucker" per100={`${formatNumber(nutrition.sugar)} g`} portion={portionColumn && `${formatNumber(scale(nutrition.sugar, portionColumn.size))} g`} indent />
+                <NutritionRow label="Eiweiß" per100={`${formatNumber(nutrition.protein)} g`} portion={portionColumn && `${formatNumber(portionColumn.grams)} g`} strong />
+                <NutritionRow label="Salz" per100={`${formatNumber(nutrition.salt)} g`} portion={portionColumn && `${formatNumber(scale(nutrition.salt, portionColumn.size))} g`} />
+              </tbody>
+            </table>
           </div>
-        </div>
-      </section>
 
-      <section className={styles.facts} aria-label={`Werte für ${drink.name}`}>
-        <Nutrient label="Protein pro 100 g/ml" value={formatOptionalGrams(proteinPer100Value(drink))} highlight />
-        <Nutrient label={`Protein pro ${sizeLabel(drink)}`} value={formatOptionalGrams(totalProtein)} highlight />
-        <Nutrient label="10-g-Proteinportionen" value={formatOptionalNumber(portions)} />
-        <Nutrient label="Energie pro Packung" value={energy === null ? "/" : `${formatNumber(energy)} kcal`} />
-      </section>
+          <aside className={styles.sourceCard} aria-labelledby="quelle">
+            <h2 id="quelle">Quelle</h2>
+            <dl>
+              <div><dt>Angabe</dt><dd>{product.source}</dd></div>
+              <div><dt>Status</dt><dd>{verificationLabel(product)}</dd></div>
+              <div><dt>Geprüft am</dt><dd>{formatDate(product.lastCheckedAt)}</dd></div>
+              {portionColumn && (
+                <div>
+                  <dt>Rechenweg</dt>
+                  <dd>{formatNumber(proteinPer100(product))} g × {portionColumn.size} {product.unit} ÷ 100 = {formatNumber(portionColumn.grams)} g Protein</dd>
+                </div>
+              )}
+            </dl>
+            <div className={styles.sourceLinks}>
+              <a href={product.sourceUrl} target="_blank" rel="noreferrer">Quelle öffnen <ExternalLink size={15} strokeWidth={1.75} aria-hidden="true" /></a>
+              <a href={`mailto:${contactEmail}?subject=${encodeURIComponent(`Wert prüfen: ${fullName}`)}`}>Wert falsch? Hinweis senden</a>
+            </div>
+          </aside>
+        </section>
 
-      <section className={styles.contentGrid}>
-        <div className={styles.nutrition}>
-          <p className={styles.category}>Nährwerte</p>
-          <h2>Pro 100 g/ml</h2>
-          <div className={styles.nutrientGrid}>
-            <Nutrient label="Energie" value={drink.nutritionPer100Ml ? `${formatNumber(drink.nutritionPer100Ml.energyKcal)} kcal / ${formatNumber(drink.nutritionPer100Ml.energyKj)} kJ` : "/"} />
-            <Nutrient label="Protein" value={formatOptionalGrams(proteinPer100Value(drink))} />
-            <Nutrient label="Kohlenhydrate" value={drink.nutritionPer100Ml ? `${formatNumber(drink.nutritionPer100Ml.carbohydrates)} g` : "/"} />
-            <Nutrient label="Fett" value={drink.nutritionPer100Ml ? `${formatNumber(drink.nutritionPer100Ml.fat)} g` : "/"} />
-            <Nutrient label="Eiweiß laut Nährwerttabelle" value={drink.nutritionPer100Ml ? `${formatNumber(drink.nutritionPer100Ml.protein)} g` : "/"} />
-            <Nutrient label="Salz" value={drink.nutritionPer100Ml ? `${formatNumber(drink.nutritionPer100Ml.salt)} g` : "/"} />
-          </div>
-        </div>
-        <aside className={styles.sourceCard}>
-          <p className={styles.category}>Datenquelle</p>
-          <h2>Nachprüfbar.</h2>
-          <p>{drink.source}</p>
-          <p>{verificationLabel(drink)}</p>
-          <p className={styles.sourceNote}>Produktwerte können sich durch Rezeptur- oder Verpackungsänderungen ändern.</p>
-          {drink.lastCheckedAt && <p className={styles.checked}>Zuletzt geprüft: {formatDate(drink.lastCheckedAt)}</p>}
-          {drink.sourceUrl && <a href={drink.sourceUrl} target="_blank" rel="noreferrer">Quelle öffnen <ExternalLink size={16} strokeWidth={1.75} aria-hidden="true" /></a>}
-        </aside>
-      </section>
+        {similar.length > 0 && (
+          <section className={styles.section} aria-labelledby="aehnlich">
+            <h2 id="aehnlich">Ähnliche Produkte</h2>
+            <ul className={styles.similarList}>
+              {similar.map((item) => (
+                <li key={item.id}>
+                  <Link href={productPageHref(item)}>
+                    <span>{brandById[item.brandId]?.name}</span>
+                    <strong>{item.name}</strong>
+                    <b>{formatNumber(proteinPer100(item))} g / 100 {item.unit}</b>
+                    <ArrowRight size={16} strokeWidth={1.75} aria-hidden="true" />
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
 
-      <section className={styles.compare}>
-        <div><h2>Ähnliche Produkte.</h2></div>
-        <div className={styles.related}>
-          {similar.map((item) => {
-            const similarBrand = brandById[item.brandId]?.name ?? "Marke";
-            return (
-              <Link key={item.id} href={`/de/produkte/${item.id}`}>
-                <span>{similarBrand}</span>
-                <strong>{item.name}</strong>
-                <b>{formatOptionalGrams(proteinPer100Value(item))} / 100 g/ml</b>
-                <ArrowRight size={16} strokeWidth={1.75} aria-hidden="true" />
-              </Link>
-            );
-          })}
-        </div>
-      </section>
-
-      <section className={styles.faq}>
-        <p className={styles.category}>Fragen und Antworten</p>
-        <h2>FAQ zu {drink.name}</h2>
-        <div>
-          {faqs.map((item) => <details key={item.question}><summary>{item.question}</summary><p>{item.answer}</p></details>)}
-        </div>
-        <div className={styles.knowledgeLinks}>
-          <Link href={knowledgeLink(drink)} className={styles.knowledge}>Passendes Wissen <ArrowRight size={16} strokeWidth={1.75} aria-hidden="true" /></Link>
-          <Link href={`/de/produkte?brand=${drink.brandId}`} className={styles.knowledge}>Alle Produkte von {brandName} <ArrowRight size={16} strokeWidth={1.75} aria-hidden="true" /></Link>
-        </div>
-      </section>
+        <nav className={styles.chips} aria-label="Weiter vergleichen">
+          <Link href={`/de/produkte?brand=${product.brandId}`}>Alle Produkte von {brandName}</Link>
+          <Link href={`/de/produkte?category=${product.categoryId}`}>{categoryName} vergleichen</Link>
+          <Link href={`/de/produkte/vergleich?product=${product.id}`}>Direkt vergleichen</Link>
+          <Link href={knowledgeLink(product)}>Wissen: {knowledgeTitle(product)}</Link>
+        </nav>
+      </div>
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify([
-            {
-              "@context": "https://schema.org",
-              "@type": "FAQPage",
-              mainEntity: faqs.map((item) => ({
-                "@type": "Question",
-                name: item.question,
-                acceptedAnswer: { "@type": "Answer", text: item.answer },
-              })),
-            },
-            breadcrumbJsonLd(drink),
-          ]),
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd(product)) }}
       />
     </main>
   );
 }
 
-function Nutrient({ label, value, highlight = false }: { label: string; value: string; highlight?: boolean }) {
+function NutritionRow({ label, per100, portion, strong = false, indent = false }: { label: string; per100: string; portion: string | null; strong?: boolean; indent?: boolean }) {
   return (
-    <div className={highlight ? styles.nutrientHighlight : styles.nutrient}>
-      <p>{label}</p>
-      <p>{value}</p>
-    </div>
+    <tr className={strong ? styles.strongRow : undefined}>
+      <th scope="row" className={indent ? styles.indent : undefined}>{label}</th>
+      <td>{per100}</td>
+      {portion !== null && <td>{portion}</td>}
+    </tr>
   );
 }
 
-function proteinBlockCount(portions: number | null) {
-  if (portions === null) return 0;
-  return Math.min(Math.max(Math.round(portions), 1), 24);
+type HeroAmount = { basis: "serving" | "package" | "per100"; grams: number; size: number; label: string };
+
+// The number people search for: per serving when the source states one, per package for single-serve
+// products (bars, drinks, cups, tubs), otherwise per 100 g (powders, multi-serve packs).
+const singleServeCategories = new Set(["protein-pudding", "protein-yogurt", "skyr-quark"]);
+
+function heroAmount(product: Product): HeroAmount {
+  const serving = servingProtein(product);
+  if (serving !== null && product.servingSize) {
+    return { basis: "serving", grams: serving, size: product.servingSize, label: `pro ${product.servingSize}-${product.unit}-Portion` };
+  }
+  const total = packageProtein(product);
+  if (total !== null && product.packageSize && (product.unit === "ml" || singleServeCategories.has(product.categoryId) || product.packageSize <= 120)) {
+    return { basis: "package", grams: total, size: product.packageSize, label: `pro ${packageNoun(product)} (${product.packageSize} ${product.unit})` };
+  }
+  return { basis: "per100", grams: proteinPer100(product), size: 100, label: `pro 100 ${product.unit}` };
 }
 
-function similarDrinks(drink: Drink) {
-  const proteinPer100 = proteinPer100Value(drink) ?? 0;
-  return drinks
-    .filter((item) => item.id !== drink.id && (item.categoryId === drink.categoryId || item.brandId === drink.brandId))
-    .sort((a, b) => Math.abs((proteinPer100Value(a) ?? 0) - proteinPer100) - Math.abs((proteinPer100Value(b) ?? 0) - proteinPer100))
-    .slice(0, 4);
+function packageNoun(product: Product) {
+  if (product.categoryId === "protein-bar") return "Riegel";
+  if (product.unit === "ml") return "Flasche";
+  if (product.categoryId === "skyr-quark" || product.categoryId === "protein-pudding" || product.categoryId === "protein-yogurt") return "Becher";
+  return "Packung";
 }
 
-function generatedFaq(drink: Drink, brandName: string): DrinkFaq[] {
-  const proteinPer100 = proteinPer100Value(drink);
-  const totalProtein = totalProteinGrams(drink);
-  const portions = proteinPortions(drink);
-
-  return [
-    {
-      question: `Wie viel Protein hat ${drink.name}?`,
-      answer:
-        proteinPer100 === null
-          ? `${drink.name} von ${brandName} hat bereits eine Quelle, der Proteinwert ist aber noch nicht verifiziert.`
-          : totalProtein === null || !drink.sizeMl
-          ? `${drink.name} von ${brandName} enthält ${formatNumber(proteinPer100)} g Protein pro 100 g/ml. Eine Packungsgröße ist noch nicht hinterlegt.`
-          : `${drink.name} von ${brandName} enthält ${formatNumber(proteinPer100)} g Protein pro 100 g/ml. Bei ${sizeLabel(drink)} ergibt das rechnerisch ${formatNumber(totalProtein)} g Protein pro Packung.`,
-    },
-    {
-      question: `Wie viele Proteinportionen stecken in ${drink.name}?`,
-      answer:
-        portions === null || !drink.sizeMl
-          ? "Die Proteinportionen pro Packung werden ergänzt, sobald eine Packungsgröße hinterlegt ist."
-          : `Bei 10 g pro Proteinportion entspricht das ungefähr ${formatNumber(portions)} Proteinportionen pro ${sizeLabel(drink)}.`,
-    },
-    {
-      question: "Warum ist der Wert pro 100 g/ml wichtig?",
-      answer: `Der Wert pro 100 g/ml macht ${drink.name} unabhängig von der Packungsgröße mit anderen Produkten vergleichbar.`,
-    },
-    {
-      question: `Woher stammen die Werte zu ${drink.name}?`,
-      answer: `Die gespeicherten Werte basieren auf der hinterlegten Quelle: ${drink.source}. Status: ${verificationLabel(drink)}. Produktwerte können sich ändern und sollten bei Bedarf auf der Verpackung geprüft werden.`,
-    },
-  ];
+function answerText(product: Product, fullName: string, hero: HeroAmount) {
+  const per100 = `${formatNumber(proteinPer100(product))} g pro 100 ${product.unit}`;
+  if (hero.basis === "per100") {
+    const total = packageProtein(product);
+    const packagePart = total !== null && product.packageSize ? ` Eine Packung mit ${product.packageSize} ${product.unit} enthält rechnerisch ${formatNumber(total)} g.` : "";
+    return `${fullName} hat ${per100} Protein.${packagePart}`;
+  }
+  return `${fullName} hat ${formatNumber(hero.grams)} g Protein ${hero.label}, das sind ${per100}.`;
 }
 
-function introText(drink: Drink, brandName: string, categoryName: string) {
-  const totalProtein = totalProteinGrams(drink);
-  const portions = proteinPortions(drink);
-  const base =
-    totalProtein === null || portions === null || !drink.sizeMl
-      ? "Eine Packungsgröße ist noch nicht hinterlegt; Gesamtprotein und Proteinportionen werden deshalb als / angezeigt."
-      : `Für ${sizeLabel(drink)} ergeben sich rechnerisch ${formatNumber(totalProtein)} g Protein. Das entspricht ungefähr ${formatNumber(portions)} Proteinportionen bei 10 g pro Portion.`;
-
-  return `${drink.name} ist in der Datenbank als ${categoryName} von ${brandName} gespeichert. ${base}`;
+function similarProducts(product: Product, exclude: Set<string>) {
+  const own = proteinPer100(product);
+  return categoryPeers(product)
+    .filter((item) => item.name !== product.name && !exclude.has(item.id))
+    .sort((a, b) => Number(b.brandId === product.brandId) - Number(a.brandId === product.brandId) || Math.abs(proteinPer100(a) - own) - Math.abs(proteinPer100(b) - own))
+    .slice(0, 5);
 }
 
-function knowledgeLink(drink: Drink) {
-  if (drink.categoryId === "protein-bar") return "/de/wissen/proteinriegel-vergleichen";
-  if (drink.categoryId === "protein-yogurt" || drink.categoryId === "skyr-quark") return "/de/wissen/protein-joghurt-skyr-quark";
-  if (drink.categoryId === "protein-powder") return "/de/wissen/proteinpulver-portionsgroesse";
-  if (drink.categoryId === "plant-protein") return "/de/wissen/pflanzliches-protein-vergleichen";
-  return "/de/wissen/protein-pro-100g-verstehen";
+const knowledge: Record<string, [string, string]> = {
+  "protein-bar": ["/de/wissen/proteinriegel-vergleichen", "Proteinriegel vergleichen"],
+  "protein-yogurt": ["/de/wissen/protein-joghurt-skyr-quark", "Joghurt, Skyr und Quark"],
+  "skyr-quark": ["/de/wissen/protein-joghurt-skyr-quark", "Joghurt, Skyr und Quark"],
+  "protein-powder": ["/de/wissen/proteinpulver-portionsgroesse", "Proteinpulver und Portionsgröße"],
+  "plant-protein": ["/de/wissen/pflanzliches-protein-vergleichen", "Pflanzliches Protein"],
+};
+
+function knowledgeLink(product: Product) {
+  return knowledge[product.categoryId]?.[0] ?? "/de/wissen/protein-pro-100g-verstehen";
 }
 
-function breadcrumbJsonLd(drink: Drink) {
+function knowledgeTitle(product: Product) {
+  return knowledge[product.categoryId]?.[1] ?? "Protein pro 100 g verstehen";
+}
+
+function breadcrumbJsonLd(product: Product) {
   return {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
       { "@type": "ListItem", position: 1, name: "Startseite", item: `${siteUrl}/de` },
       { "@type": "ListItem", position: 2, name: "Produkte", item: `${siteUrl}/de/produkte` },
-      { "@type": "ListItem", position: 3, name: drink.name, item: `${siteUrl}/de/produkte/${drink.id}` },
+      { "@type": "ListItem", position: 3, name: product.name, item: `${siteUrl}/de/produkte/${product.id}` },
     ],
   };
+}
+
+function scale(per100: number, size: number) {
+  return Math.round(per100 * size) / 100;
 }
 
 function formatNumber(value: number) {
   return new Intl.NumberFormat("de-DE", { maximumFractionDigits: 1 }).format(value);
 }
 
-function formatOptionalNumber(value: number | null) {
-  return value === null ? "/" : formatNumber(value);
-}
-
-function formatOptionalGrams(value: number | null) {
-  return value === null ? "/" : `${formatNumber(value)} g`;
-}
-
-function sizeLabel(drink: Drink) {
-  return drink.sizeMl ? `${drink.sizeMl} ${drink.packageUnit ?? "g"}` : "/";
+function formatOptional(value: number | null, suffix: string) {
+  return value === null ? "–" : `${formatNumber(value)}${suffix}`;
 }
 
 function formatDate(value: string) {

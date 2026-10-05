@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { articles } from "@/lib/content/articles";
-import { drinks } from "@/lib/data/drinks";
+import { products } from "@/lib/data/products";
+import { isSearchIndexableProduct } from "@/lib/seo-index";
 import { siteUrl } from "@/lib/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -26,9 +27,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${siteUrl}/de/wissen/${article.slug}`,
       lastModified: new Date(),
     })),
-    ...drinks.map((drink) => ({
-      url: `${siteUrl}/de/produkte/${drink.id}`,
-      lastModified: new Date(),
+    ...products.filter(isSearchIndexableProduct).map((product) => ({
+      url: `${siteUrl}/de/produkte/${product.id}`,
+      lastModified: new Date(product.lastCheckedAt),
     })),
   ];
 }

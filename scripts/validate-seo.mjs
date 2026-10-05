@@ -3,7 +3,7 @@ import path from "node:path";
 
 const appDir = path.join(process.cwd(), ".next/server/app");
 const routesManifestPath = path.join(process.cwd(), ".next/routes-manifest.json");
-const dataPath = path.join(process.cwd(), "lib/data/drinks.seed.json");
+const indexedPath = path.join(process.cwd(), "lib/data/indexed-products.json");
 const siteOrigin = "https://www.proteinhaltig.de";
 const errors = [];
 const warnings = [];
@@ -18,7 +18,7 @@ const routes = new Set(htmlFiles.map(routeFromHtmlFile));
 const incomingLinks = new Map(Array.from(routes, (route) => [route, new Set()]));
 const sitemap = readSitemap();
 const sitemapRouteSet = new Set(sitemap.routes);
-const productIds = new Set(JSON.parse(fs.readFileSync(dataPath, "utf8")).drinks.map((drink) => drink.id));
+const productIds = new Set(JSON.parse(fs.readFileSync(indexedPath, "utf8")).ids);
 
 for (const file of htmlFiles) {
   const route = routeFromHtmlFile(file);
@@ -39,7 +39,7 @@ for (const file of htmlFiles) {
   if (description && decodeHtml(description).length < 70) warnings.push(`${route}: meta description short (${decodeHtml(description).length})`);
   if (description && decodeHtml(description).length > 170) warnings.push(`${route}: meta description long (${decodeHtml(description).length})`);
 
-  if (route.startsWith("/de/produkte/") && !robots) errors.push(`${route}: missing robots directive`);
+  if (route.startsWith("/de/produkte/") && route !== "/de/produkte/vergleich" && !robots) errors.push(`${route}: missing robots directive`);
   if (/\bnoindex\b/i.test(robots)) errors.push(`${route}: contains noindex`);
 
   if (route !== "/" && !canonical) errors.push(`${route}: missing canonical`);
