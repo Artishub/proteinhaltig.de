@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
+import { Space_Grotesk } from "next/font/google";
 import { siteUrl } from "@/lib/site";
 import "./globals.css";
+
+const displayFont = Space_Grotesk({ subsets: ["latin"], weight: ["500", "600", "700"], variable: "--font-display", display: "swap" });
 
 const description =
   "Vergleiche Proteinprodukte aus Deutschland: pro 100 g/ml, pro Packung, mit Quellen, Nährwerten und Proteinportionen.";
@@ -41,7 +44,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="de">
+    <html lang="de" className={displayFont.variable}>
       <body>
         {children}
       </body>

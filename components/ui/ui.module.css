@@ -1,0 +1,150 @@
+/* Shared UI for the proteinhaltig redesign. Tokens come from .theme-protein in app/globals.css. */
+
+.page {
+  --hair: color-mix(in srgb, var(--ink) 11%, transparent);
+  padding: 0 1.25rem 6rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.page > * { max-width: 1180px; margin-left: auto; margin-right: auto; }
+
+/* Hero */
+.hero { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 3.5rem; align-items: center; padding-top: 3.5rem; }
+.heroCopy h1 { margin: 0; font-size: clamp(2.6rem, 6vw, 4.4rem); font-weight: 600; line-height: 1; letter-spacing: -.025em; text-wrap: balance; }
+.lead { max-width: 34rem; margin: 1.2rem 0 0; color: var(--slate); font-size: 1.12rem; line-height: 1.55; }
+.metaLine { margin: 1rem 0 0; color: var(--slate); font-size: .85rem; }
+.metaLine a { color: var(--accent-strong); text-decoration: underline; text-underline-offset: 3px; }
+
+/* Search */
+.search { position: relative; max-width: 34rem; margin-top: 1.6rem; }
+.searchField { display: flex; align-items: center; gap: .65rem; height: 3.4rem; padding: 0 1.1rem; border: 1.5px solid var(--ink); border-radius: 14px; background: var(--mist); }
+.searchField:focus-within { outline: 3px solid color-mix(in srgb, var(--accent) 45%, transparent); outline-offset: 2px; }
+.searchField input { min-width: 0; flex: 1; border: 0; background: transparent; color: var(--ink); font-size: 1.02rem; outline: none; }
+.searchResults { position: absolute; z-index: 20; top: calc(100% + .4rem); left: 0; right: 0; margin: 0; padding: .35rem; list-style: none; border: 1px solid var(--hair); border-radius: 14px; background: var(--mist); box-shadow: var(--card-shadow); }
+.searchResults a { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: .6rem .7rem; border-radius: 10px; }
+.searchResults a:hover, .searchResults a:focus-visible { background: var(--cream); }
+.searchResults strong { display: block; font-weight: 600; }
+.searchResults small { color: var(--slate); font-size: .8rem; }
+.searchValue { flex: none; text-align: right; }
+.searchEmpty { padding: .7rem; color: var(--slate); }
+
+/* Showcase: espresso card with one square corner and a terracotta edge (zuckerhaltig uses a tilted card). */
+.showcase { position: relative; padding: 1.7rem 1.7rem 1.5rem; border-radius: 4px 32px 32px 32px; border-top: 6px solid var(--accent); background: var(--stage); color: var(--stage-ink); box-shadow: 0 40px 70px -44px rgba(42, 31, 26, .75); }
+.showcaseKicker { margin: 0; color: var(--stage-muted); font-size: .85rem; }
+.showcaseName { margin: .5rem 0 0; font-size: 1.35rem; font-weight: 600; line-height: 1.2; letter-spacing: -.01em; }
+.showcaseName a:hover { text-decoration: underline; text-underline-offset: 4px; }
+.showcaseNumber { display: flex; flex-wrap: wrap; align-items: baseline; gap: .5rem; margin: 1.1rem 0 0; }
+.showcaseNumber strong { font-size: clamp(4.2rem, 9vw, 6.2rem); font-weight: 600; line-height: .85; letter-spacing: -.04em; }
+.showcaseNumber span { color: var(--stage-muted); font-size: .95rem; }
+.showcaseStats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .5rem; margin: 1.3rem 0 0; }
+.showcaseStats > div { padding-top: .6rem; border-top: 1px solid var(--stage-line); }
+.showcaseStats dt { color: var(--stage-muted); font-size: .75rem; }
+.showcaseStats dd { margin: .15rem 0 0; font-size: 1.15rem; font-weight: 650; }
+
+/* Energy split */
+.split { margin: 1.4rem 0 0; }
+.split figcaption { color: var(--slate); font-size: .8rem; }
+.splitOnStage figcaption { color: var(--stage-muted); }
+.splitBar { display: flex; gap: 2px; height: 12px; margin-top: .5rem; }
+.splitBar span { min-width: 3px; }
+.splitBar span:first-child { border-radius: 4px 0 0 4px; }
+.splitBar span:last-child { border-radius: 0 4px 4px 0; }
+.splitLegend { display: flex; flex-wrap: wrap; gap: .3rem 1rem; margin: .55rem 0 0; padding: 0; list-style: none; font-size: .8rem; }
+.splitLegend li { display: inline-flex; align-items: center; gap: .35rem; }
+.splitLegend i { width: 9px; height: 9px; border-radius: 2px; }
+.macro_protein { background: var(--macro-protein); }
+.macro_carbs { background: var(--macro-carbs); }
+.macro_fat { background: var(--macro-fat); }
+
+/* Sections */
+.section { margin-top: 5rem; }
+.sectionHead { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 1rem; }
+.sectionHead h2 { margin: 0; font-size: clamp(1.7rem, 3.2vw, 2.3rem); font-weight: 600; letter-spacing: -.02em; }
+.sectionLead { max-width: 44rem; margin: .6rem 0 0; color: var(--slate); line-height: 1.55; }
+.textLink { display: inline-flex; align-items: center; gap: .35rem; color: var(--accent-strong); font-weight: 600; }
+.textLink:hover { text-decoration: underline; text-underline-offset: 4px; }
+
+/* Popular cards */
+.popularGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; margin-top: 1.4rem; }
+.popularCard { display: flex; flex-direction: column; gap: .5rem; padding: 1.15rem 1.2rem 1.1rem; border: 1px solid var(--hair); border-radius: 18px; background: var(--mist); box-shadow: var(--card-shadow); transition: transform .15s ease, border-color .15s ease; }
+.popularCard:hover { transform: translateY(-2px); border-color: var(--accent); }
+.popularCategory { color: var(--slate); font-size: .78rem; }
+.popularName { font-weight: 600; line-height: 1.3; }
+.popularValue { margin-top: auto; padding-top: .4rem; color: var(--slate); font-size: .85rem; }
+.popularValue strong { display: block; color: var(--ink); font-size: 2.2rem; font-weight: 600; letter-spacing: -.03em; }
+.popularBar { display: block; height: 6px; border-radius: 999px; background: var(--ash); overflow: hidden; }
+.popularBar i { display: block; height: 100%; border-radius: inherit; background: var(--accent); }
+.popularFoot { color: var(--slate); font-size: .8rem; }
+
+/* Stage for the main chart */
+.stage { margin-top: 1.4rem; padding: 1.2rem; border-radius: 28px; background: var(--stage); color: var(--stage-ink); }
+
+/* Scatter */
+.scatter { display: grid; gap: 1rem; }
+.chipRow { display: flex; gap: .4rem; overflow-x: auto; padding-bottom: .2rem; scrollbar-width: none; }
+.chipRow button { flex: none; padding: .45rem .8rem; border: 1px solid var(--stage-line); border-radius: 999px; background: transparent; color: var(--stage-ink); font-size: .82rem; cursor: pointer; }
+.chipRow button span { color: var(--stage-muted); }
+.chipRow button[aria-pressed="true"] { border-color: var(--accent); background: var(--accent); color: #1f1a16; }
+.chipRow button[aria-pressed="true"] span { color: #3b2a20; }
+.chipRow button:focus-visible { outline: 2px solid var(--stage-ink); outline-offset: 2px; }
+.scatterPlot { position: relative; }
+.scatterPlot svg { display: block; width: 100%; height: auto; overflow: visible; }
+.scatterGrid { stroke: var(--stage-line); stroke-width: 1; }
+.scatterTick { fill: var(--stage-muted); font-size: 12px; }
+.scatterAxisLabel { fill: var(--stage-muted); font-size: 12px; }
+.scatterBand { fill: rgba(232, 105, 58, .09); }
+.scatterGuide { stroke: var(--stage-ink); stroke-width: 1.5; stroke-opacity: .7; }
+.scatterGuideSoft { stroke: var(--stage-ink); stroke-width: 1; stroke-opacity: .35; }
+.scatterGuideLabel { fill: var(--stage-ink); font-size: 12px; font-weight: 600; paint-order: stroke; stroke: var(--stage); stroke-width: 4px; }
+.scatterDot circle:last-child, .scatterDotMuted circle:last-child { fill: var(--accent); stroke: var(--stage); stroke-width: 2; transition: r .12s ease; }
+.scatterDotMuted circle:last-child { fill: var(--stage-muted); fill-opacity: .25; stroke-opacity: .4; }
+.scatterHit { fill: transparent; stroke: none; }
+.scatterDot:hover circle:last-child, .scatterDot:focus-visible circle:last-child { r: 7px; fill: var(--stage-ink); }
+.scatterDot:focus-visible { outline: none; }
+.scatterTooltip { position: absolute; z-index: 5; display: grid; gap: .15rem; width: max-content; max-width: 16rem; padding: .6rem .75rem; border-radius: 10px; background: var(--stage-ink); color: #1f1a16; font-size: .82rem; line-height: 1.35; transform: translate(-50%, calc(-100% - 12px)); pointer-events: none; box-shadow: 0 14px 30px -14px rgba(0, 0, 0, .6); }
+.scatterTooltip small { color: #5c5148; }
+
+/* Table */
+.tableCard { margin-top: 1.4rem; overflow-x: auto; border: 1px solid var(--hair); border-radius: 18px; background: var(--mist); }
+.table { width: 100%; border-collapse: collapse; }
+.table th, .table td { padding: .85rem 1rem; text-align: right; white-space: nowrap; }
+.table th:first-child { text-align: left; }
+.table thead th { color: var(--slate); font-size: .8rem; font-weight: 600; }
+.table tbody tr { border-top: 1px solid var(--hair); }
+.table tbody th { font-weight: 600; }
+.table tbody th a:hover { color: var(--accent-strong); text-decoration: underline; text-underline-offset: 3px; }
+.table small { color: var(--slate); font-size: .78rem; }
+.range { position: relative; display: inline-block; width: 9rem; height: 8px; margin-right: .6rem; vertical-align: middle; border-radius: 999px; background: var(--ash); }
+.range i { position: absolute; top: 0; bottom: 0; border-radius: 999px; background: var(--accent); }
+
+/* Formula */
+.formula { margin-top: 1.4rem; padding: 1.5rem; border: 1px solid var(--hair); border-radius: 18px; background: var(--mist); }
+.formulaProduct { margin: 0; color: var(--slate); font-size: .9rem; }
+.formulaSteps { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem 1rem; margin: 1rem 0 0; padding: 0; list-style: none; }
+.formulaSteps li[aria-hidden] { color: var(--slate); font-size: 1.3rem; }
+.formulaSteps strong { display: block; font-family: var(--font-display), sans-serif; font-size: 1.9rem; font-weight: 600; letter-spacing: -.02em; }
+.formulaSteps span { color: var(--slate); font-size: .8rem; }
+.formulaResult { padding: .5rem .8rem; border-radius: 12px; background: var(--accent-soft); }
+.formulaNote { max-width: 46rem; margin: 1.1rem 0 0; color: var(--slate); font-size: .88rem; line-height: 1.55; }
+
+/* Articles */
+.articleGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: .75rem; margin-top: 1.4rem; }
+.articleCard { display: grid; gap: .45rem; padding: .7rem .7rem 1rem; border: 1px solid var(--hair); border-radius: 18px; background: var(--mist); }
+.articleCard img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 12px; }
+.articleCard span { padding: 0 .3rem; color: var(--slate); font-size: .78rem; }
+.articleCard h3 { margin: 0; padding: 0 .3rem; font-size: 1.1rem; font-weight: 600; }
+.articleCard:hover h3 { color: var(--accent-strong); }
+
+@media (max-width: 860px) {
+  .hero { grid-template-columns: 1fr; gap: 2rem; padding-top: 2rem; }
+  .section { margin-top: 3.5rem; }
+  .popularGrid, .articleGrid { grid-template-columns: 1fr; }
+  .stage { margin-left: -1.25rem; margin-right: -1.25rem; padding: 1rem .75rem; border-radius: 0; }
+  .hideMobile { display: none; }
+  .table th, .table td { padding: .75rem .7rem; }
+  .formulaSteps strong { font-size: 1.5rem; }
+}
+
+@media (min-width: 861px) and (max-width: 1080px) {
+  .popularGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

@@ -130,3 +130,60 @@ select {
 ::view-transition-new(root) {
   animation-duration: 0.2s;
 }
+
+/* Proteinhaltig theme (redesign 2026-10): warm terracotta on espresso instead of lime on moss.
+   Applied with .theme-protein; legacy token names (marigold, cream) map onto the new accent. */
+.theme-protein {
+  --ink: #1f1a16;
+  --paper: #f6f2ec;
+  --mist: #fdfbf8;
+  --ash: #e6ddd2;
+  --smoke: #d3c6b8;
+  --graphite: #8a7d70;
+  --steel: #74685c;
+  --slate: #5c5148;
+  --marigold: #e8693a;
+  --buttercream: #fbe3d6;
+  --cream: #f6e4d6;
+  --accent: #e8693a;
+  --accent-strong: #a8401f;
+  --accent-soft: #f9dccd;
+  --stage: #2a1f1a;
+  --stage-ink: #faf5ef;
+  --stage-muted: #d9c8b8;
+  --stage-line: rgba(250, 245, 239, 0.14);
+  --macro-protein: #e8693a;
+  --macro-carbs: #c98500;
+  --macro-fat: #3987e5;
+  --card-shadow: 0 1px 0 rgba(31, 26, 22, 0.04), 0 24px 50px -34px rgba(42, 31, 26, 0.45);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.dark .theme-protein {
+  --ink: #f4ece3;
+  --paper: #16120f;
+  --mist: #201a16;
+  --ash: #3a2f28;
+  --smoke: #4a3d34;
+  --graphite: #a8998b;
+  --steel: #b9aa9b;
+  --slate: #c9b9a9;
+  --buttercream: #4a2a1d;
+  --cream: #3a281e;
+  --accent-strong: #ff9a70;
+  --accent-soft: #4a2a1d;
+  --stage: #241a15;
+  --card-shadow: 0 1px 0 rgba(0, 0, 0, 0.3), 0 24px 50px -34px rgba(0, 0, 0, 0.8);
+}
+
+.theme-protein h1,
+.theme-protein h2,
+.theme-protein h3,
+.theme-protein .display {
+  font-family: var(--font-display), Inter, ui-sans-serif, system-ui, sans-serif;
+}
+
+.theme-protein ::selection {
+  background: var(--accent-soft);
+}
