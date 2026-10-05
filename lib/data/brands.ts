@@ -1,4 +1,4 @@
-import seed from "./drinks.seed.json";
+import seed from "./products.seed.json";
 
 export type Brand = {
   id: string;

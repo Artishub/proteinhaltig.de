@@ -1,28 +1,21 @@
 # Task Routing
 
 Data changes:
-- Edit `lib/data/drinks.seed.json`.
-- Never invent nutrition values, package sizes, source URLs, or checked dates.
-- If source text states package sugar, data must match calculated package sugar.
-- Total sugar is `sugarPer100Ml * sizeMl / 100`; sugar cubes use 3 g.
-- Prefer `totalSugarGrams`, `sugarCubes`, and `packageEnergyKcal` from `lib/data/drinks.ts`.
-- Run `npm run validate:data`; for code/data tasks also run typecheck and build.
+- Use the `product-data` skill. Edit `lib/data/products.seed.json` with targeted reads only.
+- Never invent nutrition values, package or serving sizes, source URLs, or checked dates.
+- Package protein is `nutritionPer100.protein * packageSize / 100`; use the helpers in `lib/data/products.ts`.
+- Run `npm run validate:data`; for code/data tasks also run typecheck, lint, test and build.
 
 SEO/content:
-- German first. Keep wording direct and search-intent based.
-- Detail pages need concrete values, source context, FAQ, similar drinks, and structured data.
-- Use `anti-ai-slop-writing` for German SEO copy, FAQ, metadata, and article text.
+- German first. The first sentence answers the search query.
+- No generated FAQ or template paragraphs per page; facts come from data (`lib/product-facts.ts`).
+- Indexing changes only via the `seo-wave` skill and after asking the user.
+- Use `anti-ai-slop-writing` for German copy, metadata and article text.
 
 UI:
-- Keep the design quiet, modern, SaaS-like, and bright in default light mode.
-- Use subtle grey page surfaces, compact mobile cards, and no horizontal mobile scroll.
-- Mobile navigation should be a menu, not a scroll row.
-- Use lucide icons where useful.
-- Do not use brand logo images unless legal usage is confirmed.
-- Use `design-taste-frontend` for explorer UI, drink cards, detail pages, or responsive layout work.
-- Use `caveman` only when the user asks for compressed/final-summary style.
+- Noise to avoid: uppercase eyebrows, periods at the end of headings, slogans, "01/02/03" cards, badges that say the same everywhere, hedging sentences.
+- Mobile first, no horizontal scroll, real tables for tabular data.
+- Proteinhaltig must not look identical to zuckerhaltig.de (own accent colour, card shapes, main chart).
 
 Architecture:
-- Static JSON is acceptable now.
-- Future source of truth should be Postgres with import/admin validation and source history.
-- Do not add SQLite for production.
+- Static JSON is acceptable now. Do not add SQLite for production.

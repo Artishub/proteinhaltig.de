@@ -4,7 +4,7 @@ import { FormEvent, KeyboardEvent, useEffect, useMemo, useRef, useState } from "
 import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
 import { brands } from "@/lib/data/brands";
-import { drinks } from "@/lib/data/drinks";
+import { products } from "@/lib/data/products";
 
 const frequentSearches = ["Proteinriegel", "Skyr", "Protein Pudding", "Whey"];
 
@@ -18,10 +18,10 @@ export function HeaderSearch() {
   const results = useMemo(() => {
     const value = query.trim().toLowerCase();
     if (!value) return [];
-    return drinks
-      .filter((drink) => {
-        const brand = brands.find((item) => item.id === drink.brandId)?.name ?? "";
-        return `${drink.name} ${brand}`.toLowerCase().includes(value);
+    return products
+      .filter((product) => {
+        const brand = brands.find((item) => item.id === product.brandId)?.name ?? "";
+        return `${product.name} ${brand}`.toLowerCase().includes(value);
       })
       .slice(0, 5);
   }, [query]);
@@ -113,16 +113,16 @@ export function HeaderSearch() {
               ))}
             </div>
           ) : results.length ? (
-            results.map((drink) => {
-              const brand = brands.find((item) => item.id === drink.brandId)?.name ?? "";
+            results.map((product) => {
+              const brand = brands.find((item) => item.id === product.brandId)?.name ?? "";
               return (
                 <button
-                  key={drink.id}
+                  key={product.id}
                   type="button"
-                  onClick={() => go(drink.name)}
+                  onClick={() => go(product.name)}
                   className="focus-ring grid w-full gap-1 border-b border-ash px-3 py-3 text-left last:border-0 hover:bg-paper"
                 >
-                  <span className="font-medium">{drink.name}</span>
+                  <span className="font-medium">{product.name}</span>
                   <span className="text-xs text-slate">{brand} · Suche öffnen</span>
                 </button>
               );

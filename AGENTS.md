@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Proteinhaltig.de is a German SEO-focused protein product database built with Next.js App Router, React, TypeScript, and Tailwind.
+Proteinhaltig.de is a German SEO-focused protein product database built with Next.js App Router, React, TypeScript, and Tailwind. `CLAUDE.md` has the architecture, commands and SEO context.
 
 Start with:
 - `.agents/project-map.md` for orientation
@@ -11,10 +11,11 @@ Start with:
 Hard rules:
 - Never spawn subagents unless the user explicitly requests them; default to `fork_turns="none"` when requested.
 - Keep responses and UI copy short, clear, and German-first.
-- Never invent verified nutrition values or sources.
-- Treat MVP demo values as unverified until checked against packaging or manufacturer pages.
-- Use helpers from `lib/data/drinks.ts` for package protein, protein portions, and kcal.
-- Validate product data after changing `lib/data/drinks.seed.json`.
+- Never invent nutrition values, serving sizes or sources. Every number needs a source, a check date and a status.
+- Use helpers from `lib/data/products.ts` for package protein, serving protein, kcal and energy share.
+- Validate product data after changing `lib/data/products.seed.json`.
+- Do not change indexing (robots, sitemap, `lib/data/indexed-products.json`) without asking the user.
+- No generated FAQ or template paragraphs on product pages. No sitewide links to sister projects.
 - Do not overwrite user changes. Commit only when asked.
 
 Avoid during orientation:

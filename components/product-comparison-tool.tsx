@@ -7,46 +7,50 @@ import { ArrowRight, Check, ChevronDown, Copy, Search, X } from "lucide-react";
 import { brands } from "@/lib/data/brands";
 import { categoryById } from "@/lib/data/categories";
 import {
-  Drink,
-  drinks,
+  Product,
+  products,
   packageEnergyKcal,
-  proteinPer100Value,
-  proteinPortions,
-  totalProteinGrams,
-} from "@/lib/data/drinks";
+  proteinPer100,
+  packageProtein,
+  proteinPer100Kcal,
+  servingProtein,
+  sizeLabel,
+} from "@/lib/data/products";
+import { productPageHref } from "@/lib/page-routing";
 
 type Metric = {
   label: string;
-  value: (drink: Drink) => string;
+  value: (product: Product) => string;
   emphasized?: boolean;
 };
 
-const options = [...drinks].sort((a, b) => {
+const options = [...products].sort((a, b) => {
   const brandA = brands.find((brand) => brand.id === a.brandId)?.name ?? "";
   const brandB = brands.find((brand) => brand.id === b.brandId)?.name ?? "";
-  return brandA.localeCompare(brandB, "de") || a.name.localeCompare(b.name, "de") || (a.sizeMl ?? 0) - (b.sizeMl ?? 0);
+  return brandA.localeCompare(brandB, "de") || a.name.localeCompare(b.name, "de") || (a.packageSize ?? 0) - (b.packageSize ?? 0);
 });
 
-const validIds = new Set(options.map((drink) => drink.id));
+const validIds = new Set(options.map((product) => product.id));
 
 const metrics: Metric[] = [
-  { label: "Protein pro 100 g/ml", value: (drink) => formatGrams(proteinPer100Value(drink)), emphasized: true },
-  { label: "Protein pro Packung", value: (drink) => formatGrams(totalProteinGrams(drink)), emphasized: true },
-  { label: "10-g-Proteinportionen", value: (drink) => formatOptional(proteinPortions(drink)) },
+  { label: "Protein pro 100 g/ml", value: (product) => formatGrams(proteinPer100(product)), emphasized: true },
+  { label: "Protein pro Packung", value: (product) => formatGrams(packageProtein(product)), emphasized: true },
+  { label: "Protein pro Portion", value: (product) => product.servingSize ? `${formatGrams(servingProtein(product))} (${product.servingSize} ${product.unit})` : "/" },
+  { label: "Protein pro 100 kcal", value: (product) => formatGrams(proteinPer100Kcal(product)) },
   { label: "Packungsgröße", value: sizeLabel },
-  { label: "Energie pro 100 g/ml", value: (drink) => drink.nutritionPer100Ml ? `${formatNumber(drink.nutritionPer100Ml.energyKcal)} kcal` : "/" },
-  { label: "Energie pro Packung", value: (drink) => formatKcal(packageEnergyKcal(drink)) },
-  { label: "Kohlenhydrate pro 100 g/ml", value: (drink) => formatNutrition(drink, "carbohydrates") },
-  { label: "davon Zucker pro 100 g/ml", value: (drink) => formatNutrition(drink, "sugar") },
-  { label: "Fett pro 100 g/ml", value: (drink) => formatNutrition(drink, "fat") },
-  { label: "Salz pro 100 g/ml", value: (drink) => formatNutrition(drink, "salt") },
+  { label: "Energie pro 100 g/ml", value: (product) => `${formatNumber(product.nutritionPer100.energyKcal)} kcal` },
+  { label: "Energie pro Packung", value: (product) => formatKcal(packageEnergyKcal(product)) },
+  { label: "Kohlenhydrate pro 100 g/ml", value: (product) => formatNutrition(product, "carbohydrates") },
+  { label: "davon Zucker pro 100 g/ml", value: (product) => formatNutrition(product, "sugar") },
+  { label: "Fett pro 100 g/ml", value: (product) => formatNutrition(product, "fat") },
+  { label: "Salz pro 100 g/ml", value: (product) => formatNutrition(product, "salt") },
 ];
 
 export function ProductComparisonTool() {
   const searchParams = useSearchParams();
   const [selectedIds, setSelectedIds] = useState<string[]>(() => initialSelection(searchParams));
   const [copied, setCopied] = useState(false);
-  const selectedProducts = selectedIds.map((id) => options.find((drink) => drink.id === id)).filter(isDrink);
+  const selectedProducts = selectedIds.map((id) => options.find((product) => product.id === id)).filter(isProduct);
 
   useEffect(() => {
     const params = new URLSearchParams();
@@ -137,16 +141,16 @@ export function ProductComparisonTool() {
               <div className="grid grid-cols-[210px_minmax(0,1fr)] border-b border-ash">
                 <div className="border-r border-ash p-4" />
                 <div className="grid" style={{ gridTemplateColumns: `repeat(${selectedProducts.length}, minmax(0, 1fr))` }}>
-                  {selectedProducts.map((drink) => <ProductHeading key={drink.id} drink={drink} />)}
+                  {selectedProducts.map((product) => <ProductHeading key={product.id} product={product} />)}
                 </div>
               </div>
               {metrics.map((metric) => (
                 <div key={metric.label} className="grid grid-cols-[210px_minmax(0,1fr)] border-b border-ash">
                   <p className="border-r border-ash p-4 text-sm text-slate">{metric.label}</p>
                   <div className="grid" style={{ gridTemplateColumns: `repeat(${selectedProducts.length}, minmax(0, 1fr))` }}>
-                    {selectedProducts.map((drink) => (
-                      <p key={drink.id} className={`border-r border-ash p-4 text-right tabular-nums last:border-r-0 ${metric.emphasized ? "text-xl font-medium" : "text-sm"}`}>
-                        {metric.value(drink)}
+                    {selectedProducts.map((product) => (
+                      <p key={product.id} className={`border-r border-ash p-4 text-right tabular-nums last:border-r-0 ${metric.emphasized ? "text-xl font-medium" : "text-sm"}`}>
+                        {metric.value(product)}
                       </p>
                     ))}
                   </div>
@@ -156,14 +160,14 @@ export function ProductComparisonTool() {
           </div>
 
           <div className="mt-4 space-y-4 lg:hidden">
-            {selectedProducts.map((drink) => (
-              <article key={drink.id} className="rounded-lg border border-ash bg-mist p-4">
-                <ProductHeading drink={drink} compact />
+            {selectedProducts.map((product) => (
+              <article key={product.id} className="rounded-lg border border-ash bg-mist p-4">
+                <ProductHeading product={product} compact />
                 <dl className="mt-4">
                   {metrics.map((metric) => (
                     <div key={metric.label} className="flex items-baseline justify-between gap-4 border-t border-ash py-3 text-sm">
                       <dt className="text-slate">{metric.label}</dt>
-                      <dd className={`shrink-0 text-right tabular-nums ${metric.emphasized ? "font-medium" : ""}`}>{metric.value(drink)}</dd>
+                      <dd className={`shrink-0 text-right tabular-nums ${metric.emphasized ? "font-medium" : ""}`}>{metric.value(product)}</dd>
                     </div>
                   ))}
                 </dl>
@@ -183,16 +187,16 @@ export function ProductComparisonTool() {
   );
 }
 
-function ProductHeading({ drink, compact = false }: { drink: Drink; compact?: boolean }) {
-  const brand = brands.find((item) => item.id === drink.brandId)?.name ?? "";
-  const category = categoryById[drink.categoryId]?.name ?? "Produkt";
+function ProductHeading({ product, compact = false }: { product: Product; compact?: boolean }) {
+  const brand = brands.find((item) => item.id === product.brandId)?.name ?? "";
+  const category = categoryById[product.categoryId]?.name ?? "Produkt";
 
   return (
     <div className={compact ? "" : "border-r border-ash bg-mist p-4 last:border-r-0"}>
       <span className="inline-flex rounded-md bg-paper px-2 py-1 text-xs font-medium text-slate">{category}</span>
-      <h3 className="mt-2 text-lg font-medium leading-tight">{drink.name}</h3>
-      <p className="mt-1 text-sm text-slate">{brand} · {sizeLabel(drink)}</p>
-      <Link href={`/de/produkte/${drink.id}`} className="focus-ring mt-4 inline-flex items-center gap-2 rounded-md text-sm font-medium underline decoration-ash underline-offset-4 hover:decoration-marigold">
+      <h3 className="mt-2 text-lg font-medium leading-tight">{product.name}</h3>
+      <p className="mt-1 text-sm text-slate">{brand} · {sizeLabel(product)}</p>
+      <Link href={productPageHref(product)} className="focus-ring mt-4 inline-flex items-center gap-2 rounded-md text-sm font-medium underline decoration-ash underline-offset-4 hover:decoration-marigold">
         Details
         <ArrowRight size={17} strokeWidth={1.75} aria-hidden="true" />
       </Link>
@@ -204,12 +208,12 @@ function ProductCombobox({ value, disabledIds, onChange }: { value: string; disa
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const containerRef = useRef<HTMLDivElement>(null);
-  const selected = options.find((drink) => drink.id === value);
+  const selected = options.find((product) => product.id === value);
   const filtered = useMemo(() => {
     const normalized = query.trim().toLowerCase();
-    return options.filter((drink) => {
-      const brand = brands.find((item) => item.id === drink.brandId)?.name ?? "";
-      return !normalized || `${drink.name} ${brand} ${sizeLabel(drink)}`.toLowerCase().includes(normalized);
+    return options.filter((product) => {
+      const brand = brands.find((item) => item.id === product.brandId)?.name ?? "";
+      return !normalized || `${product.name} ${brand} ${sizeLabel(product)}`.toLowerCase().includes(normalized);
     }).slice(0, 50);
   }, [query]);
 
@@ -247,24 +251,24 @@ function ProductCombobox({ value, disabledIds, onChange }: { value: string; disa
             />
           </div>
           <div className="mt-2 max-h-72 overflow-y-auto" role="listbox">
-            {filtered.map((drink) => {
-              const disabled = disabledIds.includes(drink.id);
+            {filtered.map((product) => {
+              const disabled = disabledIds.includes(product.id);
               return (
                 <button
-                  key={drink.id}
+                  key={product.id}
                   type="button"
                   disabled={disabled}
                   onClick={() => {
-                    onChange(drink.id);
+                    onChange(product.id);
                     setQuery("");
                     setOpen(false);
                   }}
                   className="block w-full rounded-md px-2 py-2 text-left hover:bg-paper disabled:cursor-not-allowed disabled:opacity-35"
                   role="option"
-                  aria-selected={drink.id === value}
+                  aria-selected={product.id === value}
                 >
-                  <span className="block truncate text-sm font-medium">{drink.name}</span>
-                  <span className="block truncate text-xs text-slate">{brands.find((item) => item.id === drink.brandId)?.name} · {sizeLabel(drink)}</span>
+                  <span className="block truncate text-sm font-medium">{product.name}</span>
+                  <span className="block truncate text-xs text-slate">{brands.find((item) => item.id === product.brandId)?.name} · {sizeLabel(product)}</span>
                 </button>
               );
             })}
@@ -283,20 +287,16 @@ function initialSelection(searchParams: ReturnType<typeof useSearchParams>) {
   return [...ids, "", "", "", ""].slice(0, 4);
 }
 
-function isDrink(drink: Drink | undefined): drink is Drink {
-  return Boolean(drink);
+function isProduct(product: Product | undefined): product is Product {
+  return Boolean(product);
 }
 
-function formatNutrition(drink: Drink, key: "carbohydrates" | "sugar" | "fat" | "salt") {
-  return drink.nutritionPer100Ml ? `${formatNumber(drink.nutritionPer100Ml[key])} g` : "/";
+function formatNutrition(product: Product, key: "carbohydrates" | "sugar" | "fat" | "salt") {
+  return `${formatNumber(product.nutritionPer100[key])} g`;
 }
 
 function formatNumber(value: number) {
   return new Intl.NumberFormat("de-DE", { maximumFractionDigits: 1 }).format(value);
-}
-
-function formatOptional(value: number | null) {
-  return value === null ? "/" : formatNumber(value);
 }
 
 function formatGrams(value: number | null) {
@@ -307,6 +307,3 @@ function formatKcal(value: number | null) {
   return value === null ? "/" : `${formatNumber(value)} kcal`;
 }
 
-function sizeLabel(drink: Drink) {
-  return drink.sizeMl ? `${formatNumber(drink.sizeMl)} ${drink.packageUnit ?? "g"}` : "Größe offen";
-}

@@ -1,7 +1,7 @@
 import fs from "node:fs";
 
-const data = JSON.parse(fs.readFileSync(new URL("../lib/data/drinks.seed.json", import.meta.url), "utf8"));
-const urls = Array.from(new Set(data.drinks.map((drink) => drink.sourceUrl).filter(Boolean)));
+const data = JSON.parse(fs.readFileSync(new URL("../lib/data/products.seed.json", import.meta.url), "utf8"));
+const urls = Array.from(new Set(data.products.map((product) => product.sourceUrl).filter(Boolean)));
 const errors = [];
 const redirects = [];
 const protectedUrls = [];

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { categories } from "@/lib/data/categories";
-import { drinks, totalProteinGrams, uniqueProductRepresentatives } from "@/lib/data/drinks";
+import { products, packageProtein, uniqueProductRepresentatives } from "@/lib/data/products";
+import { productPageHref } from "@/lib/page-routing";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -19,9 +20,9 @@ export default function CategoriesPage() {
       </p>
       <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
         {categories.map((category) => {
-          const categoryDrinks = drinks.filter((drink) => drink.categoryId === category.id);
+          const categoryDrinks = products.filter((product) => product.categoryId === category.id);
           const topDrinks = uniqueProductRepresentatives(categoryDrinks)
-            .sort((a, b) => (totalProteinGrams(b) ?? -1) - (totalProteinGrams(a) ?? -1))
+            .sort((a, b) => (packageProtein(b) ?? -1) - (packageProtein(a) ?? -1))
             .slice(0, 2);
 
           return (
@@ -36,9 +37,9 @@ export default function CategoriesPage() {
               <div className="mt-4 border-t border-ash pt-3">
                 <p className="text-xs font-medium text-slate">Produkte</p>
                 <div className="mt-2 flex flex-wrap gap-2">
-                {topDrinks.map((drink) => (
-                  <Link key={drink.id} href={`/de/produkte/${drink.id}`} className="focus-ring rounded-md bg-paper px-2.5 py-1.5 text-sm leading-5 hover:bg-cream">
-                    {drink.name}
+                {topDrinks.map((product) => (
+                  <Link key={product.id} href={productPageHref(product)} className="focus-ring rounded-md bg-paper px-2.5 py-1.5 text-sm leading-5 hover:bg-cream">
+                    {product.name}
                   </Link>
                 ))}
                 </div>

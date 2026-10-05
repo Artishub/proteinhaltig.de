@@ -4,7 +4,8 @@ import { Suspense } from "react";
 import { ProductExplorer } from "@/components/product-explorer";
 import { brandById } from "@/lib/data/brands";
 import { categories, categoryById } from "@/lib/data/categories";
-import { drinks } from "@/lib/data/drinks";
+import { products } from "@/lib/data/products";
+import { isProductPage, productPageHref } from "@/lib/page-routing";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -48,8 +49,8 @@ function ProductDirectory() {
       <p className="mt-2 max-w-2xl text-sm leading-6 text-slate">Öffne eine Kategorie und rufe jedes Produkt direkt auf.</p>
       <div className="mt-5 grid gap-3 md:grid-cols-2">
         {categories.map((category) => {
-          const items = drinks
-            .filter((drink) => drink.categoryId === category.id)
+          const items = products
+            .filter((product) => product.categoryId === category.id && isProductPage(product))
             .sort((a, b) => {
               const brandCompare = (brandById[a.brandId]?.name ?? "").localeCompare(brandById[b.brandId]?.name ?? "", "de");
               return brandCompare || a.name.localeCompare(b.name, "de");
@@ -63,10 +64,10 @@ function ProductDirectory() {
                 {categoryById[category.id]?.name ?? category.name} <span className="font-normal text-slate">({items.length})</span>
               </summary>
               <ul className="mt-4 grid gap-x-5 gap-y-2 text-sm sm:grid-cols-2">
-                {items.map((drink) => (
-                  <li key={drink.id}>
-                    <Link href={`/de/produkte/${drink.id}`} className="focus-ring inline-flex max-w-full rounded-md underline decoration-ash underline-offset-4 hover:decoration-marigold">
-                      <span className="truncate">{brandById[drink.brandId]?.name ?? "Marke"} · {drink.name}</span>
+                {items.map((product) => (
+                  <li key={product.id}>
+                    <Link href={productPageHref(product)} className="focus-ring inline-flex max-w-full rounded-md underline decoration-ash underline-offset-4 hover:decoration-marigold">
+                      <span className="truncate">{brandById[product.brandId]?.name ?? "Marke"} · {product.name}</span>
                     </Link>
                   </li>
                 ))}
