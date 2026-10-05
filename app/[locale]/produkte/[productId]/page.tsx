@@ -206,7 +206,9 @@ export default async function ProductDetailPage({ params }: PageProps) {
                 <NutritionRow label="Kohlenhydrate" per100={`${formatNumber(nutrition.carbohydrates)} g`} portion={portionColumn && `${formatNumber(scale(nutrition.carbohydrates, portionColumn.size))} g`} />
                 <NutritionRow label="davon Zucker" per100={`${formatNumber(nutrition.sugar)} g`} portion={portionColumn && `${formatNumber(scale(nutrition.sugar, portionColumn.size))} g`} indent />
                 <NutritionRow label="Eiweiß" per100={`${formatNumber(nutrition.protein)} g`} portion={portionColumn && `${formatNumber(portionColumn.grams)} g`} strong />
-                <NutritionRow label="Salz" per100={`${formatNumber(nutrition.salt)} g`} portion={portionColumn && `${formatNumber(scale(nutrition.salt, portionColumn.size))} g`} />
+                {nutrition.salt !== null && (
+                  <NutritionRow label="Salz" per100={`${formatNumber(nutrition.salt)} g`} portion={portionColumn && `${formatNumber(scale(nutrition.salt, portionColumn.size))} g`} />
+                )}
               </tbody>
             </table>
           </div>

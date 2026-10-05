@@ -52,6 +52,7 @@ for (const product of data.products) {
     continue;
   }
   for (const key of nutritionKeys) {
+    if (key === "salt" && nutrition.salt === null) continue; // some sources (e.g. FDDB) give no salt value
     if (typeof nutrition[key] !== "number" || nutrition[key] < 0) errors.push(`${id}: nutritionPer100.${key} must be a number >= 0`);
   }
   if (nutrition.sugar > nutrition.carbohydrates + 0.05) errors.push(`${id}: sugar ${nutrition.sugar} > carbohydrates ${nutrition.carbohydrates}`);
