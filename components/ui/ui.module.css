@@ -148,3 +148,26 @@
 @media (min-width: 861px) and (max-width: 1080px) {
   .popularGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
+
+/* Sortable tables, stat cards, chips (brand and category pages) */
+.sortButton { display: inline-flex; align-items: center; gap: .25rem; padding: 0; border: 0; background: none; color: inherit; font: inherit; cursor: pointer; }
+.sortButton:hover { color: var(--ink); }
+.rowSecondary { display: block; margin-top: .15rem; color: var(--slate); font-size: .78rem; font-weight: 400; white-space: normal; }
+.table tbody th { white-space: normal; min-width: 12rem; }
+.table tbody th a:hover { color: var(--accent-strong); }
+.statGrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: .75rem; margin-top: 1.6rem; }
+.statCard { padding: 1rem 1.1rem; border: 1px solid var(--hair); border-radius: 18px; background: var(--mist); }
+.statCard dt { color: var(--slate); font-size: .8rem; }
+.statCard dd { margin: .3rem 0 0; font-family: var(--font-display), sans-serif; font-size: 1.8rem; font-weight: 600; letter-spacing: -.02em; }
+.statCard small { display: block; color: var(--slate); font-family: Inter, sans-serif; font-size: .78rem; font-weight: 400; letter-spacing: 0; }
+.pageHead { padding-top: 2.5rem; }
+.pageHead h1 { margin: 0; font-size: clamp(2.2rem, 5vw, 3.6rem); font-weight: 600; line-height: 1.04; letter-spacing: -.025em; text-wrap: balance; }
+.breadcrumb { display: flex; flex-wrap: wrap; gap: .45rem; padding-top: 1.5rem; color: var(--slate); font-size: .82rem; }
+.breadcrumb a:hover { color: var(--ink); }
+.chips { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.4rem; }
+.chips a { padding: .55rem .9rem; border: 1px solid var(--hair); border-radius: 999px; background: var(--mist); font-size: .85rem; font-weight: 600; }
+.chips a:hover { border-color: var(--ink); }
+@media (max-width: 860px) {
+  .statGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .table tbody th { min-width: 9rem; }
+}

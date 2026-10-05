@@ -92,7 +92,7 @@ export function HomePage() {
             <tbody>
               {rows.map((row) => (
                 <tr key={row.id}>
-                  <th scope="row"><Link href={`/de/produkte?category=${row.id}`}>{row.name}</Link></th>
+                  <th scope="row"><Link href={`/de/kategorien/${row.id}`}>{row.name}</Link></th>
                   <td>{row.count}</td>
                   <td>{format(row.average)} g <small>/ {row.unit}</small></td>
                   <td className={ui.hideMobile}>

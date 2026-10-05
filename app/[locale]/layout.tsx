@@ -14,6 +14,7 @@ const nav: HeaderNavItem[] = [
   {
     label: "Ratgeber",
     children: [
+      { href: "/de/proteinbedarf-rechner", label: "Proteinbedarf-Rechner" },
       { href: "/de/wissen", label: "Wissenswertes" },
       { href: "/de/faq", label: "FAQ" },
     ],

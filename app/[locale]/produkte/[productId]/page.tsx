@@ -250,8 +250,8 @@ export default async function ProductDetailPage({ params }: PageProps) {
         )}
 
         <nav className={styles.chips} aria-label="Weiter vergleichen">
-          <Link href={`/de/produkte?brand=${product.brandId}`}>Alle Produkte von {brandName}</Link>
-          <Link href={`/de/produkte?category=${product.categoryId}`}>{categoryName} vergleichen</Link>
+          <Link href={`/de/marken/${product.brandId}`}>Alle Produkte von {brandName}</Link>
+          <Link href={`/de/kategorien/${product.categoryId}`}>{categoryName} vergleichen</Link>
           <Link href={`/de/produkte/vergleich?product=${product.id}`}>Direkt vergleichen</Link>
           <Link href={knowledgeLink(product)}>Wissen: {knowledgeTitle(product)}</Link>
         </nav>

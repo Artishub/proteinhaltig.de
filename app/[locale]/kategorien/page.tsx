@@ -30,8 +30,8 @@ export default function CategoriesPage() {
             <h2 className="font-medium">{category.name}</h2>
             <p className="mt-2 text-sm leading-6 text-slate">{category.description}</p>
             <p className="mt-4 text-sm tabular-nums">{categoryDrinks.length} Einträge</p>
-            <Link href={`/de/produkte?category=${category.id}`} className="focus-ring mt-3 inline-flex rounded-md text-sm underline decoration-ash underline-offset-4 hover:decoration-marigold">
-              Kategorie filtern
+            <Link href={`/de/kategorien/${category.id}`} className="focus-ring mt-3 inline-flex rounded-md text-sm underline decoration-ash underline-offset-4 hover:decoration-marigold">
+              Kategorie ansehen
             </Link>
             {!!topDrinks.length && (
               <div className="mt-4 border-t border-ash pt-3">
