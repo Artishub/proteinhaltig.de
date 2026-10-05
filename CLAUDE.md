@@ -32,12 +32,15 @@ Run `typecheck`, `lint`, `test` and `build` after code or data changes, plus `se
 **Indexing is allowlist-based:** `lib/seo-index.ts` reads `lib/data/indexed-products.json`.
 - The baseline (2026-10-05) holds every product page that was indexable before; Search Console showed impressions for almost all of them, so there was no mass noindex.
 - New products are `noindex, follow` until added in a wave (skill `seo-wave`). The same check drives robots meta and the sitemap.
+- Brand pages (`/de/marken/<id>`), category pages (`/de/kategorien/<id>`) and tools (`/de/proteinbedarf-rechner`) are indexable only when listed in `searchIndexableBrandIds`, `searchIndexableCategoryIds` or `searchIndexablePaths` in `lib/seo-index.ts`.
 - 404 pages output only `noindex` (no global `robots` in `app/layout.tsx`).
 
 **Product page:** `app/[locale]/produkte/[productId]/page.tsx`.
 - Answer sentence first, then the fact card: protein per serving (if the source states one), per package for single-serve products, otherwise per 100 g; bar to the 50 g reference intake.
 - Context comes from data only: `lib/product-facts.ts` (category rank, density rank, brand rank, sizes, EU claim when it differs) and `lib/protein-context.ts` (EU 1924/2006 thresholds 12 %/20 % energy from protein, 50 g reference intake, DGE g/kg, higher-protein alternatives). A fact renders only when its inputs are complete.
 - No generated FAQ or template paragraphs. Swap cards carry a `data-buy-slot` for a later, labelled purchase link.
+
+**Design:** tokens in `app/globals.css` (terracotta `--accent` on espresso `--stage`, Space Grotesk via `--font-display`). Shared UI in `components/ui/` (`ui.module.css`, `protein-scatter.tsx`, `energy-split.tsx`, `product-table.tsx`, `home-search.tsx`); homepage in `components/home-page.tsx`, data in `lib/home-data.ts`. Keep it visibly different from zuckerhaltig.de.
 
 **Consent:** Google Analytics loads only after consent (`components/cookie-consent.tsx`, footer „Cookie-Einstellungen“). Keep `app/[locale]/datenschutz/page.tsx` in sync when tracking changes.
 
