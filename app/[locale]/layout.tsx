@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { CookieConsent, CookieSettingsButton } from "@/components/cookie-consent";
 import { HeaderNav, type HeaderNavItem } from "@/components/header-nav";
 import { HeaderSearch } from "@/components/header-search";
 import { MobileNav } from "@/components/mobile-nav";
@@ -51,9 +52,11 @@ export default function LocaleLayout({ children }: { children: React.ReactNode }
             <Link href="/de/impressum" className="hover:text-ink">Impressum</Link>
             <Link href="/de/datenschutz" className="hover:text-ink">Datenschutz</Link>
             <Link href="/de/nutzungsbedingungen" className="hover:text-ink">Nutzung</Link>
+            <CookieSettingsButton className="hover:text-ink" />
           </div>
         </div>
       </footer>
+      <CookieConsent />
     </div>
   );
 }
