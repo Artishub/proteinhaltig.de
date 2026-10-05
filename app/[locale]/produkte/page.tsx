@@ -15,23 +15,22 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default function ProductsPage() {
+  const pageCount = products.filter(isProductPage).length;
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Dataset",
     name: "Proteinhaltig.de Produktdatenbank",
-    description: "Lokale MVP-Datenbank zu Proteinwerten in Produkten in Deutschland.",
+    description: "Proteinwerte von Proteinprodukten in Deutschland mit Quelle und Prüfdatum.",
     inLanguage: "de",
   };
 
   return (
     <main className="mx-auto max-w-page px-4 py-10 md:py-14">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <div className="mb-10 max-w-3xl">
-        <p className="text-xs font-medium text-slate">Produktdatenbank</p>
-        <h1 className="mt-3 text-5xl font-semibold leading-[.96] tracking-[-0.02em] md:text-6xl">Proteinwerte vergleichen.</h1>
+      <div className="mb-8 max-w-3xl">
+        <h1 className="text-4xl font-semibold leading-[1.02] tracking-[-0.02em] md:text-6xl">Proteinprodukte vergleichen</h1>
         <p className="mt-4 leading-7 text-slate">
-          <span className="block">Filtere nach Marke, Kategorie, Packung und Protein.</span>
-          <span className="block">Alle Berechnungen passieren lokal im Browser.</span>
+          {pageCount} Produkte nach Protein pro 100 g, pro Portion und pro 100 kcal. Filtere nach Marke, Kategorie und Packung.
         </p>
       </div>
       <Suspense fallback={<div className="border-t border-ash py-6 text-sm text-slate">Produkte werden geladen...</div>}>

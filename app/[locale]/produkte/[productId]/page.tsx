@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowRight, ExternalLink } from "lucide-react";
+import { EnergySplit } from "@/components/ui/energy-split";
 import { brandById } from "@/lib/data/brands";
 import { categoryById } from "@/lib/data/categories";
 import {
@@ -125,6 +126,7 @@ export default async function ProductDetailPage({ params }: PageProps) {
                 <div><dt>pro Packung ({product.packageSize} {product.unit})</dt><dd>{formatNumber(packageProtein(product) ?? 0)} g</dd></div>
               )}
             </dl>
+            <EnergySplit nutrition={nutrition} onStage />
           </section>
         </header>
 

@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
@@ -16,17 +15,10 @@ import { heroAmount } from "@/lib/product-hero";
 import { pageSummaries } from "@/lib/product-summary";
 import { highProteinMinShare, proteinReferenceIntakeGrams, proteinSourceMinShare, referenceIntakeShare } from "@/lib/protein-context";
 
-export const metadata: Metadata = {
-  title: "Redesign-Entwurf",
-  robots: { index: false, follow: false },
-};
-
-export const revalidate = 86400;
-
 const numberFormat = new Intl.NumberFormat("de-DE", { maximumFractionDigits: 1 });
 const format = (value: number) => numberFormat.format(value);
 
-export default function RedesignPage() {
+export function HomePage() {
   const summaries = pageSummaries();
   const stats = siteStats();
   const showcase = showcaseProduct();
@@ -38,7 +30,7 @@ export default function RedesignPage() {
   const articles = homepageArticleSlugs.map((slug) => articleBySlug[slug]).filter(Boolean).slice(0, 3);
 
   return (
-    <main className={`theme-protein ${ui.page}`}>
+    <main className={ui.page}>
       <section className={ui.hero}>
         <div className={ui.heroCopy}>
           <h1>Wie viel Protein steckt drin?</h1>

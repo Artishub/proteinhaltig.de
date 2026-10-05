@@ -28,7 +28,7 @@ export function generateStaticParams() {
 
 export default function LocaleLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-paper text-ink">
+    <div className="theme-protein min-h-screen bg-paper text-ink">
       <header className="sticky top-0 z-30 border-b border-ash/70 bg-paper/85 px-2 py-2 backdrop-blur-xl">
         <div className="mx-auto flex min-h-12 max-w-page items-center justify-between gap-2 py-1 sm:gap-3">
           <Link href="/de" className="focus-ring flex shrink-0 rounded-md">

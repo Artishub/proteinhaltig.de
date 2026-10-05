@@ -18,8 +18,7 @@ export default function ProductComparisonPage() {
         Zur Produktdatenbank
       </Link>
       <header className="mb-10 mt-8 max-w-4xl">
-        <p className="text-xs font-medium text-slate">Vergleichstool</p>
-        <h1 className="mt-3 text-5xl font-semibold leading-[.96] tracking-[-0.02em] md:text-6xl">Proteinprodukte im direkten Vergleich.</h1>
+        <h1 className="text-4xl font-semibold leading-[1.02] tracking-[-0.02em] md:text-6xl">Proteinprodukte im direkten Vergleich</h1>
         <p className="mt-5 max-w-2xl leading-7 text-slate">Wähle bis zu vier Produkte. Protein, Energie und weitere Nährwerte stehen pro 100 g/ml und pro Packung nebeneinander.</p>
       </header>
       <Suspense fallback={<div className="border-y border-ash py-10 text-sm text-slate">Vergleich wird geladen...</div>}>

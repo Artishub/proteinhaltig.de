@@ -19,7 +19,8 @@ import {
   uniqueProductRepresentatives,
   verificationLabel,
 } from "@/lib/data/products";
-import { productPageHref } from "@/lib/page-routing";
+import { isProductPage, productPageHref } from "@/lib/page-routing";
+import { heroAmount } from "@/lib/product-hero";
 
 type SortKey = "total-desc" | "total-asc" | "per100-desc" | "per100-asc" | "kcal-desc" | "name-asc" | "name-desc";
 
@@ -39,6 +40,9 @@ function matchesSize(product: Product, size: string) {
   return true;
 }
 
+// Sizes of a product share one page, so the list shows one row per page.
+const pageProducts = products.filter(isProductPage);
+
 export function ProductExplorer() {
   const searchParams = useSearchParams();
   const [query, setQuery] = useState("");
@@ -50,7 +54,8 @@ export function ProductExplorer() {
   const [excludeLowProtein, setExcludeLowProtein] = useState(false);
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(15);
-  const [openId, setOpenId] = useState<string | null>(products[0]?.id ?? null);
+  const [openId, setOpenId] = useState<string | null>(null);
+  const [showFilters, setShowFilters] = useState(false);
 
   useEffect(() => {
     const nextQuery = searchParams.get("q") ?? "";
@@ -65,7 +70,7 @@ export function ProductExplorer() {
 
   const filtered = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
-    const matching = products
+    const matching = pageProducts
       .filter((product) => {
         const brandName = brands.find((item) => item.id === product.brandId)?.name ?? "";
         const haystack = `${product.name} ${brandName}`.toLowerCase();
@@ -117,9 +122,6 @@ export function ProductExplorer() {
   return (
     <div className="grid min-w-0 gap-6 lg:grid-cols-[300px_minmax(0,1fr)]">
       <aside className="h-fit w-full min-w-0 border border-ash bg-mist lg:sticky lg:top-20">
-        <div className="flex items-center justify-between border-b border-ash px-4 py-3">
-          <h2 className="text-sm font-medium">Filter</h2>
-        </div>
         <div className="space-y-4 p-4">
           <label className="block">
             <span className="text-xs font-medium text-slate">Suche</span>
@@ -133,6 +135,16 @@ export function ProductExplorer() {
               />
             </div>
           </label>
+          <button
+            type="button"
+            onClick={() => setShowFilters((value) => !value)}
+            aria-expanded={showFilters}
+            className="focus-ring inline-flex h-10 w-full items-center justify-center gap-2 rounded-md border border-ash text-sm font-medium lg:hidden"
+          >
+            {showFilters ? "Filter ausblenden" : "Alle Filter"}
+            <ChevronDown size={16} className={showFilters ? "rotate-180" : ""} aria-hidden="true" />
+          </button>
+          <div className={`${showFilters ? "block" : "hidden"} space-y-4 lg:block`}>
           <Select label="Marke" value={brand} onChange={setBrand} options={[{ label: "Alle Marken", value: "all" }, ...brands.map((item) => ({ label: item.name, value: item.id }))]} />
           <Select label="Kategorie" value={category} onChange={setCategory} options={[{ label: "Alle Kategorien", value: "all" }, ...categories.map((item) => ({ label: item.name, value: item.id }))]} />
           <Select label="Packung" value={size} onChange={setSize} options={sizes} />
@@ -158,6 +170,7 @@ export function ProductExplorer() {
             <X size={15} strokeWidth={1.75} aria-hidden="true" />
             Zurücksetzen
           </button>
+          </div>
         </div>
       </aside>
 
@@ -212,7 +225,7 @@ export function ProductExplorer() {
                 ? `${categoryData?.name ?? "Produkt"} · ${item.products.length} Produkte`
                 : `${brandName} · ${sizeLabel(product)}`;
             const per100 = item.type === "group" ? maxNullable(item.products.map(proteinPer100)) : proteinPer100(product);
-            const total = item.type === "group" ? maxNullable(item.products.map(packageProtein)) : packageProtein(product);
+            const hero = heroAmount(product);
 
             return (
               <article
@@ -228,8 +241,12 @@ export function ProductExplorer() {
                     <h3 className="mt-2 text-base font-medium leading-tight tracking-[-0.02em] md:text-lg">{title}</h3>
                     <p className="mt-1 text-sm text-slate">{subtitle}</p>
                   </div>
-                  <Metric label="pro 100 g/ml" value={formatOptionalGrams(per100)} />
-                  <Metric label="gesamt" value={formatOptionalGrams(total)} strong />
+                  <Metric label={`pro 100 ${product.unit}`} value={formatOptionalGrams(per100)} />
+                  {item.type === "product" && hero.basis !== "per100" ? (
+                    <Metric label={hero.label.replace(/ \(.*\)$/, "")} value={formatOptionalGrams(hero.grams)} strong />
+                  ) : (
+                    <Metric label="pro 100 kcal" value={formatOptionalGrams(item.type === "group" ? maxNullable(item.products.map(proteinPer100Kcal)) : proteinPer100Kcal(product))} strong />
+                  )}
                   <ChevronDown
                     className={`absolute right-4 top-4 transition md:static md:justify-self-end ${isOpen ? "rotate-180" : ""}`}
                     size={18}
