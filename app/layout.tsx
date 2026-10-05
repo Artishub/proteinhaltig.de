@@ -37,10 +37,6 @@ export const metadata: Metadata = {
     description,
     images: ["/opengraph-image"],
   },
-  robots: {
-    index: true,
-    follow: true,
-  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
