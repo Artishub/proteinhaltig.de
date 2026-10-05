@@ -230,19 +230,19 @@
       "packageSize": 45,
       "unit": "g",
       "nutritionPer100": {
-        "energyKj": 1742,
-        "energyKcal": 412,
+        "energyKj": 1736,
+        "energyKcal": 415,
+        "fat": 23,
         "carbohydrates": 31,
         "sugar": 3.4,
-        "fat": 21,
         "protein": 31,
-        "salt": 0.5
+        "salt": 0.48
       },
-      "source": "Combi Produktseite, Nährwerttabelle pro 100 g",
-      "sourceUrl": "https://www.combi.de/esn_designer_protein_bar_fudge_brownie_4502115188.html",
-      "note": "Nährwerte direkt aus der Händlerseite übernommen.",
-      "verificationStatus": "retailer_verified",
-      "lastCheckedAt": "2026-07-07"
+      "source": "ESN Produktseite Designer Bar, Sorte Fudge Brownie, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.esn.com/products/designer-bar",
+      "note": "Werte der Sorte aus der ESN-Nährwerttabelle; Kohlenhydrate enthalten 23–30 g mehrwertige Alkohole.",
+      "verificationStatus": "manufacturer_verified",
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "foodspring-protein-bar-extra-chocolate-crispy-coconut-45",
@@ -1178,19 +1178,19 @@
       "packageSize": 45,
       "unit": "g",
       "nutritionPer100": {
-        "energyKj": 1742,
-        "energyKcal": 412,
+        "energyKj": 1736,
+        "energyKcal": 415,
+        "fat": 23,
         "carbohydrates": 31,
         "sugar": 3.4,
-        "fat": 21,
         "protein": 31,
-        "salt": 0.5
+        "salt": 0.48
       },
-      "source": "Combi Produktseite, Nährwerttabelle pro 100 g",
-      "sourceUrl": "https://www.combi.de/esn_designer_protein_bar_fudge_brownie_4502115188.html",
-      "note": "Nährwerte direkt aus der Händlerseite übernommen.",
-      "verificationStatus": "retailer_verified",
-      "lastCheckedAt": "2026-07-07"
+      "source": "ESN Produktseite Designer Bar, Sorte Fudge Brownie, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.esn.com/products/designer-bar",
+      "note": "Werte der Sorte aus der ESN-Nährwerttabelle; Kohlenhydrate enthalten 23–30 g mehrwertige Alkohole.",
+      "verificationStatus": "manufacturer_verified",
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "esn-designer-bar-dark-cookie-white-chocolate",
@@ -1200,19 +1200,19 @@
       "packageSize": 45,
       "unit": "g",
       "nutritionPer100": {
-        "energyKj": 1742,
-        "energyKcal": 412,
-        "carbohydrates": 31,
-        "sugar": 3.4,
-        "fat": 21,
-        "protein": 31,
-        "salt": 0.49
+        "energyKj": 1659,
+        "energyKcal": 395,
+        "fat": 19,
+        "carbohydrates": 37,
+        "sugar": 4,
+        "protein": 30,
+        "salt": 0.61
       },
-      "source": "Retailer-Nährwerttabelle ESN Designer Bar Fudge Brownie pro 100 g",
-      "sourceUrl": "https://droptime.de/produkt/esn-designer-bar-riegel",
-      "note": "Familienwert aus verfügbarer ESN Designer Bar Händler-Nährwerttabelle; Sortenwerte können abweichen.",
-      "verificationStatus": "retailer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "source": "ESN Produktseite Designer Bar, Sorte Dark Cookie White Choc, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.esn.com/products/designer-bar",
+      "note": "Werte der Sorte aus der ESN-Nährwerttabelle; Kohlenhydrate enthalten 23–30 g mehrwertige Alkohole.",
+      "verificationStatus": "manufacturer_verified",
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "esn-designer-bar-vegan-cinnamon-cereal",
@@ -3052,19 +3052,19 @@
       "packageSize": 45,
       "unit": "g",
       "nutritionPer100": {
-        "energyKj": 1742,
-        "energyKcal": 412,
-        "carbohydrates": 31,
-        "sugar": 3.4,
-        "fat": 21,
-        "protein": 31,
-        "salt": 0.49
+        "energyKj": 1543,
+        "energyKcal": 373,
+        "fat": 15,
+        "carbohydrates": 39,
+        "sugar": 4.7,
+        "protein": 32,
+        "salt": 0.46
       },
-      "source": "Retailer-Nährwerttabelle ESN Designer Bar Fudge Brownie pro 100 g",
-      "sourceUrl": "https://droptime.de/produkt/esn-designer-bar-riegel",
-      "note": "Familienwert aus verfügbarer ESN Designer Bar Händler-Nährwerttabelle; Sortenwerte können abweichen.",
-      "verificationStatus": "retailer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "source": "ESN Produktseite Designer Bar, Sorte Tropical Vanilla, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.esn.com/products/designer-bar",
+      "note": "Werte der Sorte aus der ESN-Nährwerttabelle; Kohlenhydrate enthalten 23–30 g mehrwertige Alkohole.",
+      "verificationStatus": "manufacturer_verified",
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "esn-designer-bar-almond-coconut-45",
@@ -3074,19 +3074,19 @@
       "packageSize": 45,
       "unit": "g",
       "nutritionPer100": {
-        "energyKj": 1742,
-        "energyKcal": 412,
-        "carbohydrates": 31,
-        "sugar": 3.4,
-        "fat": 21,
-        "protein": 31,
-        "salt": 0.49
+        "energyKj": 1774,
+        "energyKcal": 424,
+        "fat": 23,
+        "carbohydrates": 33,
+        "sugar": 4.4,
+        "protein": 32,
+        "salt": 0.44
       },
-      "source": "Retailer-Nährwerttabelle ESN Designer Bar Fudge Brownie pro 100 g",
-      "sourceUrl": "https://droptime.de/produkt/esn-designer-bar-riegel",
-      "note": "Familienwert aus verfügbarer ESN Designer Bar Händler-Nährwerttabelle; Sortenwerte können abweichen.",
-      "verificationStatus": "retailer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "source": "ESN Produktseite Designer Bar, Sorte Almond Coconut, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.esn.com/products/designer-bar",
+      "note": "Werte der Sorte aus der ESN-Nährwerttabelle; Kohlenhydrate enthalten 23–30 g mehrwertige Alkohole.",
+      "verificationStatus": "manufacturer_verified",
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "esn-designer-bar-cinnamon-cereal-45",
@@ -3096,19 +3096,19 @@
       "packageSize": 45,
       "unit": "g",
       "nutritionPer100": {
-        "energyKj": 1742,
-        "energyKcal": 412,
-        "carbohydrates": 31,
-        "sugar": 3.4,
-        "fat": 21,
+        "energyKj": 1679,
+        "energyKcal": 401,
+        "fat": 19,
+        "carbohydrates": 35,
+        "sugar": 4,
         "protein": 31,
-        "salt": 0.49
+        "salt": 0.42
       },
-      "source": "Retailer-Nährwerttabelle ESN Designer Bar Fudge Brownie pro 100 g",
-      "sourceUrl": "https://droptime.de/produkt/esn-designer-bar-riegel",
-      "note": "Familienwert aus verfügbarer ESN Designer Bar Händler-Nährwerttabelle; Sortenwerte können abweichen.",
-      "verificationStatus": "retailer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "source": "ESN Produktseite Designer Bar, Sorte Cinnamon Cereal, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.esn.com/products/designer-bar",
+      "note": "Werte der Sorte aus der ESN-Nährwerttabelle; Kohlenhydrate enthalten 23–30 g mehrwertige Alkohole.",
+      "verificationStatus": "manufacturer_verified",
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "esn-designer-bar-dark-chocolate-raspberry-45",
@@ -3118,19 +3118,19 @@
       "packageSize": 45,
       "unit": "g",
       "nutritionPer100": {
-        "energyKj": 1742,
-        "energyKcal": 412,
-        "carbohydrates": 31,
-        "sugar": 3.4,
-        "fat": 21,
-        "protein": 31,
-        "salt": 0.49
+        "energyKj": 1587,
+        "energyKcal": 376,
+        "fat": 17,
+        "carbohydrates": 35,
+        "sugar": 0.7,
+        "protein": 29,
+        "salt": 0.45
       },
-      "source": "Retailer-Nährwerttabelle ESN Designer Bar Fudge Brownie pro 100 g",
-      "sourceUrl": "https://droptime.de/produkt/esn-designer-bar-riegel",
-      "note": "Familienwert aus verfügbarer ESN Designer Bar Händler-Nährwerttabelle; Sortenwerte können abweichen.",
-      "verificationStatus": "retailer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "source": "ESN Produktseite Designer Bar, Sorte Dark Chocolate Raspberry, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.esn.com/products/designer-bar",
+      "note": "Werte der Sorte aus der ESN-Nährwerttabelle; Kohlenhydrate enthalten 23–30 g mehrwertige Alkohole.",
+      "verificationStatus": "manufacturer_verified",
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "esn-designer-bar-dark-chocolate-salted-almond-45",
@@ -3140,19 +3140,19 @@
       "packageSize": 45,
       "unit": "g",
       "nutritionPer100": {
-        "energyKj": 1742,
-        "energyKcal": 412,
-        "carbohydrates": 31,
-        "sugar": 3.4,
+        "energyKj": 1664,
+        "energyKcal": 398,
         "fat": 21,
-        "protein": 31,
-        "salt": 0.49
+        "carbohydrates": 29,
+        "sugar": 0.6,
+        "protein": 32,
+        "salt": 0.83
       },
-      "source": "Retailer-Nährwerttabelle ESN Designer Bar Fudge Brownie pro 100 g",
-      "sourceUrl": "https://droptime.de/produkt/esn-designer-bar-riegel",
-      "note": "Familienwert aus verfügbarer ESN Designer Bar Händler-Nährwerttabelle; Sortenwerte können abweichen.",
-      "verificationStatus": "retailer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "source": "ESN Produktseite Designer Bar, Sorte Dark Chocolate Salted Almond, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.esn.com/products/designer-bar",
+      "note": "Werte der Sorte aus der ESN-Nährwerttabelle; Kohlenhydrate enthalten 23–30 g mehrwertige Alkohole.",
+      "verificationStatus": "manufacturer_verified",
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "esn-designer-bar-hazelnut-nougat-45",
@@ -3162,19 +3162,19 @@
       "packageSize": 45,
       "unit": "g",
       "nutritionPer100": {
-        "energyKj": 1742,
-        "energyKcal": 412,
-        "carbohydrates": 31,
-        "sugar": 3.4,
-        "fat": 21,
+        "energyKj": 1768,
+        "energyKcal": 423,
+        "fat": 23,
+        "carbohydrates": 32,
+        "sugar": 4.3,
         "protein": 31,
-        "salt": 0.49
+        "salt": 0.42
       },
-      "source": "Retailer-Nährwerttabelle ESN Designer Bar Fudge Brownie pro 100 g",
-      "sourceUrl": "https://droptime.de/produkt/esn-designer-bar-riegel",
-      "note": "Familienwert aus verfügbarer ESN Designer Bar Händler-Nährwerttabelle; Sortenwerte können abweichen.",
-      "verificationStatus": "retailer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "source": "ESN Produktseite Designer Bar, Sorte Hazelnut Nougat, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.esn.com/products/designer-bar",
+      "note": "Werte der Sorte aus der ESN-Nährwerttabelle; Kohlenhydrate enthalten 23–30 g mehrwertige Alkohole.",
+      "verificationStatus": "manufacturer_verified",
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "esn-designer-bar-lemon-cheesecake-45",
@@ -3206,19 +3206,19 @@
       "packageSize": 45,
       "unit": "g",
       "nutritionPer100": {
-        "energyKj": 1742,
-        "energyKcal": 412,
-        "carbohydrates": 31,
-        "sugar": 3.4,
-        "fat": 21,
+        "energyKj": 1681,
+        "energyKcal": 401,
+        "fat": 20,
+        "carbohydrates": 32,
+        "sugar": 4,
         "protein": 31,
-        "salt": 0.49
+        "salt": 0.46
       },
-      "source": "Retailer-Nährwerttabelle ESN Designer Bar Fudge Brownie pro 100 g",
-      "sourceUrl": "https://droptime.de/produkt/esn-designer-bar-riegel",
-      "note": "Familienwert aus verfügbarer ESN Designer Bar Händler-Nährwerttabelle; Sortenwerte können abweichen.",
-      "verificationStatus": "retailer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "source": "ESN Produktseite Designer Bar, Sorte Peanut Caramel, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.esn.com/products/designer-bar",
+      "note": "Werte der Sorte aus der ESN-Nährwerttabelle; Kohlenhydrate enthalten 23–30 g mehrwertige Alkohole.",
+      "verificationStatus": "manufacturer_verified",
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "esn-designer-bar-strawberry-white-chocolate-45",
@@ -3228,19 +3228,19 @@
       "packageSize": 45,
       "unit": "g",
       "nutritionPer100": {
-        "energyKj": 1742,
-        "energyKcal": 412,
-        "carbohydrates": 31,
-        "sugar": 3.4,
-        "fat": 21,
-        "protein": 31,
+        "energyKj": 1668,
+        "energyKcal": 398,
+        "fat": 19,
+        "carbohydrates": 34,
+        "sugar": 4.4,
+        "protein": 33,
         "salt": 0.49
       },
-      "source": "Retailer-Nährwerttabelle ESN Designer Bar Fudge Brownie pro 100 g",
-      "sourceUrl": "https://droptime.de/produkt/esn-designer-bar-riegel",
-      "note": "Familienwert aus verfügbarer ESN Designer Bar Händler-Nährwerttabelle; Sortenwerte können abweichen.",
-      "verificationStatus": "retailer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "source": "ESN Produktseite Designer Bar, Sorte Strawberry White Chocolate, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.esn.com/products/designer-bar",
+      "note": "Werte der Sorte aus der ESN-Nährwerttabelle; Kohlenhydrate enthalten 23–30 g mehrwertige Alkohole.",
+      "verificationStatus": "manufacturer_verified",
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "esn-designer-bar-strawberry-yogurt-45",
@@ -3250,19 +3250,19 @@
       "packageSize": 45,
       "unit": "g",
       "nutritionPer100": {
-        "energyKj": 1742,
-        "energyKcal": 412,
-        "carbohydrates": 31,
-        "sugar": 3.4,
-        "fat": 21,
-        "protein": 31,
-        "salt": 0.49
+        "energyKj": 1668,
+        "energyKcal": 398,
+        "fat": 19,
+        "carbohydrates": 32,
+        "sugar": 4.4,
+        "protein": 33,
+        "salt": 0.47
       },
-      "source": "Retailer-Nährwerttabelle ESN Designer Bar Fudge Brownie pro 100 g",
-      "sourceUrl": "https://droptime.de/produkt/esn-designer-bar-riegel",
-      "note": "Familienwert aus verfügbarer ESN Designer Bar Händler-Nährwerttabelle; Sortenwerte können abweichen.",
-      "verificationStatus": "retailer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "source": "ESN Produktseite Designer Bar, Sorte Strawberry Yogurt, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.esn.com/products/designer-bar",
+      "note": "Werte der Sorte aus der ESN-Nährwerttabelle; Kohlenhydrate enthalten 23–30 g mehrwertige Alkohole.",
+      "verificationStatus": "manufacturer_verified",
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "esn-designer-bar-white-chocolate-pistachio-45",
@@ -3272,19 +3272,19 @@
       "packageSize": 45,
       "unit": "g",
       "nutritionPer100": {
-        "energyKj": 1742,
-        "energyKcal": 412,
-        "carbohydrates": 31,
-        "sugar": 3.4,
-        "fat": 21,
-        "protein": 31,
-        "salt": 0.49
+        "energyKj": 1706,
+        "energyKcal": 407,
+        "fat": 20,
+        "carbohydrates": 34,
+        "sugar": 3.8,
+        "protein": 33,
+        "salt": 0.51
       },
-      "source": "Retailer-Nährwerttabelle ESN Designer Bar Fudge Brownie pro 100 g",
-      "sourceUrl": "https://droptime.de/produkt/esn-designer-bar-riegel",
-      "note": "Familienwert aus verfügbarer ESN Designer Bar Händler-Nährwerttabelle; Sortenwerte können abweichen.",
-      "verificationStatus": "retailer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "source": "ESN Produktseite Designer Bar, Sorte White Chocolate Pistachio, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.esn.com/products/designer-bar",
+      "note": "Werte der Sorte aus der ESN-Nährwerttabelle; Kohlenhydrate enthalten 23–30 g mehrwertige Alkohole.",
+      "verificationStatus": "manufacturer_verified",
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "esn-designer-bar-white-chocolate-raspberry-45",
@@ -3294,19 +3294,19 @@
       "packageSize": 45,
       "unit": "g",
       "nutritionPer100": {
-        "energyKj": 1742,
-        "energyKcal": 412,
-        "carbohydrates": 31,
-        "sugar": 3.4,
-        "fat": 21,
-        "protein": 31,
-        "salt": 0.49
+        "energyKj": 1571,
+        "energyKcal": 374,
+        "fat": 15,
+        "carbohydrates": 40,
+        "sugar": 3.6,
+        "protein": 32,
+        "salt": 0.52
       },
-      "source": "Retailer-Nährwerttabelle ESN Designer Bar Fudge Brownie pro 100 g",
-      "sourceUrl": "https://droptime.de/produkt/esn-designer-bar-riegel",
-      "note": "Familienwert aus verfügbarer ESN Designer Bar Händler-Nährwerttabelle; Sortenwerte können abweichen.",
-      "verificationStatus": "retailer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "source": "ESN Produktseite Designer Bar, Sorte White Chocolate Raspberry, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.esn.com/products/designer-bar",
+      "note": "Werte der Sorte aus der ESN-Nährwerttabelle; Kohlenhydrate enthalten 23–30 g mehrwertige Alkohole.",
+      "verificationStatus": "manufacturer_verified",
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "esn-designer-bar-peanut-butter-pretzel-45",
@@ -3316,19 +3316,19 @@
       "packageSize": 45,
       "unit": "g",
       "nutritionPer100": {
-        "energyKj": 1742,
-        "energyKcal": 412,
-        "carbohydrates": 31,
-        "sugar": 3.4,
-        "fat": 21,
-        "protein": 31,
-        "salt": 0.49
+        "energyKj": 1621,
+        "energyKcal": 387,
+        "fat": 18,
+        "carbohydrates": 34,
+        "sugar": 3.8,
+        "protein": 30,
+        "salt": 0.93
       },
-      "source": "Retailer-Nährwerttabelle ESN Designer Bar Fudge Brownie pro 100 g",
-      "sourceUrl": "https://droptime.de/produkt/esn-designer-bar-riegel",
-      "note": "Familienwert aus verfügbarer ESN Designer Bar Händler-Nährwerttabelle; Sortenwerte können abweichen.",
-      "verificationStatus": "retailer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "source": "ESN Produktseite Designer Bar, Sorte Peanut Butter Pretzel, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.esn.com/products/designer-bar",
+      "note": "Werte der Sorte aus der ESN-Nährwerttabelle; Kohlenhydrate enthalten 23–30 g mehrwertige Alkohole.",
+      "verificationStatus": "manufacturer_verified",
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "esn-designer-bar-lebkuchen-45",
@@ -6979,20 +6979,21 @@
       "categoryId": "protein-powder",
       "packageSize": 500,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
-        "energyKj": 1550,
-        "energyKcal": 365,
+        "energyKj": 1552,
+        "energyKcal": 366,
         "fat": 1.6,
-        "carbohydrates": 7,
-        "sugar": 5.8,
+        "carbohydrates": 7.5,
+        "sugar": 6.5,
         "protein": 80,
         "salt": 0.28
       },
-      "source": "Weider Produktseite/TableMaster Nährwerttabelle pro 100 g",
-      "sourceUrl": "https://www.weider.de/en/products/protein-80-plus",
-      "note": "Familienwert aus offizieller Weider-Nährwerttabelle; Sortenwerte können abweichen.",
+      "source": "Weider Produktseite Protein 80 Plus, Sorte Vanille, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.weider.de/products/protein-80-plus",
+      "note": "Werte der Sorte aus der Weider-Nährwerttabelle; Portion laut Weider 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "weider-protein-80-plus-vanille-2000",
@@ -7001,20 +7002,21 @@
       "categoryId": "protein-powder",
       "packageSize": 2000,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
-        "energyKj": 1550,
-        "energyKcal": 365,
+        "energyKj": 1552,
+        "energyKcal": 366,
         "fat": 1.6,
-        "carbohydrates": 7,
-        "sugar": 5.8,
+        "carbohydrates": 7.5,
+        "sugar": 6.5,
         "protein": 80,
         "salt": 0.28
       },
-      "source": "Weider Produktseite/TableMaster Nährwerttabelle pro 100 g",
-      "sourceUrl": "https://www.weider.de/en/products/protein-80-plus",
-      "note": "Familienwert aus offizieller Weider-Nährwerttabelle; Sortenwerte können abweichen.",
+      "source": "Weider Produktseite Protein 80 Plus, Sorte Vanille, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.weider.de/products/protein-80-plus",
+      "note": "Werte der Sorte aus der Weider-Nährwerttabelle; Portion laut Weider 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "weider-protein-80-plus-schoko-500",
@@ -7023,20 +7025,21 @@
       "categoryId": "protein-powder",
       "packageSize": 500,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
         "energyKj": 1550,
-        "energyKcal": 365,
-        "fat": 1.6,
-        "carbohydrates": 7,
-        "sugar": 5.8,
+        "energyKcal": 366,
+        "fat": 2.7,
+        "carbohydrates": 3.7,
+        "sugar": 1.6,
         "protein": 80,
-        "salt": 0.28
+        "salt": 0.19
       },
-      "source": "Weider Produktseite/TableMaster Nährwerttabelle pro 100 g",
-      "sourceUrl": "https://www.weider.de/en/products/protein-80-plus",
-      "note": "Familienwert aus offizieller Weider-Nährwerttabelle; Sortenwerte können abweichen.",
+      "source": "Weider Produktseite Protein 80 Plus, Sorte Schoko, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.weider.de/products/protein-80-plus",
+      "note": "Werte der Sorte aus der Weider-Nährwerttabelle; Portion laut Weider 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "weider-protein-80-plus-schoko-2000",
@@ -7045,20 +7048,21 @@
       "categoryId": "protein-powder",
       "packageSize": 2000,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
         "energyKj": 1550,
-        "energyKcal": 365,
-        "fat": 1.6,
-        "carbohydrates": 7,
-        "sugar": 5.8,
+        "energyKcal": 366,
+        "fat": 2.7,
+        "carbohydrates": 3.7,
+        "sugar": 1.6,
         "protein": 80,
-        "salt": 0.28
+        "salt": 0.19
       },
-      "source": "Weider Produktseite/TableMaster Nährwerttabelle pro 100 g",
-      "sourceUrl": "https://www.weider.de/en/products/protein-80-plus",
-      "note": "Familienwert aus offizieller Weider-Nährwerttabelle; Sortenwerte können abweichen.",
+      "source": "Weider Produktseite Protein 80 Plus, Sorte Schoko, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.weider.de/products/protein-80-plus",
+      "note": "Werte der Sorte aus der Weider-Nährwerttabelle; Portion laut Weider 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "weider-protein-80-plus-waldfrucht-joghurt-500",
@@ -7067,6 +7071,7 @@
       "categoryId": "protein-powder",
       "packageSize": 500,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
         "energyKj": 1550,
         "energyKcal": 365,
@@ -7076,11 +7081,11 @@
         "protein": 80,
         "salt": 0.28
       },
-      "source": "Weider Produktseite/TableMaster Nährwerttabelle pro 100 g",
-      "sourceUrl": "https://www.weider.de/en/products/protein-80-plus",
-      "note": "Familienwert aus offizieller Weider-Nährwerttabelle; Sortenwerte können abweichen.",
+      "source": "Weider Produktseite Protein 80 Plus, Sorte Waldfrucht-Joghurt, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.weider.de/products/protein-80-plus",
+      "note": "Werte der Sorte aus der Weider-Nährwerttabelle; Portion laut Weider 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "weider-protein-80-plus-pistazie-500",
@@ -7089,20 +7094,21 @@
       "categoryId": "protein-powder",
       "packageSize": 500,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
-        "energyKj": 1550,
-        "energyKcal": 365,
+        "energyKj": 1552,
+        "energyKcal": 366,
         "fat": 1.6,
-        "carbohydrates": 7,
-        "sugar": 5.8,
+        "carbohydrates": 7.5,
+        "sugar": 6.5,
         "protein": 80,
-        "salt": 0.28
+        "salt": 0.34
       },
-      "source": "Weider Produktseite/TableMaster Nährwerttabelle pro 100 g",
-      "sourceUrl": "https://www.weider.de/en/products/protein-80-plus",
-      "note": "Familienwert aus offizieller Weider-Nährwerttabelle; Sortenwerte können abweichen.",
+      "source": "Weider Produktseite Protein 80 Plus, Sorte Pistazie, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.weider.de/products/protein-80-plus",
+      "note": "Werte der Sorte aus der Weider-Nährwerttabelle; Portion laut Weider 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "weider-protein-80-plus-erdbeere-500",
@@ -7111,6 +7117,7 @@
       "categoryId": "protein-powder",
       "packageSize": 500,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
         "energyKj": 1550,
         "energyKcal": 365,
@@ -7120,11 +7127,11 @@
         "protein": 80,
         "salt": 0.28
       },
-      "source": "Weider Produktseite/TableMaster Nährwerttabelle pro 100 g",
-      "sourceUrl": "https://www.weider.de/en/products/protein-80-plus",
-      "note": "Familienwert aus offizieller Weider-Nährwerttabelle; Sortenwerte können abweichen.",
+      "source": "Weider Produktseite Protein 80 Plus, Sorte Erdbeere, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.weider.de/products/protein-80-plus",
+      "note": "Werte der Sorte aus der Weider-Nährwerttabelle; Portion laut Weider 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "weider-protein-80-plus-erdbeere-2000",
@@ -7133,6 +7140,7 @@
       "categoryId": "protein-powder",
       "packageSize": 2000,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
         "energyKj": 1550,
         "energyKcal": 365,
@@ -7142,11 +7150,11 @@
         "protein": 80,
         "salt": 0.28
       },
-      "source": "Weider Produktseite/TableMaster Nährwerttabelle pro 100 g",
-      "sourceUrl": "https://www.weider.de/en/products/protein-80-plus",
-      "note": "Familienwert aus offizieller Weider-Nährwerttabelle; Sortenwerte können abweichen.",
+      "source": "Weider Produktseite Protein 80 Plus, Sorte Erdbeere, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.weider.de/products/protein-80-plus",
+      "note": "Werte der Sorte aus der Weider-Nährwerttabelle; Portion laut Weider 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "weider-protein-80-plus-citrus-quark-500",
@@ -7155,6 +7163,7 @@
       "categoryId": "protein-powder",
       "packageSize": 500,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
         "energyKj": 1550,
         "energyKcal": 365,
@@ -7164,11 +7173,11 @@
         "protein": 80,
         "salt": 0.28
       },
-      "source": "Weider Produktseite/TableMaster Nährwerttabelle pro 100 g",
-      "sourceUrl": "https://www.weider.de/en/products/protein-80-plus",
-      "note": "Familienwert aus offizieller Weider-Nährwerttabelle; Sortenwerte können abweichen.",
+      "source": "Weider Produktseite Protein 80 Plus, Sorte Citrus-Quark, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.weider.de/products/protein-80-plus",
+      "note": "Werte der Sorte aus der Weider-Nährwerttabelle; Portion laut Weider 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "weider-protein-80-plus-haselnuss-nougat-500",
@@ -7177,6 +7186,7 @@
       "categoryId": "protein-powder",
       "packageSize": 500,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
         "energyKj": 1550,
         "energyKcal": 365,
@@ -7186,11 +7196,11 @@
         "protein": 80,
         "salt": 0.28
       },
-      "source": "Weider Produktseite/TableMaster Nährwerttabelle pro 100 g",
-      "sourceUrl": "https://www.weider.de/en/products/protein-80-plus",
-      "note": "Familienwert aus offizieller Weider-Nährwerttabelle; Sortenwerte können abweichen.",
+      "source": "Weider Produktseite Protein 80 Plus, Sorte Haselnuss-Nougat, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.weider.de/products/protein-80-plus",
+      "note": "Werte der Sorte aus der Weider-Nährwerttabelle; Portion laut Weider 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "weider-protein-80-plus-banane-500",
@@ -7199,20 +7209,21 @@
       "categoryId": "protein-powder",
       "packageSize": 500,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
-        "energyKj": 1550,
-        "energyKcal": 365,
+        "energyKj": 1552,
+        "energyKcal": 366,
         "fat": 1.6,
-        "carbohydrates": 7,
-        "sugar": 5.8,
+        "carbohydrates": 7.5,
+        "sugar": 6.5,
         "protein": 80,
         "salt": 0.28
       },
-      "source": "Weider Produktseite/TableMaster Nährwerttabelle pro 100 g",
-      "sourceUrl": "https://www.weider.de/en/products/protein-80-plus",
-      "note": "Familienwert aus offizieller Weider-Nährwerttabelle; Sortenwerte können abweichen.",
+      "source": "Weider Produktseite Protein 80 Plus, Sorte Banane, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.weider.de/products/protein-80-plus",
+      "note": "Werte der Sorte aus der Weider-Nährwerttabelle; Portion laut Weider 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "weider-protein-80-plus-banane-2000",
@@ -7221,20 +7232,21 @@
       "categoryId": "protein-powder",
       "packageSize": 2000,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
-        "energyKj": 1550,
-        "energyKcal": 365,
+        "energyKj": 1552,
+        "energyKcal": 366,
         "fat": 1.6,
-        "carbohydrates": 7,
-        "sugar": 5.8,
+        "carbohydrates": 7.5,
+        "sugar": 6.5,
         "protein": 80,
         "salt": 0.28
       },
-      "source": "Weider Produktseite/TableMaster Nährwerttabelle pro 100 g",
-      "sourceUrl": "https://www.weider.de/en/products/protein-80-plus",
-      "note": "Familienwert aus offizieller Weider-Nährwerttabelle; Sortenwerte können abweichen.",
+      "source": "Weider Produktseite Protein 80 Plus, Sorte Banane, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.weider.de/products/protein-80-plus",
+      "note": "Werte der Sorte aus der Weider-Nährwerttabelle; Portion laut Weider 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "weider-protein-80-plus-cookies-and-cream-500",
@@ -7243,20 +7255,21 @@
       "categoryId": "protein-powder",
       "packageSize": 500,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
-        "energyKj": 1550,
-        "energyKcal": 365,
+        "energyKj": 1552,
+        "energyKcal": 366,
         "fat": 1.6,
-        "carbohydrates": 7,
-        "sugar": 5.8,
+        "carbohydrates": 7.5,
+        "sugar": 6.5,
         "protein": 80,
         "salt": 0.28
       },
-      "source": "Weider Produktseite/TableMaster Nährwerttabelle pro 100 g",
-      "sourceUrl": "https://www.weider.de/en/products/protein-80-plus",
-      "note": "Familienwert aus offizieller Weider-Nährwerttabelle; Sortenwerte können abweichen.",
+      "source": "Weider Produktseite Protein 80 Plus, Sorte Cookies & Cream, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.weider.de/products/protein-80-plus",
+      "note": "Werte der Sorte aus der Weider-Nährwerttabelle; Portion laut Weider 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "weider-protein-80-plus-kokos-500",
@@ -7265,20 +7278,21 @@
       "categoryId": "protein-powder",
       "packageSize": 500,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
-        "energyKj": 1550,
-        "energyKcal": 365,
-        "fat": 1.6,
-        "carbohydrates": 7,
+        "energyKj": 1643,
+        "energyKcal": 388,
+        "fat": 4.6,
+        "carbohydrates": 6,
         "sugar": 5.8,
         "protein": 80,
-        "salt": 0.28
+        "salt": 0.18
       },
-      "source": "Weider Produktseite/TableMaster Nährwerttabelle pro 100 g",
-      "sourceUrl": "https://www.weider.de/en/products/protein-80-plus",
-      "note": "Familienwert aus offizieller Weider-Nährwerttabelle; Sortenwerte können abweichen.",
+      "source": "Weider Produktseite Protein 80 Plus, Sorte Kokos, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.weider.de/products/protein-80-plus",
+      "note": "Werte der Sorte aus der Weider-Nährwerttabelle; Portion laut Weider 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "weider-protein-80-plus-kokos-2000",
@@ -7287,20 +7301,21 @@
       "categoryId": "protein-powder",
       "packageSize": 2000,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
-        "energyKj": 1550,
-        "energyKcal": 365,
-        "fat": 1.6,
-        "carbohydrates": 7,
+        "energyKj": 1643,
+        "energyKcal": 388,
+        "fat": 4.6,
+        "carbohydrates": 6,
         "sugar": 5.8,
         "protein": 80,
-        "salt": 0.28
+        "salt": 0.18
       },
-      "source": "Weider Produktseite/TableMaster Nährwerttabelle pro 100 g",
-      "sourceUrl": "https://www.weider.de/en/products/protein-80-plus",
-      "note": "Familienwert aus offizieller Weider-Nährwerttabelle; Sortenwerte können abweichen.",
+      "source": "Weider Produktseite Protein 80 Plus, Sorte Kokos, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.weider.de/products/protein-80-plus",
+      "note": "Werte der Sorte aus der Weider-Nährwerttabelle; Portion laut Weider 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "weider-protein-80-plus-apple-crumble-500",
@@ -7309,20 +7324,21 @@
       "categoryId": "protein-powder",
       "packageSize": 500,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
-        "energyKj": 1550,
+        "energyKj": 1547,
         "energyKcal": 365,
         "fat": 1.6,
-        "carbohydrates": 7,
-        "sugar": 5.8,
+        "carbohydrates": 7.4,
+        "sugar": 6.5,
         "protein": 80,
-        "salt": 0.28
+        "salt": 0.24
       },
-      "source": "Weider Produktseite/TableMaster Nährwerttabelle pro 100 g",
-      "sourceUrl": "https://www.weider.de/en/products/protein-80-plus",
-      "note": "Familienwert aus offizieller Weider-Nährwerttabelle; Sortenwerte können abweichen.",
+      "source": "Weider Produktseite Protein 80 Plus, Sorte Apple Crumble, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.weider.de/products/protein-80-plus",
+      "note": "Werte der Sorte aus der Weider-Nährwerttabelle; Portion laut Weider 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "weider-protein-80-plus-toffee-caramel-500",
@@ -7331,20 +7347,21 @@
       "categoryId": "protein-powder",
       "packageSize": 500,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
-        "energyKj": 1550,
-        "energyKcal": 365,
+        "energyKj": 1552,
+        "energyKcal": 366,
         "fat": 1.6,
-        "carbohydrates": 7,
-        "sugar": 5.8,
+        "carbohydrates": 7.5,
+        "sugar": 6.5,
         "protein": 80,
         "salt": 0.28
       },
-      "source": "Weider Produktseite/TableMaster Nährwerttabelle pro 100 g",
-      "sourceUrl": "https://www.weider.de/en/products/protein-80-plus",
-      "note": "Familienwert aus offizieller Weider-Nährwerttabelle; Sortenwerte können abweichen.",
+      "source": "Weider Produktseite Protein 80 Plus, Sorte Toffee Caramel, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.weider.de/products/protein-80-plus",
+      "note": "Werte der Sorte aus der Weider-Nährwerttabelle; Portion laut Weider 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "weider-protein-80-plus-brownie-double-choc-500",
@@ -7375,20 +7392,21 @@
       "categoryId": "protein-powder",
       "packageSize": 500,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
-        "energyKj": 1550,
-        "energyKcal": 365,
+        "energyKj": 1552,
+        "energyKcal": 366,
         "fat": 1.6,
-        "carbohydrates": 7,
-        "sugar": 5.8,
+        "carbohydrates": 7.5,
+        "sugar": 6.5,
         "protein": 80,
         "salt": 0.28
       },
-      "source": "Weider Produktseite/TableMaster Nährwerttabelle pro 100 g",
-      "sourceUrl": "https://www.weider.de/en/products/protein-80-plus",
-      "note": "Familienwert aus offizieller Weider-Nährwerttabelle; Sortenwerte können abweichen.",
+      "source": "Weider Produktseite Protein 80 Plus, Sorte Himbeer-Sahne, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.weider.de/products/protein-80-plus",
+      "note": "Werte der Sorte aus der Weider-Nährwerttabelle; Portion laut Weider 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "weider-protein-80-plus-stracciatella-500",
@@ -7397,20 +7415,21 @@
       "categoryId": "protein-powder",
       "packageSize": 500,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
-        "energyKj": 1550,
-        "energyKcal": 365,
-        "fat": 1.6,
-        "carbohydrates": 7,
+        "energyKj": 1555,
+        "energyKcal": 366,
+        "fat": 1.9,
+        "carbohydrates": 7.3,
         "sugar": 5.8,
         "protein": 80,
-        "salt": 0.28
+        "salt": 0.3
       },
-      "source": "Weider Produktseite/TableMaster Nährwerttabelle pro 100 g",
-      "sourceUrl": "https://www.weider.de/en/products/protein-80-plus",
-      "note": "Familienwert aus offizieller Weider-Nährwerttabelle; Sortenwerte können abweichen.",
+      "source": "Weider Produktseite Protein 80 Plus, Sorte Stracciatella, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.weider.de/products/protein-80-plus",
+      "note": "Werte der Sorte aus der Weider-Nährwerttabelle; Portion laut Weider 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "weider-clear-isolate-peach-ice-tea-500",
@@ -15554,6 +15573,50 @@
       "source": "Barebells Produktseite (EU), Nährwerte pro 100 g",
       "sourceUrl": "https://barebells.com/product/caramel-peanut/",
       "note": "Hersteller-Nährwerttabelle (EU) pro 100 g; Riegel 55 g; in Deutschland bei REWE gelistet.",
+      "verificationStatus": "manufacturer_verified",
+      "lastCheckedAt": "2026-10-05"
+    },
+    {
+      "id": "esn-designer-bar-caramel-latte-45",
+      "name": "Designer Bar Caramel Latte",
+      "brandId": "esn",
+      "categoryId": "protein-bar",
+      "packageSize": 45,
+      "unit": "g",
+      "nutritionPer100": {
+        "energyKj": 1617,
+        "energyKcal": 386,
+        "fat": 18,
+        "carbohydrates": 36,
+        "sugar": 4.1,
+        "protein": 31,
+        "salt": 0.62
+      },
+      "source": "ESN Produktseite Designer Bar, Sorte Caramel Latte, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.esn.com/products/designer-bar",
+      "note": "Werte der Sorte aus der ESN-Nährwerttabelle; Kohlenhydrate enthalten 23–30 g mehrwertige Alkohole.",
+      "verificationStatus": "manufacturer_verified",
+      "lastCheckedAt": "2026-10-05"
+    },
+    {
+      "id": "esn-designer-bar-dark-chocolate-mocha-45",
+      "name": "Designer Bar Dark Chocolate Mocha",
+      "brandId": "esn",
+      "categoryId": "protein-bar",
+      "packageSize": 45,
+      "unit": "g",
+      "nutritionPer100": {
+        "energyKj": 1621,
+        "energyKcal": 387,
+        "fat": 19,
+        "carbohydrates": 31,
+        "sugar": 1.2,
+        "protein": 31,
+        "salt": 0.46
+      },
+      "source": "ESN Produktseite Designer Bar, Sorte Dark Chocolate Mocha, Nährwerte pro 100 g",
+      "sourceUrl": "https://www.esn.com/products/designer-bar",
+      "note": "Werte der Sorte aus der ESN-Nährwerttabelle; Kohlenhydrate enthalten 23–30 g mehrwertige Alkohole.",
       "verificationStatus": "manufacturer_verified",
       "lastCheckedAt": "2026-10-05"
     }
