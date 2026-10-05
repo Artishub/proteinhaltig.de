@@ -32,6 +32,14 @@
         "milram-speisequark-mager-500",
         "hansano-magerquark-500"
       ]
+    },
+    {
+      "date": "2026-10-05",
+      "note": "Replacement: esn-designer-whey-vanilla-speculoos-300 takes over the redirected V2 URL (18 impressions); esn-designer-whey-strawberry redirects to Strawberry Cream.",
+      "count": 1,
+      "ids": [
+        "esn-designer-whey-vanilla-speculoos-300"
+      ]
     }
   ],
   "ids": [
@@ -76,7 +84,6 @@
     "barebells-protein-bar-peanut-butter-jelly-55",
     "barebells-protein-bar-salty-peanut",
     "barebells-protein-bar-white-chocolate-almond",
-    "barebells-soft-bar-banana-caramel",
     "barebells-soft-bar-banana-dream",
     "barebells-vegan-bar-caramel-choco-chip",
     "berchtesgadener-land-skyr-natur-400",
@@ -220,13 +227,12 @@
     "esn-designer-whey-peanutbutter-cup-908",
     "esn-designer-whey-salted-dark-chocolate-908",
     "esn-designer-whey-stracciatella",
-    "esn-designer-whey-strawberry",
     "esn-designer-whey-strawberry-cream-300",
     "esn-designer-whey-stroopwafel-908",
     "esn-designer-whey-tropical-vanilla-cream-908",
     "esn-designer-whey-vanilla-30",
     "esn-designer-whey-vanilla-ice-cream-908",
-    "esn-designer-whey-vanilla-speculoos-v2-908",
+    "esn-designer-whey-vanilla-speculoos-300",
     "esn-designer-whey-white-chocolate-pistachio-908",
     "esn-flexpresso-protein-coffee-caramel-908",
     "esn-flexpresso-protein-coffee-chai-latte-908",
@@ -268,7 +274,6 @@
     "esn-isoclear-whey-protein-isolate-red-apple-lime-908",
     "esn-isoclear-whey-protein-isolate-royal-candy-908",
     "esn-isoclear-whey-protein-isolate-sour-power-908",
-    "esn-isoclear-whey-protein-isolate-spiced-orange-908",
     "esn-isoclear-whey-protein-isolate-strawberry-basil-less-sweet-908",
     "esn-isoclear-whey-protein-isolate-tropical-punch-908",
     "esn-isoclear-whey-protein-isolate-wild-berry-908",

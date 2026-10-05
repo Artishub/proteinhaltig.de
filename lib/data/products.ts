@@ -13,7 +13,8 @@ export type Nutrition = {
   sugar: number;
   fat: number;
   protein: number;
-  salt: number;
+  /** null when the source gives no salt value. */
+  salt: number | null;
 };
 
 // Source data only. Everything derived (package protein, kcal, energy share) is computed below.

@@ -292,7 +292,8 @@ function isProduct(product: Product | undefined): product is Product {
 }
 
 function formatNutrition(product: Product, key: "carbohydrates" | "sugar" | "fat" | "salt") {
-  return `${formatNumber(product.nutritionPer100[key])} g`;
+  const value = product.nutritionPer100[key];
+  return value === null ? "–" : `${formatNumber(value)} g`;
 }
 
 function formatNumber(value: number) {

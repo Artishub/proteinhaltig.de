@@ -53,7 +53,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const hero = heroAmount(product);
   const per100 = `${formatNumber(proteinPer100(product))} g pro 100 ${product.unit}`;
   const lead = hero.basis === "per100" ? per100 : `${formatNumber(hero.grams)} g Protein ${hero.label}, ${per100}`;
-  const description = `${brandName} ${product.name}: ${lead}, ${Math.round(product.nutritionPer100.energyKcal)} kcal pro 100 ${product.unit}. Mit Nährwerten, Quelle und Vergleich.`;
+  const core = `${brandName} ${product.name}: ${lead}, ${Math.round(product.nutritionPer100.energyKcal)} kcal pro 100 ${product.unit}.`;
+  const description = core.length <= 125 ? `${core} Mit Nährwerten, Quelle und Vergleich.` : core;
   const title = productMetaTitle(product.name, brandName);
 
   return {
@@ -206,7 +207,9 @@ export default async function ProductDetailPage({ params }: PageProps) {
                 <NutritionRow label="Kohlenhydrate" per100={`${formatNumber(nutrition.carbohydrates)} g`} portion={portionColumn && `${formatNumber(scale(nutrition.carbohydrates, portionColumn.size))} g`} />
                 <NutritionRow label="davon Zucker" per100={`${formatNumber(nutrition.sugar)} g`} portion={portionColumn && `${formatNumber(scale(nutrition.sugar, portionColumn.size))} g`} indent />
                 <NutritionRow label="Eiweiß" per100={`${formatNumber(nutrition.protein)} g`} portion={portionColumn && `${formatNumber(portionColumn.grams)} g`} strong />
-                <NutritionRow label="Salz" per100={`${formatNumber(nutrition.salt)} g`} portion={portionColumn && `${formatNumber(scale(nutrition.salt, portionColumn.size))} g`} />
+                {nutrition.salt !== null && (
+                  <NutritionRow label="Salz" per100={`${formatNumber(nutrition.salt)} g`} portion={portionColumn && `${formatNumber(scale(nutrition.salt, portionColumn.size))} g`} />
+                )}
               </tbody>
             </table>
           </div>

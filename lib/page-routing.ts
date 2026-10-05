@@ -72,6 +72,11 @@ export const legacyProductRedirects: Record<string, string> = {
   "optimum-nutrition-protein-water-tropical-500": "optimum-nutrition-protein-water-tropical-350",
   "optimum-nutrition-protein-water-apple-raspberry-500": "optimum-nutrition-protein-water-apple-raspberry-350",
   "grenade-creme-egg-protein-bar-60": "grenade-creme-egg-protein-bar-45",
+  // 2026-10-05: no sourced values for these; replaced by the closest product with flavour data.
+  "esn-designer-whey-vanilla-speculoos-v2-908": "esn-designer-whey-vanilla-speculoos-300",
+  "esn-designer-whey-strawberry": "esn-designer-whey-strawberry-cream-300",
+  "esn-isoclear-whey-protein-isolate-spiced-orange-908": "esn-isoclear-whey-protein-isolate-fresh-orange-908",
+  "barebells-soft-bar-banana-caramel": "barebells-soft-bar-banana-dream",
 };
 
 export function legacyRedirectTarget(oldId: string) {
