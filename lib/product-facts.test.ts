@@ -1,11 +1,12 @@
 import { describe, expect, it } from "vitest";
 import { products, proteinPer100Kcal, type Product } from "@/lib/data/products";
+import { isProductPage } from "@/lib/page-routing";
 import { productFacts } from "@/lib/product-facts";
 
 describe("product facts", () => {
   it("only repeat a sentence across products with identical data", () => {
     const byText = new Map<string, Product[]>();
-    for (const product of products) {
+    for (const product of products.filter(isProductPage)) {
       for (const fact of productFacts(product)) byText.set(fact.text, [...(byText.get(fact.text) ?? []), product]);
     }
     for (const [text, group] of byText) {

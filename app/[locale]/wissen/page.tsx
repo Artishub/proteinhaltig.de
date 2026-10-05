@@ -44,8 +44,8 @@ export default function KnowledgePage() {
             { href: "/de/wissen/proteinriegel-vergleichen", label: "Proteinriegel vergleichen" },
             { href: "/de/wissen/protein-joghurt-skyr-quark", label: "Skyr und Protein-Joghurt" },
             { href: "/de/wissen/proteinpulver-portionsgroesse", label: "Proteinpulver Portion" },
-            { href: "/de/produkte?category=protein-bar", label: "Proteinriegel öffnen" },
-            { href: "/de/produkte?category=protein-pudding", label: "Protein-Pudding öffnen" },
+            { href: "/de/kategorien/protein-bar", label: "Proteinriegel öffnen" },
+            { href: "/de/kategorien/protein-pudding", label: "Protein-Pudding öffnen" },
           ].map((item) => (
             <Link key={item.label} href={item.href} className="focus-ring rounded-md bg-paper px-3 py-2 text-sm hover:bg-cream">
               {item.label}

@@ -88,7 +88,7 @@ export function BrandSearchGrid({ brands, counts, topProducts, searchData, categ
                   </Link>
                 ))}
                 </div>
-                <Link href={`/de/produkte?brand=${brand.id}`} className="focus-ring mt-auto inline-flex w-fit rounded-md border border-ink bg-paper px-2.5 py-1.5 text-sm leading-5 hover:bg-ink hover:text-white dark:hover:text-black">
+                <Link href={`/de/marken/${brand.id}`} className="focus-ring mt-auto inline-flex w-fit rounded-md border border-ink bg-paper px-2.5 py-1.5 text-sm leading-5 hover:bg-ink hover:text-white dark:hover:text-black">
                   {actionLabel}
                 </Link>
               </div>

@@ -1,6 +1,7 @@
 import nextConfig from "../next.config.ts";
 
 const expectedRedirects = new Map([
+  ["/de/test/:path*", "/de"],
   ["/produkte", "/de/produkte"],
   ["/produkte/:productId", "/de/produkte/:productId"],
   ["/getraenke", "/de/produkte"],
