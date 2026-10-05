@@ -10823,20 +10823,21 @@
       "categoryId": "protein-powder",
       "packageSize": 900,
       "unit": "g",
+      "servingSize": 31,
       "nutritionPer100": {
-        "energyKj": 1560,
-        "energyKcal": 373,
-        "fat": 4,
-        "carbohydrates": 5.2,
+        "energyKj": 1565,
+        "energyKcal": 374,
+        "fat": 4.6,
+        "carbohydrates": 5.3,
         "sugar": 3.2,
-        "protein": 79,
-        "salt": 0.52
+        "protein": 76,
+        "salt": 0.38
       },
-      "source": "Optimum Nutrition Nährwertangaben Gold Standard 100% Whey pro 100 g",
+      "source": "Optimum Nutrition Produktseite (DE), Sorte Double Rich Chocolate, Nährwerte pro 100 g",
       "sourceUrl": "https://www.optimumnutrition.com/de-de/products/gold-standard-100-whey-protein-powder-eu",
-      "note": "Familienwert aus offizieller ON-Nährwerttabelle; Sortenwerte können abweichen.",
+      "note": "Werte der Sorte laut ON; 1 Messlöffel = 31 g laut Nährwerttabelle.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "optimum-nutrition-gold-standard-100prozent-whey-vanilla-ice-cream-900",
@@ -10889,6 +10890,7 @@
       "categoryId": "protein-powder",
       "packageSize": 900,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
         "energyKj": 1560,
         "energyKcal": 373,
@@ -10898,11 +10900,11 @@
         "protein": 79,
         "salt": 0.52
       },
-      "source": "Optimum Nutrition Nährwertangaben Gold Standard 100% Whey pro 100 g",
+      "source": "Optimum Nutrition Produktseite (DE), Sorte Banana Cream, Nährwerte pro 100 g",
       "sourceUrl": "https://www.optimumnutrition.com/de-de/products/gold-standard-100-whey-protein-powder-eu",
-      "note": "Familienwert aus offizieller ON-Nährwerttabelle; Sortenwerte können abweichen.",
+      "note": "Werte der Sorte laut ON; 1 Messlöffel = 30 g laut Nährwerttabelle.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "optimum-nutrition-gold-standard-100prozent-whey-cookies-and-cream-900",
@@ -10911,20 +10913,21 @@
       "categoryId": "protein-powder",
       "packageSize": 900,
       "unit": "g",
+      "servingSize": 32,
       "nutritionPer100": {
-        "energyKj": 1560,
+        "energyKj": 1559,
         "energyKcal": 373,
-        "fat": 4,
-        "carbohydrates": 5.2,
-        "sugar": 3.2,
-        "protein": 79,
-        "salt": 0.52
+        "fat": 4.2,
+        "carbohydrates": 9.7,
+        "sugar": 3.7,
+        "protein": 74,
+        "salt": 0.51
       },
-      "source": "Optimum Nutrition Nährwertangaben Gold Standard 100% Whey pro 100 g",
+      "source": "Optimum Nutrition Produktseite (DE), Sorte Cookies & Cream, Nährwerte pro 100 g",
       "sourceUrl": "https://www.optimumnutrition.com/de-de/products/gold-standard-100-whey-protein-powder-eu",
-      "note": "Familienwert aus offizieller ON-Nährwerttabelle; Sortenwerte können abweichen.",
+      "note": "Werte der Sorte laut ON; 1 Messlöffel = 32 g laut Nährwerttabelle.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "optimum-nutrition-gold-standard-100prozent-whey-chocolate-peanut-butter-900",
@@ -10933,20 +10936,21 @@
       "categoryId": "protein-powder",
       "packageSize": 900,
       "unit": "g",
+      "servingSize": 32,
       "nutritionPer100": {
-        "energyKj": 1560,
-        "energyKcal": 373,
-        "fat": 4,
-        "carbohydrates": 5.2,
+        "energyKj": 1524,
+        "energyKcal": 364,
+        "fat": 4.1,
+        "carbohydrates": 6.8,
         "sugar": 3.2,
-        "protein": 79,
-        "salt": 0.52
+        "protein": 74,
+        "salt": 1.6
       },
-      "source": "Optimum Nutrition Nährwertangaben Gold Standard 100% Whey pro 100 g",
+      "source": "Optimum Nutrition Produktseite (DE), Sorte Chocolate Peanut Butter, Nährwerte pro 100 g",
       "sourceUrl": "https://www.optimumnutrition.com/de-de/products/gold-standard-100-whey-protein-powder-eu",
-      "note": "Familienwert aus offizieller ON-Nährwerttabelle; Sortenwerte können abweichen.",
+      "note": "Werte der Sorte laut ON; 1 Messlöffel = 32 g laut Nährwerttabelle.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "optimum-nutrition-gold-standard-100prozent-whey-white-chocolate-raspberry-900",
@@ -10955,20 +10959,21 @@
       "categoryId": "protein-powder",
       "packageSize": 900,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
-        "energyKj": 1560,
-        "energyKcal": 373,
+        "energyKj": 1554,
+        "energyKcal": 371,
         "fat": 4,
-        "carbohydrates": 5.2,
-        "sugar": 3.2,
+        "carbohydrates": 4.6,
+        "sugar": 3.4,
         "protein": 79,
-        "salt": 0.52
+        "salt": 0.51
       },
-      "source": "Optimum Nutrition Nährwertangaben Gold Standard 100% Whey pro 100 g",
+      "source": "Optimum Nutrition Produktseite (DE), Sorte White Chocolate Raspberry, Nährwerte pro 100 g",
       "sourceUrl": "https://www.optimumnutrition.com/de-de/products/gold-standard-100-whey-protein-powder-eu",
-      "note": "Familienwert aus offizieller ON-Nährwerttabelle; Sortenwerte können abweichen.",
+      "note": "Werte der Sorte laut ON; 1 Messlöffel = 30 g laut Nährwerttabelle.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "optimum-nutrition-gold-standard-100prozent-whey-salted-caramel-900",
@@ -11096,11 +11101,11 @@
         "protein": 74,
         "salt": 1.9
       },
-      "source": "Optimum Nutrition Nährwertangaben Gold Standard 100% Casein pro 100 g",
+      "source": "Optimum Nutrition Produktseite (DE), Sorte Chocolate Supreme, Nährwerte pro 100 g",
       "sourceUrl": "https://www.optimumnutrition.com/de-de/products/gold-standard-100-casein-protein-powder-eu",
-      "note": "Familienwert aus offizieller ON-Nährwerttabelle; Sortenwerte können abweichen.",
+      "note": "Werte der Sorte laut ON.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "optimum-nutrition-gold-standard-100prozent-casein-vanilla-900",
@@ -11110,19 +11115,19 @@
       "packageSize": 900,
       "unit": "g",
       "nutritionPer100": {
-        "energyKj": 1463,
-        "energyKcal": 350,
-        "fat": 2.5,
-        "carbohydrates": 5.8,
-        "sugar": 3.4,
-        "protein": 74,
-        "salt": 1.9
+        "energyKj": 1482,
+        "energyKcal": 354,
+        "fat": 1.8,
+        "carbohydrates": 11,
+        "sugar": 4.2,
+        "protein": 73,
+        "salt": 1.4
       },
-      "source": "Optimum Nutrition Nährwertangaben Gold Standard 100% Casein pro 100 g",
+      "source": "Optimum Nutrition Produktseite (DE), Sorte Creamy Vanilla, Nährwerte pro 100 g",
       "sourceUrl": "https://www.optimumnutrition.com/de-de/products/gold-standard-100-casein-protein-powder-eu",
-      "note": "Familienwert aus offizieller ON-Nährwerttabelle; Sortenwerte können abweichen.",
+      "note": "Werte der Sorte laut ON.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "optimum-nutrition-gold-standard-100prozent-casein-cookies-and-cream-900",
@@ -11132,19 +11137,19 @@
       "packageSize": 900,
       "unit": "g",
       "nutritionPer100": {
-        "energyKj": 1463,
-        "energyKcal": 350,
+        "energyKj": 1486,
+        "energyKcal": 355,
         "fat": 2.5,
-        "carbohydrates": 5.8,
-        "sugar": 3.4,
-        "protein": 74,
-        "salt": 1.9
+        "carbohydrates": 9.6,
+        "sugar": 5.7,
+        "protein": 73,
+        "salt": 1.5
       },
-      "source": "Optimum Nutrition Nährwertangaben Gold Standard 100% Casein pro 100 g",
+      "source": "Optimum Nutrition Produktseite (DE), Sorte Cookies & Cream, Nährwerte pro 100 g",
       "sourceUrl": "https://www.optimumnutrition.com/de-de/products/gold-standard-100-casein-protein-powder-eu",
-      "note": "Familienwert aus offizieller ON-Nährwerttabelle; Sortenwerte können abweichen.",
+      "note": "Werte der Sorte laut ON.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-09"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "optimum-nutrition-clear-protein-dark-berry-240",
