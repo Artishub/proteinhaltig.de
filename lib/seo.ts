@@ -53,3 +53,10 @@ export function pageMetadata({
     },
   };
 }
+
+const titleSuffix = " | Proteinhaltig.de";
+
+/** Full title with the site suffix when it fits in 60 characters, otherwise the bare title. */
+export function fitTitle(title: string) {
+  return `${title}${titleSuffix}`.length <= 60 ? `${title}${titleSuffix}` : title;
+}

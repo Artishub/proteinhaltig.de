@@ -1,6 +1,6 @@
 import { brandById } from "@/lib/data/brands";
-import { packageProtein, products, proteinPer100, proteinPer100Kcal, uniqueProductRepresentatives, type Product } from "@/lib/data/products";
-import { productPageSizes } from "@/lib/page-routing";
+import { packageProtein, products, proteinPer100, proteinPer100Kcal, type Product } from "@/lib/data/products";
+import { isProductPage, productPageSizes } from "@/lib/page-routing";
 import { averageProteinPer100, categoryPeers, densityRank, proteinClaim, proteinRank } from "@/lib/protein-context";
 
 // Sentences built only from this product's data. A fact appears only when its inputs are complete,
@@ -62,7 +62,7 @@ export function productFacts(product: Product): ProductFact[] {
     }
   }
 
-  const brandProducts = uniqueProductRepresentatives(products.filter((item) => item.brandId === product.brandId && item.categoryId === product.categoryId && item.unit === unit));
+  const brandProducts = products.filter((item) => isProductPage(item) && item.brandId === product.brandId && item.categoryId === product.categoryId && item.unit === unit);
   if (brandName && brandProducts.length >= 3) {
     const sorted = [...brandProducts].sort((a, b) => proteinPer100(b) - proteinPer100(a));
     const own = proteinPer100(product);

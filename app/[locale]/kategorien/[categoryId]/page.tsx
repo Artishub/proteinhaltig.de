@@ -7,7 +7,7 @@ import { brandById } from "@/lib/data/brands";
 import { categories, categoryById } from "@/lib/data/categories";
 import { proteinPer100, proteinPer100Kcal } from "@/lib/data/products";
 import { categoryProducts, groupStats, tableRow } from "@/lib/listing";
-import { pageMetadata } from "@/lib/seo";
+import { fitTitle, pageMetadata } from "@/lib/seo";
 import { isSearchIndexableCategory } from "@/lib/seo-index";
 
 type PageProps = { params: Promise<{ categoryId: string; locale: string }> };
@@ -27,6 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     ...pageMetadata({
       title: `${category.name}: Protein im Vergleich`,
+      absoluteTitle: fitTitle(`${category.name}: Protein im Vergleich`),
       description: `${stats.count} ${category.name}-Produkte nach Protein pro 100 g, pro Portion und pro 100 kcal. Durchschnitt ${format(stats.average)} g, mit Quelle und Prüfdatum.`,
       path: `/de/kategorien/${category.id}`,
     }),

@@ -99,6 +99,42 @@
     {
       "id": "bulk",
       "name": "Bulk"
+    },
+    {
+      "id": "weihenstephan",
+      "name": "Weihenstephan"
+    },
+    {
+      "id": "exquisa",
+      "name": "Exquisa"
+    },
+    {
+      "id": "milu",
+      "name": "Milu"
+    },
+    {
+      "id": "berchtesgadener-land",
+      "name": "Berchtesgadener Land"
+    },
+    {
+      "id": "rewe-bio",
+      "name": "REWE Bio"
+    },
+    {
+      "id": "schwarzwaldmilch",
+      "name": "Schwarzwaldmilch"
+    },
+    {
+      "id": "yopro",
+      "name": "YoPRO"
+    },
+    {
+      "id": "milram",
+      "name": "Milram"
+    },
+    {
+      "id": "hansano",
+      "name": "Hansano"
     }
   ],
   "categories": [
@@ -276,19 +312,19 @@
       "packageSize": 450,
       "unit": "g",
       "nutritionPer100": {
-        "energyKj": 258,
-        "energyKcal": 61,
+        "energyKj": 269,
+        "energyKcal": 63,
         "fat": 0.2,
         "carbohydrates": 4,
         "sugar": 4,
-        "protein": 10,
+        "protein": 11,
         "salt": 0.14
       },
-      "source": "Arla Produktseite, Nährwerttabelle pro 100 g",
-      "sourceUrl": "https://www.arlafoods.co.uk/brands/arla-skyr/natural-450g/",
-      "note": "Nährwerte direkt aus der Produktseite übernommen.",
-      "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-07"
+      "source": "REWE Produktseite, Nährwerttabelle pro 100 g",
+      "sourceUrl": "https://www.rewe.de/shop/p/arla-skyr-natur-450g/2458768",
+      "note": "Deutsche Packungsangabe laut REWE (vorher UK-Herstellerseite mit 10 g Eiweiß).",
+      "verificationStatus": "retailer_verified",
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "dm-sportness-protein-drink-vanille-330",
@@ -12198,6 +12234,490 @@
       "note": "Nährwerte direkt aus der Produktseite übernommen; bei Varianten können Sortenwerte abweichen.",
       "verificationStatus": "manufacturer_verified",
       "lastCheckedAt": "2026-07-04"
+    },
+    {
+      "id": "arla-skyr-natur-250",
+      "name": "Skyr Natur",
+      "brandId": "arla",
+      "categoryId": "skyr-quark",
+      "packageSize": 250,
+      "unit": "g",
+      "nutritionPer100": {
+        "energyKj": 255,
+        "energyKcal": 60,
+        "fat": 0.2,
+        "carbohydrates": 4,
+        "sugar": 4,
+        "protein": 10,
+        "salt": 0.14
+      },
+      "source": "REWE Produktseite, Nährwerttabelle pro 100 g",
+      "sourceUrl": "https://www.rewe.de/shop/p/arla-skyr-natur-250g/7784435",
+      "note": "Nährwerte pro 100 g von der REWE-Produktseite übernommen.",
+      "verificationStatus": "retailer_verified",
+      "lastCheckedAt": "2026-10-05"
+    },
+    {
+      "id": "arla-skyr-natur-1000",
+      "name": "Skyr Natur",
+      "brandId": "arla",
+      "categoryId": "skyr-quark",
+      "packageSize": 1000,
+      "unit": "g",
+      "nutritionPer100": {
+        "energyKj": 269,
+        "energyKcal": 63,
+        "fat": 0.2,
+        "carbohydrates": 4,
+        "sugar": 4,
+        "protein": 11,
+        "salt": 0.14
+      },
+      "source": "REWE Produktseite, Nährwerttabelle pro 100 g",
+      "sourceUrl": "https://www.rewe.de/shop/p/arla-skyr-natur-1kg/8399683",
+      "note": "Nährwerte pro 100 g von der REWE-Produktseite übernommen.",
+      "verificationStatus": "retailer_verified",
+      "lastCheckedAt": "2026-10-05"
+    },
+    {
+      "id": "arla-skyr-vanille-450",
+      "name": "Skyr Vanille",
+      "brandId": "arla",
+      "categoryId": "skyr-quark",
+      "packageSize": 450,
+      "unit": "g",
+      "nutritionPer100": {
+        "energyKj": 306,
+        "energyKcal": 72,
+        "fat": 0.2,
+        "carbohydrates": 8.3,
+        "sugar": 7.5,
+        "protein": 8.6,
+        "salt": 0.12
+      },
+      "source": "REWE Produktseite, Nährwerttabelle pro 100 g",
+      "sourceUrl": "https://www.rewe.de/shop/p/arla-skyr-vanille-450g/7000376",
+      "note": "Nährwerte pro 100 g von der REWE-Produktseite übernommen.",
+      "verificationStatus": "retailer_verified",
+      "lastCheckedAt": "2026-10-05"
+    },
+    {
+      "id": "arla-skyr-erdbeere-450",
+      "name": "Skyr Erdbeere",
+      "brandId": "arla",
+      "categoryId": "skyr-quark",
+      "packageSize": 450,
+      "unit": "g",
+      "nutritionPer100": {
+        "energyKj": 289,
+        "energyKcal": 68,
+        "fat": 0.2,
+        "carbohydrates": 7.5,
+        "sugar": 6.8,
+        "protein": 8.5,
+        "salt": 0.12
+      },
+      "source": "REWE Produktseite, Nährwerttabelle pro 100 g",
+      "sourceUrl": "https://www.rewe.de/shop/p/arla-skyr-erdbeere-450g/7206057",
+      "note": "Nährwerte pro 100 g von der REWE-Produktseite übernommen.",
+      "verificationStatus": "retailer_verified",
+      "lastCheckedAt": "2026-10-05"
+    },
+    {
+      "id": "arla-skyr-pfirsich-maracuja-450",
+      "name": "Skyr Pfirsich Maracuja",
+      "brandId": "arla",
+      "categoryId": "skyr-quark",
+      "packageSize": 450,
+      "unit": "g",
+      "nutritionPer100": {
+        "energyKj": 295,
+        "energyKcal": 70,
+        "fat": 0.2,
+        "carbohydrates": 7.8,
+        "sugar": 7.1,
+        "protein": 8.5,
+        "salt": 0.12
+      },
+      "source": "REWE Produktseite, Nährwerttabelle pro 100 g",
+      "sourceUrl": "https://www.rewe.de/shop/p/arla-skyr-pfirsich-maracuja-450g/9864686",
+      "note": "Nährwerte pro 100 g von der REWE-Produktseite übernommen.",
+      "verificationStatus": "retailer_verified",
+      "lastCheckedAt": "2026-10-05"
+    },
+    {
+      "id": "arla-skyr-himbeere-cranberry-450",
+      "name": "Skyr Himbeere & Cranberry",
+      "brandId": "arla",
+      "categoryId": "skyr-quark",
+      "packageSize": 450,
+      "unit": "g",
+      "nutritionPer100": {
+        "energyKj": 310,
+        "energyKcal": 73,
+        "fat": 0.2,
+        "carbohydrates": 8.1,
+        "sugar": 7.6,
+        "protein": 8.7,
+        "salt": 0.13
+      },
+      "source": "REWE Produktseite, Nährwerttabelle pro 100 g",
+      "sourceUrl": "https://www.rewe.de/shop/p/arla-skyr-himbeere-cranberry-450g/2835838",
+      "note": "Nährwerte pro 100 g von der REWE-Produktseite übernommen.",
+      "verificationStatus": "retailer_verified",
+      "lastCheckedAt": "2026-10-05"
+    },
+    {
+      "id": "arla-skyr-der-cremige-natur-400",
+      "name": "Skyr Der Cremige Natur",
+      "brandId": "arla",
+      "categoryId": "skyr-quark",
+      "packageSize": 400,
+      "unit": "g",
+      "nutritionPer100": {
+        "energyKj": 426,
+        "energyKcal": 102,
+        "fat": 5,
+        "carbohydrates": 3.9,
+        "sugar": 3.9,
+        "protein": 9.6,
+        "salt": 0.13
+      },
+      "source": "REWE Produktseite, Nährwerttabelle pro 100 g",
+      "sourceUrl": "https://www.rewe.de/shop/p/arla-skyr-der-cremige-natur-400g/8485705",
+      "note": "Nährwerte pro 100 g von der REWE-Produktseite übernommen.",
+      "verificationStatus": "retailer_verified",
+      "lastCheckedAt": "2026-10-05"
+    },
+    {
+      "id": "ehrmann-high-protein-skyr-natural-450",
+      "name": "High Protein Skyr Natural",
+      "brandId": "ehrmann",
+      "categoryId": "skyr-quark",
+      "packageSize": 450,
+      "unit": "g",
+      "nutritionPer100": {
+        "energyKj": 218,
+        "energyKcal": 51,
+        "fat": 0.1,
+        "carbohydrates": 3.6,
+        "sugar": 3.6,
+        "protein": 9,
+        "salt": 0.1
+      },
+      "source": "REWE Produktseite, Nährwerttabelle pro 100 g",
+      "sourceUrl": "https://www.rewe.de/shop/p/ehrmann-high-protein-skyr-natural-450g/9473470",
+      "note": "Nährwerte pro 100 g von der REWE-Produktseite übernommen.",
+      "verificationStatus": "retailer_verified",
+      "lastCheckedAt": "2026-10-05"
+    },
+    {
+      "id": "ehrmann-high-protein-skyr-vanilla-450",
+      "name": "High Protein Skyr Vanilla",
+      "brandId": "ehrmann",
+      "categoryId": "skyr-quark",
+      "packageSize": 450,
+      "unit": "g",
+      "nutritionPer100": {
+        "energyKj": 184,
+        "energyKcal": 43,
+        "fat": 0.1,
+        "carbohydrates": 4,
+        "sugar": 2,
+        "protein": 8.1,
+        "salt": 0.1
+      },
+      "source": "REWE Produktseite, Nährwerttabelle pro 100 g",
+      "sourceUrl": "https://www.rewe.de/shop/p/ehrmann-high-protein-skyr-vanilla-450g/9500572",
+      "note": "Nährwerte pro 100 g von der REWE-Produktseite übernommen.",
+      "verificationStatus": "retailer_verified",
+      "lastCheckedAt": "2026-10-05"
+    },
+    {
+      "id": "weihenstephan-skyr-450",
+      "name": "Skyr",
+      "brandId": "weihenstephan",
+      "categoryId": "skyr-quark",
+      "packageSize": 450,
+      "unit": "g",
+      "nutritionPer100": {
+        "energyKj": 268,
+        "energyKcal": 63,
+        "fat": 0.2,
+        "carbohydrates": 3.9,
+        "sugar": 3.9,
+        "protein": 10.8,
+        "salt": 0.13
+      },
+      "source": "REWE Produktseite, Nährwerttabelle pro 100 g",
+      "sourceUrl": "https://www.rewe.de/shop/p/weihenstephan-skyr-450g/8485531",
+      "note": "Nährwerte pro 100 g von der REWE-Produktseite übernommen.",
+      "verificationStatus": "retailer_verified",
+      "lastCheckedAt": "2026-10-05"
+    },
+    {
+      "id": "exquisa-milder-skyr-natur-400",
+      "name": "Milder Skyr Natur",
+      "brandId": "exquisa",
+      "categoryId": "skyr-quark",
+      "packageSize": 400,
+      "unit": "g",
+      "nutritionPer100": {
+        "energyKj": 270,
+        "energyKcal": 64,
+        "fat": 0.2,
+        "carbohydrates": 4,
+        "sugar": 4,
+        "protein": 11,
+        "salt": 0.08
+      },
+      "source": "REWE Produktseite, Nährwerttabelle pro 100 g",
+      "sourceUrl": "https://www.rewe.de/shop/p/exquisa-milder-skyr-natur-400g/8053826",
+      "note": "Nährwerte pro 100 g von der REWE-Produktseite übernommen.",
+      "verificationStatus": "retailer_verified",
+      "lastCheckedAt": "2026-10-05"
+    },
+    {
+      "id": "milu-skyr-natur-450",
+      "name": "Skyr Natur",
+      "brandId": "milu",
+      "categoryId": "skyr-quark",
+      "packageSize": 450,
+      "unit": "g",
+      "nutritionPer100": {
+        "energyKj": 236,
+        "energyKcal": 56,
+        "fat": 0.2,
+        "carbohydrates": 4,
+        "sugar": 4,
+        "protein": 10,
+        "salt": 0.1
+      },
+      "source": "REWE Produktseite, Nährwerttabelle pro 100 g",
+      "sourceUrl": "https://www.rewe.de/shop/p/milu-skyr-natur-450g/7360442",
+      "note": "Nährwerte pro 100 g von der REWE-Produktseite übernommen.",
+      "verificationStatus": "retailer_verified",
+      "lastCheckedAt": "2026-10-05"
+    },
+    {
+      "id": "berchtesgadener-land-skyr-natur-400",
+      "name": "Skyr Natur 0,2 % Fett",
+      "brandId": "berchtesgadener-land",
+      "categoryId": "skyr-quark",
+      "packageSize": 400,
+      "unit": "g",
+      "nutritionPer100": {
+        "energyKj": 262,
+        "energyKcal": 62,
+        "fat": 0.2,
+        "carbohydrates": 3.4,
+        "sugar": 3.4,
+        "protein": 11,
+        "salt": 0.08
+      },
+      "source": "REWE Produktseite, Nährwerttabelle pro 100 g",
+      "sourceUrl": "https://www.rewe.de/shop/p/berchtesgadener-land-skyr-natur-0-2-fett-400g/7353821",
+      "note": "Nährwerte pro 100 g von der REWE-Produktseite übernommen.",
+      "verificationStatus": "retailer_verified",
+      "lastCheckedAt": "2026-10-05"
+    },
+    {
+      "id": "rewe-bio-skyr-natur-400",
+      "name": "Skyr Natur",
+      "brandId": "rewe-bio",
+      "categoryId": "skyr-quark",
+      "packageSize": 400,
+      "unit": "g",
+      "nutritionPer100": {
+        "energyKj": 254,
+        "energyKcal": 60,
+        "fat": 0.2,
+        "carbohydrates": 3.5,
+        "sugar": 3.5,
+        "protein": 11,
+        "salt": 0.1
+      },
+      "source": "REWE Produktseite, Nährwerttabelle pro 100 g",
+      "sourceUrl": "https://www.rewe.de/shop/p/rewe-bio-skyr-natur-400g/8354670",
+      "note": "Nährwerte pro 100 g von der REWE-Produktseite übernommen.",
+      "verificationStatus": "retailer_verified",
+      "lastCheckedAt": "2026-10-05"
+    },
+    {
+      "id": "schwarzwaldmilch-skyr-natur-400",
+      "name": "Skyr Natur",
+      "brandId": "schwarzwaldmilch",
+      "categoryId": "skyr-quark",
+      "packageSize": 400,
+      "unit": "g",
+      "nutritionPer100": {
+        "energyKj": 249,
+        "energyKcal": 59,
+        "fat": 0.2,
+        "carbohydrates": 3.4,
+        "sugar": 3.4,
+        "protein": 10.9,
+        "salt": 0.1
+      },
+      "source": "REWE Produktseite, Nährwerttabelle pro 100 g",
+      "sourceUrl": "https://www.rewe.de/shop/p/schwarzwaldmilch-skyr-natur-400g/9391510",
+      "note": "Nährwerte pro 100 g von der REWE-Produktseite übernommen.",
+      "verificationStatus": "retailer_verified",
+      "lastCheckedAt": "2026-10-05"
+    },
+    {
+      "id": "yopro-high-protein-skyr-zitrone-160",
+      "name": "High Protein Skyr Zitrone",
+      "brandId": "yopro",
+      "categoryId": "skyr-quark",
+      "packageSize": 160,
+      "unit": "g",
+      "nutritionPer100": {
+        "energyKj": 225,
+        "energyKcal": 53,
+        "fat": 0.1,
+        "carbohydrates": 3.6,
+        "sugar": 3.2,
+        "protein": 9.4,
+        "salt": 0.09
+      },
+      "source": "REWE Produktseite, Nährwerttabelle pro 100 g",
+      "sourceUrl": "https://www.rewe.de/shop/p/yopro-high-protein-skyr-zitrone-160g/9200930",
+      "note": "Nährwerte pro 100 g von der REWE-Produktseite übernommen.",
+      "verificationStatus": "retailer_verified",
+      "lastCheckedAt": "2026-10-05"
+    },
+    {
+      "id": "ehrmann-high-protein-joghurt-blaubeere-200",
+      "name": "High Protein Joghurt Blaubeere",
+      "brandId": "ehrmann",
+      "categoryId": "protein-yogurt",
+      "packageSize": 200,
+      "unit": "g",
+      "nutritionPer100": {
+        "energyKj": 253,
+        "energyKcal": 60,
+        "fat": 0.3,
+        "carbohydrates": 6,
+        "sugar": 4,
+        "protein": 10,
+        "salt": 0.1
+      },
+      "source": "REWE Produktseite, Nährwerttabelle pro 100 g",
+      "sourceUrl": "https://www.rewe.de/shop/p/ehrmann-high-protein-joghurt-blaubeere-200g/8282822",
+      "note": "Nährwerte pro 100 g von der REWE-Produktseite übernommen.",
+      "verificationStatus": "retailer_verified",
+      "lastCheckedAt": "2026-10-05"
+    },
+    {
+      "id": "ehrmann-high-protein-joghurt-kirsche-aronia-200",
+      "name": "High Protein Joghurt Kirsche-Aronia",
+      "brandId": "ehrmann",
+      "categoryId": "protein-yogurt",
+      "packageSize": 200,
+      "unit": "g",
+      "nutritionPer100": {
+        "energyKj": 253,
+        "energyKcal": 60,
+        "fat": 0.3,
+        "carbohydrates": 6,
+        "sugar": 4,
+        "protein": 10,
+        "salt": 0.1
+      },
+      "source": "REWE Produktseite, Nährwerttabelle pro 100 g",
+      "sourceUrl": "https://www.rewe.de/shop/p/ehrmann-high-protein-joghurt-kirsche-aronia-200g/8086760",
+      "note": "Nährwerte pro 100 g von der REWE-Produktseite übernommen.",
+      "verificationStatus": "retailer_verified",
+      "lastCheckedAt": "2026-10-05"
+    },
+    {
+      "id": "ehrmann-high-protein-joghurt-erdbeere-200",
+      "name": "High Protein Joghurt Erdbeere",
+      "brandId": "ehrmann",
+      "categoryId": "protein-yogurt",
+      "packageSize": 200,
+      "unit": "g",
+      "nutritionPer100": {
+        "energyKj": 242,
+        "energyKcal": 57,
+        "fat": 0.3,
+        "carbohydrates": 6,
+        "sugar": 3.2,
+        "protein": 10,
+        "salt": 0.1
+      },
+      "source": "REWE Produktseite, Nährwerttabelle pro 100 g",
+      "sourceUrl": "https://www.rewe.de/shop/p/ehrmann-high-protein-joghurt-erdbeere-200g/8494306",
+      "note": "Nährwerte pro 100 g von der REWE-Produktseite übernommen.",
+      "verificationStatus": "retailer_verified",
+      "lastCheckedAt": "2026-10-05"
+    },
+    {
+      "id": "ehrmann-high-protein-joghurt-stracciatella-200",
+      "name": "High Protein Joghurt Stracciatella",
+      "brandId": "ehrmann",
+      "categoryId": "protein-yogurt",
+      "packageSize": 200,
+      "unit": "g",
+      "nutritionPer100": {
+        "energyKj": 294,
+        "energyKcal": 70,
+        "fat": 1.5,
+        "carbohydrates": 6,
+        "sugar": 4,
+        "protein": 10,
+        "salt": 0.1
+      },
+      "source": "REWE Produktseite, Nährwerttabelle pro 100 g",
+      "sourceUrl": "https://www.rewe.de/shop/p/ehrmann-high-protein-joghurt-stracciatella-200g/8720882",
+      "note": "Nährwerte pro 100 g von der REWE-Produktseite übernommen.",
+      "verificationStatus": "retailer_verified",
+      "lastCheckedAt": "2026-10-05"
+    },
+    {
+      "id": "milram-speisequark-mager-500",
+      "name": "Speisequark mager",
+      "brandId": "milram",
+      "categoryId": "skyr-quark",
+      "packageSize": 500,
+      "unit": "g",
+      "nutritionPer100": {
+        "energyKj": 288,
+        "energyKcal": 68,
+        "fat": 0.3,
+        "carbohydrates": 4,
+        "sugar": 4,
+        "protein": 11.8,
+        "salt": 0.1
+      },
+      "source": "REWE Produktseite, Nährwerttabelle pro 100 g",
+      "sourceUrl": "https://www.rewe.de/shop/p/milram-speisequark-mager-500g/4096886",
+      "note": "Nährwerte pro 100 g von der REWE-Produktseite übernommen.",
+      "verificationStatus": "retailer_verified",
+      "lastCheckedAt": "2026-10-05"
+    },
+    {
+      "id": "hansano-magerquark-500",
+      "name": "Magerquark 0,3 %",
+      "brandId": "hansano",
+      "categoryId": "skyr-quark",
+      "packageSize": 500,
+      "unit": "g",
+      "nutritionPer100": {
+        "energyKj": 295,
+        "energyKcal": 70,
+        "fat": 0.3,
+        "carbohydrates": 3.9,
+        "sugar": 3.9,
+        "protein": 12.2,
+        "salt": 0.1
+      },
+      "source": "REWE Produktseite, Nährwerttabelle pro 100 g",
+      "sourceUrl": "https://www.rewe.de/shop/p/hansano-magerquark-0-3-500g/5082013",
+      "note": "Nährwerte pro 100 g von der REWE-Produktseite übernommen.",
+      "verificationStatus": "retailer_verified",
+      "lastCheckedAt": "2026-10-05"
     }
   ]
 }

@@ -20,13 +20,21 @@ export function sizeAnchor(product: Product) {
 }
 
 // The size that carries the product page: most impressions, then a known package size, then the larger package.
+// Resolved once per product; pages, facts and charts ask for it in tight loops.
+const pageProductCache = new Map<string, Product>();
+
 export function productPageProduct(product: Product) {
-  return [...productFamily(product)].sort((a, b) => (
+  const cached = pageProductCache.get(product.id);
+  if (cached) return cached;
+  const family = [...productFamily(product)].sort((a, b) => (
     searchImpressions(productPath(b.id)) - searchImpressions(productPath(a.id))
       || Number(Boolean(b.packageSize)) - Number(Boolean(a.packageSize))
       || (b.packageSize ?? 0) - (a.packageSize ?? 0)
       || a.id.localeCompare(b.id)
-  ))[0] ?? product;
+  ));
+  const page = family[0] ?? product;
+  for (const member of family) pageProductCache.set(member.id, page);
+  return page;
 }
 
 /** Where a product URL redirects to, or null if the URL is the product page. */

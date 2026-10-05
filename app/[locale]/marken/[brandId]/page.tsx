@@ -7,7 +7,7 @@ import { brandById, brands } from "@/lib/data/brands";
 import { categoryById } from "@/lib/data/categories";
 import { proteinPer100, proteinPer100Kcal } from "@/lib/data/products";
 import { brandProducts, groupStats, tableRow } from "@/lib/listing";
-import { pageMetadata } from "@/lib/seo";
+import { fitTitle, pageMetadata } from "@/lib/seo";
 import { isSearchIndexableBrand } from "@/lib/seo-index";
 
 type PageProps = { params: Promise<{ brandId: string; locale: string }> };
@@ -27,6 +27,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     ...pageMetadata({
       title: `${brand.name}: Protein in ${stats.count} Produkten`,
+      absoluteTitle: fitTitle(`${brand.name}: Protein in ${stats.count} Produkten`),
       description: `${brand.name} im Vergleich: ${stats.count} Produkte von ${format(proteinPer100(stats.min))} bis ${format(proteinPer100(stats.max))} g Protein pro 100 g, mit Kalorien, Zucker und Quelle.`,
       path: `/de/marken/${brand.id}`,
     }),

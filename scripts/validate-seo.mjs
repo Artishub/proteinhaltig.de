@@ -40,7 +40,8 @@ for (const file of htmlFiles) {
   if (description && decodeHtml(description).length > 170) warnings.push(`${route}: meta description long (${decodeHtml(description).length})`);
 
   if (route.startsWith("/de/produkte/") && route !== "/de/produkte/vergleich" && !robots) errors.push(`${route}: missing robots directive`);
-  if (/\bnoindex\b/i.test(robots)) errors.push(`${route}: contains noindex`);
+  // Pages outside the allowlist are noindex on purpose; only a noindex page in the sitemap is an error.
+  if (/\bnoindex\b/i.test(robots) && sitemapRouteSet.has(route)) errors.push(`${route}: in the sitemap but contains noindex`);
 
   if (route !== "/" && !canonical) errors.push(`${route}: missing canonical`);
   if (route !== "/" && canonical && canonical !== `${siteOrigin}${route}`) errors.push(`${route}: canonical does not match route`);

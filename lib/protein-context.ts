@@ -4,9 +4,9 @@ import {
   proteinEnergyShare,
   proteinPer100,
   proteinPer100Kcal,
-  uniqueProductRepresentatives,
   type Product,
 } from "@/lib/data/products";
+import { isProductPage } from "@/lib/page-routing";
 
 // All thresholds were checked against the original texts on 2026-10-05.
 
@@ -48,9 +48,9 @@ export function referenceIntakeShare(proteinGrams: number) {
   return Math.round((proteinGrams / proteinReferenceIntakeGrams) * 100);
 }
 
-// One representative per product (sizes collapse), same category and unit so 100 g and 100 ml never mix.
+// One entry per product page (sizes collapse onto their page), same category and unit so 100 g and 100 ml never mix.
 export function categoryPeers(product: Product) {
-  return uniqueProductRepresentatives(products.filter((item) => item.categoryId === product.categoryId && item.unit === product.unit));
+  return products.filter((item) => isProductPage(item) && item.categoryId === product.categoryId && item.unit === product.unit);
 }
 
 export function averageProteinPer100(items: Product[]) {
