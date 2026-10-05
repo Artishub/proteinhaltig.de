@@ -4509,6 +4509,7 @@
       "categoryId": "protein-powder",
       "packageSize": 600,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
         "energyKj": 1463,
         "energyKcal": 344,
@@ -4518,11 +4519,11 @@
         "protein": 81,
         "salt": 0.1
       },
-      "source": "More Nutrition Produktseite, Nährwerttabelle pro 100 g",
+      "source": "More Nutrition Produktseite, Sorte Lemonade Style Pink Peach Rings, Nährwerte pro 100 g",
       "sourceUrl": "https://morenutrition.de/products/more-clear-protein",
-      "note": "Nährwerte aus der Produktseite übernommen; More weist auf sortenabhängige Abweichungen hin.",
+      "note": "Nährwerte der Sorte von der More-Seite; Portion laut Verzehrempfehlung 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-04"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "more-more-clear-protein-lemonade-style-holunderbluete-apfel-600",
@@ -4553,20 +4554,21 @@
       "categoryId": "protein-powder",
       "packageSize": 600,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
-        "energyKj": 1463,
-        "energyKcal": 344,
+        "energyKj": 1484,
+        "energyKcal": 349,
         "fat": 0,
-        "carbohydrates": 3.5,
-        "sugar": 0.6,
+        "carbohydrates": 3.6,
+        "sugar": 1.1,
         "protein": 81,
         "salt": 0.1
       },
-      "source": "More Nutrition Produktseite, Nährwerttabelle pro 100 g",
+      "source": "More Nutrition Produktseite, Sorte Juice Style Pear, Nährwerte pro 100 g",
       "sourceUrl": "https://morenutrition.de/products/more-clear-protein",
-      "note": "Nährwerte aus der Produktseite übernommen; More weist auf sortenabhängige Abweichungen hin.",
+      "note": "Nährwerte der Sorte von der More-Seite; Portion laut Verzehrempfehlung 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-04"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "more-more-clear-protein-lemonade-style-raspberry-mojito-600",
@@ -4619,20 +4621,21 @@
       "categoryId": "protein-powder",
       "packageSize": 600,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
-        "energyKj": 1463,
-        "energyKcal": 344,
-        "fat": 0,
-        "carbohydrates": 3.5,
-        "sugar": 0.6,
-        "protein": 81,
-        "salt": 0.1
+        "energyKj": 1481,
+        "energyKcal": 349,
+        "fat": 0.6,
+        "carbohydrates": 3.2,
+        "sugar": 0.9,
+        "protein": 82,
+        "salt": 0.22
       },
-      "source": "More Nutrition Produktseite, Nährwerttabelle pro 100 g",
+      "source": "More Nutrition Produktseite, Sorte Juice Style Orange, Nährwerte pro 100 g",
       "sourceUrl": "https://morenutrition.de/products/more-clear-protein",
-      "note": "Nährwerte aus der Produktseite übernommen; More weist auf sortenabhängige Abweichungen hin.",
+      "note": "Nährwerte der Sorte von der More-Seite; Portion laut Verzehrempfehlung 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-04"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "more-more-clear-protein-lemonade-style-strawberry-lime-30",
@@ -4641,20 +4644,21 @@
       "categoryId": "protein-powder",
       "packageSize": 30,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
-        "energyKj": 1463,
-        "energyKcal": 344,
+        "energyKj": 1486,
+        "energyKcal": 350,
         "fat": 0,
-        "carbohydrates": 3.5,
+        "carbohydrates": 2.3,
         "sugar": 0.6,
-        "protein": 81,
-        "salt": 0.1
+        "protein": 82,
+        "salt": 0.12
       },
-      "source": "More Nutrition Produktseite, Nährwerttabelle pro 100 g",
+      "source": "More Nutrition Produktseite, Sorte Lemonade Style Strawberry Lime, Nährwerte pro 100 g",
       "sourceUrl": "https://morenutrition.de/products/more-clear-protein",
-      "note": "Nährwerte aus der Produktseite übernommen; More weist auf sortenabhängige Abweichungen hin.",
+      "note": "Nährwerte der Sorte von der More-Seite; Portion laut Verzehrempfehlung 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-04"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "more-more-clear-protein-juice-style-pure-apple-600",
@@ -4663,20 +4667,21 @@
       "categoryId": "protein-powder",
       "packageSize": 600,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
-        "energyKj": 1463,
-        "energyKcal": 344,
+        "energyKj": 1475,
+        "energyKcal": 347,
         "fat": 0,
-        "carbohydrates": 3.5,
-        "sugar": 0.6,
+        "carbohydrates": 2.1,
+        "sugar": 0,
         "protein": 81,
         "salt": 0.1
       },
-      "source": "More Nutrition Produktseite, Nährwerttabelle pro 100 g",
+      "source": "More Nutrition Produktseite, Sorte Juice Style Pure Apple, Nährwerte pro 100 g",
       "sourceUrl": "https://morenutrition.de/products/more-clear-protein",
-      "note": "Nährwerte aus der Produktseite übernommen; More weist auf sortenabhängige Abweichungen hin.",
+      "note": "Nährwerte der Sorte von der More-Seite; Portion laut Verzehrempfehlung 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-04"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "more-more-clear-protein-lemonade-style-virgin-mojito-600",
@@ -4685,20 +4690,21 @@
       "categoryId": "protein-powder",
       "packageSize": 600,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
-        "energyKj": 1463,
-        "energyKcal": 344,
+        "energyKj": 1475,
+        "energyKcal": 347,
         "fat": 0,
-        "carbohydrates": 3.5,
-        "sugar": 0.6,
-        "protein": 81,
-        "salt": 0.1
+        "carbohydrates": 0.9,
+        "sugar": 0,
+        "protein": 83,
+        "salt": 0.11
       },
-      "source": "More Nutrition Produktseite, Nährwerttabelle pro 100 g",
+      "source": "More Nutrition Produktseite, Sorte Lemonade Style Virgin Mojito, Nährwerte pro 100 g",
       "sourceUrl": "https://morenutrition.de/products/more-clear-protein",
-      "note": "Nährwerte aus der Produktseite übernommen; More weist auf sortenabhängige Abweichungen hin.",
+      "note": "Nährwerte der Sorte von der More-Seite; Portion laut Verzehrempfehlung 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-04"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "more-more-clear-protein-iced-tea-style-lemon-600",
@@ -4707,20 +4713,21 @@
       "categoryId": "protein-powder",
       "packageSize": 600,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
-        "energyKj": 1463,
-        "energyKcal": 344,
+        "energyKj": 1465,
+        "energyKcal": 346,
         "fat": 0,
-        "carbohydrates": 3.5,
-        "sugar": 0.6,
-        "protein": 81,
+        "carbohydrates": 2.8,
+        "sugar": 0,
+        "protein": 80,
         "salt": 0.1
       },
-      "source": "More Nutrition Produktseite, Nährwerttabelle pro 100 g",
+      "source": "More Nutrition Produktseite, Sorte Iced Tea Style Lemon, Nährwerte pro 100 g",
       "sourceUrl": "https://morenutrition.de/products/more-clear-protein",
-      "note": "Nährwerte aus der Produktseite übernommen; More weist auf sortenabhängige Abweichungen hin.",
+      "note": "Nährwerte der Sorte von der More-Seite; Portion laut Verzehrempfehlung 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-04"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "more-more-clear-protein-iced-tea-style-peach-600",
@@ -4729,20 +4736,21 @@
       "categoryId": "protein-powder",
       "packageSize": 600,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
-        "energyKj": 1463,
-        "energyKcal": 344,
+        "energyKj": 1454,
+        "energyKcal": 347,
         "fat": 0,
-        "carbohydrates": 3.5,
-        "sugar": 0.6,
+        "carbohydrates": 2.6,
+        "sugar": 0,
         "protein": 81,
         "salt": 0.1
       },
-      "source": "More Nutrition Produktseite, Nährwerttabelle pro 100 g",
+      "source": "More Nutrition Produktseite, Sorte Iced Tea Style Peach, Nährwerte pro 100 g",
       "sourceUrl": "https://morenutrition.de/products/more-clear-protein",
-      "note": "Nährwerte aus der Produktseite übernommen; More weist auf sortenabhängige Abweichungen hin.",
+      "note": "Nährwerte der Sorte von der More-Seite; Portion laut Verzehrempfehlung 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-04"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "more-more-clear-protein-juice-style-multifruit-600",
@@ -4751,20 +4759,21 @@
       "categoryId": "protein-powder",
       "packageSize": 600,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
-        "energyKj": 1463,
-        "energyKcal": 344,
+        "energyKj": 1485,
+        "energyKcal": 349,
         "fat": 0,
-        "carbohydrates": 3.5,
-        "sugar": 0.6,
-        "protein": 81,
-        "salt": 0.1
+        "carbohydrates": 1.5,
+        "sugar": 0,
+        "protein": 83,
+        "salt": 0.12
       },
-      "source": "More Nutrition Produktseite, Nährwerttabelle pro 100 g",
+      "source": "More Nutrition Produktseite, Sorte Juice Style Multifruit, Nährwerte pro 100 g",
       "sourceUrl": "https://morenutrition.de/products/more-clear-protein",
-      "note": "Nährwerte aus der Produktseite übernommen; More weist auf sortenabhängige Abweichungen hin.",
+      "note": "Nährwerte der Sorte von der More-Seite; Portion laut Verzehrempfehlung 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-04"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "more-more-clear-protein-lemonade-style-green-apple-600",
@@ -4773,20 +4782,21 @@
       "categoryId": "protein-powder",
       "packageSize": 600,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
-        "energyKj": 1463,
-        "energyKcal": 344,
+        "energyKj": 1468,
+        "energyKcal": 345,
         "fat": 0,
-        "carbohydrates": 3.5,
-        "sugar": 0.6,
-        "protein": 81,
+        "carbohydrates": 2.2,
+        "sugar": 0,
+        "protein": 77,
         "salt": 0.1
       },
-      "source": "More Nutrition Produktseite, Nährwerttabelle pro 100 g",
+      "source": "More Nutrition Produktseite, Sorte Lemonade Style Green Apple, Nährwerte pro 100 g",
       "sourceUrl": "https://morenutrition.de/products/more-clear-protein",
-      "note": "Nährwerte aus der Produktseite übernommen; More weist auf sortenabhängige Abweichungen hin.",
+      "note": "Nährwerte der Sorte von der More-Seite; Portion laut Verzehrempfehlung 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-04"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "more-more-clear-protein-juice-style-mango-600",
@@ -4795,20 +4805,21 @@
       "categoryId": "protein-powder",
       "packageSize": 600,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
-        "energyKj": 1463,
-        "energyKcal": 344,
+        "energyKj": 1481,
+        "energyKcal": 348,
         "fat": 0,
-        "carbohydrates": 3.5,
-        "sugar": 0.6,
+        "carbohydrates": 2.3,
+        "sugar": 0,
         "protein": 81,
-        "salt": 0.1
+        "salt": 0.11
       },
-      "source": "More Nutrition Produktseite, Nährwerttabelle pro 100 g",
+      "source": "More Nutrition Produktseite, Sorte Juice Style Mango, Nährwerte pro 100 g",
       "sourceUrl": "https://morenutrition.de/products/more-clear-protein",
-      "note": "Nährwerte aus der Produktseite übernommen; More weist auf sortenabhängige Abweichungen hin.",
+      "note": "Nährwerte der Sorte von der More-Seite; Portion laut Verzehrempfehlung 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-04"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "more-more-clear-protein-iced-tea-style-peach-passionfruit-600",
@@ -4817,20 +4828,21 @@
       "categoryId": "protein-powder",
       "packageSize": 600,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
-        "energyKj": 1463,
-        "energyKcal": 344,
+        "energyKj": 1474,
+        "energyKcal": 348,
         "fat": 0,
-        "carbohydrates": 3.5,
-        "sugar": 0.6,
+        "carbohydrates": 2.3,
+        "sugar": 0,
         "protein": 81,
-        "salt": 0.1
+        "salt": 0.11
       },
-      "source": "More Nutrition Produktseite, Nährwerttabelle pro 100 g",
+      "source": "More Nutrition Produktseite, Sorte Iced Tea Style Peach Passionfruit, Nährwerte pro 100 g",
       "sourceUrl": "https://morenutrition.de/products/more-clear-protein",
-      "note": "Nährwerte aus der Produktseite übernommen; More weist auf sortenabhängige Abweichungen hin.",
+      "note": "Nährwerte der Sorte von der More-Seite; Portion laut Verzehrempfehlung 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-04"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "more-more-vegan-protein-cinnalicious-600",
@@ -4839,6 +4851,7 @@
       "categoryId": "plant-protein",
       "packageSize": 600,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
         "energyKj": 1481,
         "energyKcal": 354,
@@ -4848,11 +4861,11 @@
         "protein": 75,
         "salt": 3.1
       },
-      "source": "More Nutrition Produktseite, Nährwerttabelle pro 100 g/ml",
+      "source": "More Nutrition Produktseite, Sorte Cinnalicious, Nährwerte pro 100 g",
       "sourceUrl": "https://morenutrition.de/products/more-vegan-protein",
-      "note": "Nährwerte direkt aus der Produktseite übernommen; bei Varianten können Sortenwerte abweichen.",
+      "note": "Nährwerte der Sorte von der More-Seite; Portion laut Verzehrempfehlung 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-04"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "more-more-vegan-protein-hazelnut-nougat-praline-600",
@@ -4861,20 +4874,21 @@
       "categoryId": "plant-protein",
       "packageSize": 600,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
-        "energyKj": 1481,
-        "energyKcal": 354,
-        "fat": 1.9,
-        "carbohydrates": 8.3,
-        "sugar": 2.3,
-        "protein": 75,
-        "salt": 3.1
+        "energyKj": 1617,
+        "energyKcal": 388,
+        "fat": 9.2,
+        "carbohydrates": 3.6,
+        "sugar": 1,
+        "protein": 65,
+        "salt": 1.5
       },
-      "source": "More Nutrition Produktseite, Nährwerttabelle pro 100 g/ml",
+      "source": "More Nutrition Produktseite, Sorte Hazelnut Nougat Praliné, Nährwerte pro 100 g",
       "sourceUrl": "https://morenutrition.de/products/more-vegan-protein",
-      "note": "Nährwerte direkt aus der Produktseite übernommen; bei Varianten können Sortenwerte abweichen.",
+      "note": "Nährwerte der Sorte von der More-Seite; Portion laut Verzehrempfehlung 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-04"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "more-more-vegan-protein-vanilla-600",
@@ -4883,20 +4897,21 @@
       "categoryId": "plant-protein",
       "packageSize": 600,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
-        "energyKj": 1481,
-        "energyKcal": 354,
-        "fat": 1.9,
-        "carbohydrates": 8.3,
-        "sugar": 2.3,
-        "protein": 75,
-        "salt": 3.1
+        "energyKj": 1519,
+        "energyKcal": 363,
+        "fat": 2.4,
+        "carbohydrates": 6.8,
+        "sugar": 1.2,
+        "protein": 78,
+        "salt": 1.1
       },
-      "source": "More Nutrition Produktseite, Nährwerttabelle pro 100 g/ml",
+      "source": "More Nutrition Produktseite, Sorte Vanilla, Nährwerte pro 100 g",
       "sourceUrl": "https://morenutrition.de/products/more-vegan-protein",
-      "note": "Nährwerte direkt aus der Produktseite übernommen; bei Varianten können Sortenwerte abweichen.",
+      "note": "Nährwerte der Sorte von der More-Seite; Portion laut Verzehrempfehlung 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-04"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "more-more-vegan-protein-neutral-600",
@@ -4905,20 +4920,21 @@
       "categoryId": "plant-protein",
       "packageSize": 600,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
-        "energyKj": 1481,
-        "energyKcal": 354,
-        "fat": 1.9,
-        "carbohydrates": 8.3,
-        "sugar": 2.3,
-        "protein": 75,
-        "salt": 3.1
+        "energyKj": 1447,
+        "energyKcal": 345,
+        "fat": 0.5,
+        "carbohydrates": 1.1,
+        "sugar": 0.7,
+        "protein": 83,
+        "salt": 0
       },
-      "source": "More Nutrition Produktseite, Nährwerttabelle pro 100 g/ml",
+      "source": "More Nutrition Produktseite, Sorte Neutral, Nährwerte pro 100 g",
       "sourceUrl": "https://morenutrition.de/products/more-vegan-protein",
-      "note": "Nährwerte direkt aus der Produktseite übernommen; bei Varianten können Sortenwerte abweichen.",
+      "note": "Nährwerte der Sorte von der More-Seite; Portion laut Verzehrempfehlung 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-04"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "more-more-vegan-protein-fine-milk-chocolate-600",
@@ -4927,20 +4943,21 @@
       "categoryId": "plant-protein",
       "packageSize": 600,
       "unit": "g",
+      "servingSize": 30,
       "nutritionPer100": {
-        "energyKj": 1481,
-        "energyKcal": 354,
-        "fat": 1.9,
-        "carbohydrates": 8.3,
-        "sugar": 2.3,
-        "protein": 75,
-        "salt": 3.1
+        "energyKj": 1595,
+        "energyKcal": 382,
+        "fat": 8.5,
+        "carbohydrates": 3.9,
+        "sugar": 0.6,
+        "protein": 64,
+        "salt": 1.8
       },
-      "source": "More Nutrition Produktseite, Nährwerttabelle pro 100 g/ml",
+      "source": "More Nutrition Produktseite, Sorte Fine Milk Chocolate, Nährwerte pro 100 g",
       "sourceUrl": "https://morenutrition.de/products/more-vegan-protein",
-      "note": "Nährwerte direkt aus der Produktseite übernommen; bei Varianten können Sortenwerte abweichen.",
+      "note": "Nährwerte der Sorte von der More-Seite; Portion laut Verzehrempfehlung 30 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-04"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "more-more-protein-milkshake-style-vanilla-ice-cream-600",
@@ -4949,6 +4966,7 @@
       "categoryId": "protein-powder",
       "packageSize": 600,
       "unit": "g",
+      "servingSize": 25,
       "nutritionPer100": {
         "energyKj": 1599,
         "energyKcal": 379,
@@ -4958,11 +4976,11 @@
         "protein": 79,
         "salt": 0.49
       },
-      "source": "More Nutrition Produktseite, Nährwerttabelle pro 100 g/ml",
+      "source": "More Nutrition Produktseite, Sorte Milkshake Style Vanilla Ice Cream, Nährwerte pro 100 g",
       "sourceUrl": "https://morenutrition.de/products/more-protein-milkshake",
-      "note": "Nährwerte direkt aus der Produktseite übernommen; bei Varianten können Sortenwerte abweichen.",
+      "note": "Nährwerte der Sorte von der More-Seite; Portion laut Verzehrempfehlung 25 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-04"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "more-more-protein-milkshake-style-chocolate-drink-600",
@@ -4971,20 +4989,21 @@
       "categoryId": "protein-powder",
       "packageSize": 600,
       "unit": "g",
+      "servingSize": 25,
       "nutritionPer100": {
-        "energyKj": 1599,
-        "energyKcal": 379,
-        "fat": 3.7,
-        "carbohydrates": 5.4,
-        "sugar": 3.6,
-        "protein": 79,
-        "salt": 0.49
+        "energyKj": 1558,
+        "energyKcal": 370,
+        "fat": 4.4,
+        "carbohydrates": 5.7,
+        "sugar": 3.3,
+        "protein": 76,
+        "salt": 0.83
       },
-      "source": "More Nutrition Produktseite, Nährwerttabelle pro 100 g/ml",
+      "source": "More Nutrition Produktseite, Sorte Milkshake Style Chocolate Drink, Nährwerte pro 100 g",
       "sourceUrl": "https://morenutrition.de/products/more-protein-milkshake",
-      "note": "Nährwerte direkt aus der Produktseite übernommen; bei Varianten können Sortenwerte abweichen.",
+      "note": "Nährwerte der Sorte von der More-Seite; Portion laut Verzehrempfehlung 25 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-04"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "more-more-protein-milkshake-style-iced-coffee-600",
@@ -4993,20 +5012,21 @@
       "categoryId": "protein-powder",
       "packageSize": 600,
       "unit": "g",
+      "servingSize": 25,
       "nutritionPer100": {
-        "energyKj": 1599,
-        "energyKcal": 379,
+        "energyKj": 1576,
+        "energyKcal": 374,
         "fat": 3.7,
-        "carbohydrates": 5.4,
-        "sugar": 3.6,
-        "protein": 79,
-        "salt": 0.49
+        "carbohydrates": 7.5,
+        "sugar": 3.5,
+        "protein": 75,
+        "salt": 0.48
       },
-      "source": "More Nutrition Produktseite, Nährwerttabelle pro 100 g/ml",
+      "source": "More Nutrition Produktseite, Sorte Milkshake Style Iced Coffee, Nährwerte pro 100 g",
       "sourceUrl": "https://morenutrition.de/products/more-protein-milkshake",
-      "note": "Nährwerte direkt aus der Produktseite übernommen; bei Varianten können Sortenwerte abweichen.",
+      "note": "Nährwerte der Sorte von der More-Seite; Portion laut Verzehrempfehlung 25 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-04"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "more-more-protein-milkshake-style-cinnalicious-600",
@@ -5015,20 +5035,21 @@
       "categoryId": "protein-powder",
       "packageSize": 600,
       "unit": "g",
+      "servingSize": 25,
       "nutritionPer100": {
-        "energyKj": 1599,
-        "energyKcal": 379,
-        "fat": 3.7,
-        "carbohydrates": 5.4,
-        "sugar": 3.6,
-        "protein": 79,
-        "salt": 0.49
+        "energyKj": 1613,
+        "energyKcal": 381,
+        "fat": 4.5,
+        "carbohydrates": 8.3,
+        "sugar": 4.1,
+        "protein": 77,
+        "salt": 1
       },
-      "source": "More Nutrition Produktseite, Nährwerttabelle pro 100 g/ml",
+      "source": "More Nutrition Produktseite, Sorte Milkshake Style Cinnalicious, Nährwerte pro 100 g",
       "sourceUrl": "https://morenutrition.de/products/more-protein-milkshake",
-      "note": "Nährwerte direkt aus der Produktseite übernommen; bei Varianten können Sortenwerte abweichen.",
+      "note": "Nährwerte der Sorte von der More-Seite; Portion laut Verzehrempfehlung 25 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-04"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "more-more-protein-milkshake-style-hazelnut-nougat-praline-600",
@@ -5037,20 +5058,21 @@
       "categoryId": "protein-powder",
       "packageSize": 600,
       "unit": "g",
+      "servingSize": 25,
       "nutritionPer100": {
-        "energyKj": 1599,
-        "energyKcal": 379,
-        "fat": 3.7,
-        "carbohydrates": 5.4,
-        "sugar": 3.6,
-        "protein": 79,
-        "salt": 0.49
+        "energyKj": 1570,
+        "energyKcal": 373,
+        "fat": 4.3,
+        "carbohydrates": 5,
+        "sugar": 3.5,
+        "protein": 75,
+        "salt": 0.94
       },
-      "source": "More Nutrition Produktseite, Nährwerttabelle pro 100 g/ml",
+      "source": "More Nutrition Produktseite, Sorte Milkshake Style Hazelnut Nougat Praline, Nährwerte pro 100 g",
       "sourceUrl": "https://morenutrition.de/products/more-protein-milkshake",
-      "note": "Nährwerte direkt aus der Produktseite übernommen; bei Varianten können Sortenwerte abweichen.",
+      "note": "Nährwerte der Sorte von der More-Seite; Portion laut Verzehrempfehlung 25 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-04"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "more-more-protein-milkshake-style-neutral-600",
@@ -5059,20 +5081,21 @@
       "categoryId": "protein-powder",
       "packageSize": 600,
       "unit": "g",
+      "servingSize": 25,
       "nutritionPer100": {
-        "energyKj": 1599,
-        "energyKcal": 379,
-        "fat": 3.7,
-        "carbohydrates": 5.4,
+        "energyKj": 1607,
+        "energyKcal": 381,
+        "fat": 3.8,
+        "carbohydrates": 3.8,
         "sugar": 3.6,
-        "protein": 79,
-        "salt": 0.49
+        "protein": 81,
+        "salt": 0.48
       },
-      "source": "More Nutrition Produktseite, Nährwerttabelle pro 100 g/ml",
+      "source": "More Nutrition Produktseite, Sorte Milkshake Style Neutral, Nährwerte pro 100 g",
       "sourceUrl": "https://morenutrition.de/products/more-protein-milkshake",
-      "note": "Nährwerte direkt aus der Produktseite übernommen; bei Varianten können Sortenwerte abweichen.",
+      "note": "Nährwerte der Sorte von der More-Seite; Portion laut Verzehrempfehlung 25 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-04"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "more-more-protein-milkshake-style-strawberry-600",
@@ -5081,20 +5104,21 @@
       "categoryId": "protein-powder",
       "packageSize": 600,
       "unit": "g",
+      "servingSize": 25,
       "nutritionPer100": {
-        "energyKj": 1599,
-        "energyKcal": 379,
-        "fat": 3.7,
-        "carbohydrates": 5.4,
-        "sugar": 3.6,
-        "protein": 79,
-        "salt": 0.49
+        "energyKj": 1580,
+        "energyKcal": 375,
+        "fat": 3.6,
+        "carbohydrates": 8,
+        "sugar": 3.7,
+        "protein": 78,
+        "salt": 1.5
       },
-      "source": "More Nutrition Produktseite, Nährwerttabelle pro 100 g/ml",
+      "source": "More Nutrition Produktseite, Sorte Milkshake Style Strawberry, Nährwerte pro 100 g",
       "sourceUrl": "https://morenutrition.de/products/more-protein-milkshake",
-      "note": "Nährwerte direkt aus der Produktseite übernommen; bei Varianten können Sortenwerte abweichen.",
+      "note": "Nährwerte der Sorte von der More-Seite; Portion laut Verzehrempfehlung 25 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-04"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "more-more-protein-milkshake-style-chocolate-brownie-600",
@@ -5103,20 +5127,21 @@
       "categoryId": "protein-powder",
       "packageSize": 600,
       "unit": "g",
+      "servingSize": 25,
       "nutritionPer100": {
-        "energyKj": 1599,
-        "energyKcal": 379,
-        "fat": 3.7,
-        "carbohydrates": 5.4,
-        "sugar": 3.6,
-        "protein": 79,
-        "salt": 0.49
+        "energyKj": 1565,
+        "energyKcal": 371,
+        "fat": 4.2,
+        "carbohydrates": 4.6,
+        "sugar": 3.4,
+        "protein": 76,
+        "salt": 0.45
       },
-      "source": "More Nutrition Produktseite, Nährwerttabelle pro 100 g/ml",
+      "source": "More Nutrition Produktseite, Sorte Milkshake Style Chocolate Brownie, Nährwerte pro 100 g",
       "sourceUrl": "https://morenutrition.de/products/more-protein-milkshake",
-      "note": "Nährwerte direkt aus der Produktseite übernommen; bei Varianten können Sortenwerte abweichen.",
+      "note": "Nährwerte der Sorte von der More-Seite; Portion laut Verzehrempfehlung 25 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-04"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "more-more-protein-milkshake-style-vanilla-chocolate-chip-cookie-600",
@@ -5125,20 +5150,21 @@
       "categoryId": "protein-powder",
       "packageSize": 600,
       "unit": "g",
+      "servingSize": 25,
       "nutritionPer100": {
-        "energyKj": 1599,
-        "energyKcal": 379,
-        "fat": 3.7,
-        "carbohydrates": 5.4,
-        "sugar": 3.6,
-        "protein": 79,
-        "salt": 0.49
+        "energyKj": 1600,
+        "energyKcal": 380,
+        "fat": 4.1,
+        "carbohydrates": 9,
+        "sugar": 4.6,
+        "protein": 77,
+        "salt": 0.81
       },
-      "source": "More Nutrition Produktseite, Nährwerttabelle pro 100 g/ml",
+      "source": "More Nutrition Produktseite, Sorte Milkshake Style Vanilla Chocolate Chip Cookie, Nährwerte pro 100 g",
       "sourceUrl": "https://morenutrition.de/products/more-protein-milkshake",
-      "note": "Nährwerte direkt aus der Produktseite übernommen; bei Varianten können Sortenwerte abweichen.",
+      "note": "Nährwerte der Sorte von der More-Seite; Portion laut Verzehrempfehlung 25 g Pulver.",
       "verificationStatus": "manufacturer_verified",
-      "lastCheckedAt": "2026-07-04"
+      "lastCheckedAt": "2026-10-05"
     },
     {
       "id": "more-protein-iced-coffee-brownie-marshmallow-500",
