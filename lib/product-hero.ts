@@ -1,4 +1,4 @@
-import { packageProtein, proteinPer100, servingProtein, type Product } from "@/lib/data/products";
+import { packageProtein, proteinPer100, servingProtein, type Product } from "@/lib/data/product-utils";
 
 export type HeroAmount = { basis: "serving" | "package" | "per100"; grams: number; size: number; label: string };
 

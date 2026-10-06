@@ -12,14 +12,14 @@ import { proteinPer100, proteinPer100Kcal, type Product } from "@/lib/data/produ
 import { categoryRows, formulaExample, productsByDemand, showcaseProduct, siteStats } from "@/lib/home-data";
 import { productPageHref } from "@/lib/page-routing";
 import { heroAmount } from "@/lib/product-hero";
-import { pageSummaries } from "@/lib/product-summary";
+import { scatterPoints } from "@/lib/product-summary";
 import { highProteinMinShare, proteinReferenceIntakeGrams, proteinSourceMinShare, referenceIntakeShare } from "@/lib/protein-context";
 
 const numberFormat = new Intl.NumberFormat("de-DE", { maximumFractionDigits: 1 });
 const format = (value: number) => numberFormat.format(value);
 
 export function HomePage() {
-  const summaries = pageSummaries();
+  const summaries = scatterPoints();
   const stats = siteStats();
   const showcase = showcaseProduct();
   const popular = productsByDemand(7).filter((product) => product.id !== showcase.id).slice(0, 6);
@@ -37,7 +37,7 @@ export function HomePage() {
           <p className={ui.lead}>
             {stats.productCount} Proteinprodukte von {stats.brandCount} Marken mit Protein pro Portion, pro 100 g und pro 100 kcal. Jeder Wert mit Quelle und Prüfdatum.
           </p>
-          <HomeSearch items={summaries} />
+          <HomeSearch />
           <p className={ui.metaLine}>
             Riegel, Pulver, Drinks, Skyr und Pudding · zuletzt geprüft am {new Intl.DateTimeFormat("de-DE").format(new Date(stats.latestCheck))} · <Link href="/de/produkte">alle Produkte</Link>
           </p>

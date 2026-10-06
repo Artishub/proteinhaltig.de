@@ -43,3 +43,10 @@ export function productSummary(product: Product): ProductSummary {
 export function pageSummaries() {
   return products.filter(isProductPage).map(productSummary);
 }
+
+/** The fields the protein scatter needs, nothing more (it ships with the homepage HTML). */
+export type ScatterPoint = Pick<ProductSummary, "id" | "name" | "brand" | "categoryId" | "href" | "unit" | "per100" | "kcal" | "density">;
+
+export function scatterPoints(): ScatterPoint[] {
+  return pageSummaries().map(({ id, name, brand, categoryId, href, unit, per100, kcal, density }) => ({ id, name, brand, categoryId, href, unit, per100, kcal, density }));
+}

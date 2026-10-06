@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import ui from "@/components/ui/ui.module.css";
 import { pageMetadata } from "@/lib/seo";
+import { contactEmail } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
   title: "Impressum",
@@ -9,35 +11,28 @@ export const metadata: Metadata = pageMetadata({
 
 export default function ImpressumPage() {
   return (
-    <main className="mx-auto max-w-3xl px-4 py-10">
-      <h1 className="text-4xl font-semibold tracking-tight">Impressum</h1>
-      <section className="mt-6 space-y-6 leading-7 text-slate">
-        <div>
-          <h2 className="text-lg font-medium text-ink">Angaben gemäß § 5 DDG</h2>
-          <p className="mt-2">
-            Artjom Gasarov
-            <br />
-            Wingertshecke 1
-            <br />
-            35392 Gießen
-          </p>
-        </div>
-        <div>
-          <h2 className="text-lg font-medium text-ink">Kontakt</h2>
-          <p className="mt-2">
-            E-Mail:{" "}
-            <a className="underline decoration-ash underline-offset-4 hover:decoration-marigold" href="mailto:artjomgasarov@gmail.com">
-              artjomgasarov@gmail.com
-            </a>
-          </p>
-        </div>
-        <div>
-          <h2 className="text-lg font-medium text-ink">Haftung für Inhalte</h2>
-          <p className="mt-2">
-            Die Inhalte dieser Website wurden mit größter Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Angaben übernehmen wir jedoch keine Gewähr.
-          </p>
-        </div>
-      </section>
+    <main className={ui.page}>
+      <article className={ui.prose}>
+        <h1>Impressum</h1>
+        <h2>Angaben gemäß § 5 DDG</h2>
+        <p>
+          Artjom Gasarov
+          <br />
+          Wingertshecke 1
+          <br />
+          35392 Gießen
+        </p>
+        <h2>Kontakt</h2>
+        <p>
+          E-Mail: <a href={`mailto:${contactEmail}`}>{contactEmail}</a>
+        </p>
+        <h2>Verantwortlich für den Inhalt</h2>
+        <p>Artjom Gasarov, Anschrift wie oben.</p>
+        <h2>Haftung für Inhalte</h2>
+        <p>
+          Die Nährwerte stammen aus den jeweils genannten Hersteller- und Händlerangaben und werden mit Prüfdatum gespeichert. Rezepturen können sich ändern; maßgeblich ist die Angabe auf der Verpackung. Fehler meldest du am schnellsten per E-Mail.
+        </p>
+      </article>
     </main>
   );
 }

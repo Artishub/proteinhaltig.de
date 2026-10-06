@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Suspense } from "react";
 import { ProductExplorer } from "@/components/product-explorer";
-import { brandById } from "@/lib/data/brands";
+import { brandById, brands } from "@/lib/data/brands";
 import { categories, categoryById } from "@/lib/data/categories";
 import { products } from "@/lib/data/products";
 import { isProductPage, productPageHref } from "@/lib/page-routing";
@@ -15,7 +15,9 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default function ProductsPage() {
-  const pageCount = products.filter(isProductPage).length;
+  const pageProducts = products.filter(isProductPage);
+  const pageCount = pageProducts.length;
+  const explorerItems = pageProducts.map((product) => ({ ...product, href: productPageHref(product) }));
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Dataset",
@@ -34,7 +36,7 @@ export default function ProductsPage() {
         </p>
       </div>
       <Suspense fallback={<div className="border-t border-ash py-6 text-sm text-slate">Produkte werden geladen...</div>}>
-        <ProductExplorer />
+        <ProductExplorer items={explorerItems} brands={brands.map(({ id, name }) => ({ id, name }))} categories={categories.map(({ id, name }) => ({ id, name }))} />
       </Suspense>
       <ProductDirectory />
     </main>
