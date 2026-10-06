@@ -4,12 +4,9 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { ArrowRight, BarChart3, ChevronDown, ChevronLeft, ChevronRight, LinkIcon, Search, X } from "lucide-react";
-import { brands } from "@/lib/data/brands";
-import { categories, categoryById } from "@/lib/data/categories";
 import {
-  Product,
-  ProductDisplayItem,
-  products,
+  type Product,
+  type ProductDisplayItem,
   groupedProductFamilies,
   packageEnergyKcal,
   proteinPer100,
@@ -18,9 +15,13 @@ import {
   sizeLabel,
   uniqueProductRepresentatives,
   verificationLabel,
-} from "@/lib/data/products";
-import { isProductPage, productPageHref } from "@/lib/page-routing";
+} from "@/lib/data/product-utils";
 import { heroAmount } from "@/lib/product-hero";
+
+// Data comes from the server page as props, so the product database never ships in a shared JS chunk.
+export type ExplorerProduct = Product & { href: string };
+export type ExplorerOption = { id: string; name: string };
+const hrefOf = (product: Product) => (product as ExplorerProduct).href;
 
 type SortKey = "total-desc" | "total-asc" | "per100-desc" | "per100-asc" | "kcal-desc" | "name-asc" | "name-desc";
 
@@ -40,10 +41,8 @@ function matchesSize(product: Product, size: string) {
   return true;
 }
 
-// Sizes of a product share one page, so the list shows one row per page.
-const pageProducts = products.filter(isProductPage);
-
-export function ProductExplorer() {
+export function ProductExplorer({ items: pageProducts, brands, categories }: { items: ExplorerProduct[]; brands: ExplorerOption[]; categories: ExplorerOption[] }) {
+  const categoryById = useMemo(() => Object.fromEntries(categories.map((item) => [item.id, item])), [categories]);
   const searchParams = useSearchParams();
   const [query, setQuery] = useState("");
   const [brand, setBrand] = useState("all");
@@ -66,7 +65,7 @@ export function ProductExplorer() {
     setCategory("all");
     if (brands.some((item) => item.id === nextBrand)) setBrand(nextBrand);
     if (categories.some((item) => item.id === nextCategory)) setCategory(nextCategory);
-  }, [searchParams]);
+  }, [searchParams, brands, categories]);
 
   const filtered = useMemo(() => {
     const normalizedQuery = query.trim().toLowerCase();
@@ -94,7 +93,7 @@ export function ProductExplorer() {
       if (sort === "total-asc") return compareNullable(packageProtein(a), packageProtein(b), "asc");
       return compareNullable(packageProtein(a), packageProtein(b), "desc");
     });
-  }, [brand, category, excludeLowProtein, query, size, sort]);
+  }, [brand, brands, category, excludeLowProtein, pageProducts, query, size, sort]);
 
   const reset = () => {
     setQuery("");
@@ -260,7 +259,7 @@ export function ProductExplorer() {
                       {item.type === "group" && (
                         <div className="mb-4 flex flex-wrap gap-2">
                           {item.products.map((groupProduct) => (
-                            <Link key={groupProduct.id} href={productPageHref(groupProduct)} className="rounded-md bg-paper px-2 py-1 text-xs text-slate hover:text-ink">
+                            <Link key={groupProduct.id} href={hrefOf(groupProduct)} className="rounded-md bg-paper px-2 py-1 text-xs text-slate hover:text-ink">
                               {groupProduct.name}
                             </Link>
                           ))}
@@ -282,7 +281,7 @@ export function ProductExplorer() {
                         >
                           Zum Vergleich
                         </Link>
-                        <Link href={productPageHref(product)} className="focus-ring inline-flex h-10 items-center justify-center rounded-md border border-ink bg-ink px-4 text-sm font-medium text-white hover:bg-paper hover:text-ink dark:text-black dark:hover:text-ink">
+                        <Link href={hrefOf(product)} className="focus-ring inline-flex h-10 items-center justify-center rounded-md border border-ink bg-ink px-4 text-sm font-medium text-white hover:bg-paper hover:text-ink dark:text-black dark:hover:text-ink">
                           Zur Detailseite
                         </Link>
                         {product.sourceUrl ? (

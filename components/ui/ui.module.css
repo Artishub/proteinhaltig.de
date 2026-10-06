@@ -171,3 +171,18 @@
   .statGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .table tbody th { min-width: 9rem; }
 }
+
+/* Text pages (legal, articles) */
+.prose { max-width: 44rem; padding-top: 3rem; line-height: 1.7; }
+.prose h1 { margin: 0; font-size: clamp(2.2rem, 5vw, 3.2rem); font-weight: 600; letter-spacing: -.025em; line-height: 1.05; }
+.prose h2 { margin: 2.2rem 0 .5rem; font-size: 1.25rem; font-weight: 600; letter-spacing: -.01em; }
+.prose p { margin: .6rem 0 0; color: var(--slate); }
+.prose a { color: var(--accent-strong); text-decoration: underline; text-underline-offset: 3px; }
+.prose ul { margin: .6rem 0 0; padding-left: 1.2rem; color: var(--slate); }
+.articlePlaceholder { aspect-ratio: 3 / 2; border-radius: 12px; background: linear-gradient(135deg, var(--accent-soft), var(--cream)); }
+.articleTitle { margin: 0; padding: 0 .3rem; font-size: 1.1rem; font-weight: 600; }
+.articleCard:hover .articleTitle { color: var(--accent-strong); }
+.articleImage { width: 100%; height: auto; margin: 1.6rem 0 .6rem; border-radius: 18px; }
+.prose .lead { margin-top: 1rem; }
+.prose .metaLine { margin: 0 0 .6rem; }
+.proseChips { max-width: 44rem; margin-top: 2.5rem; }

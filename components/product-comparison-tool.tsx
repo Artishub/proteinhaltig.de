@@ -2,35 +2,28 @@
 
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useRef, useState } from "react";
 import { ArrowRight, Check, ChevronDown, Copy, Search, X } from "lucide-react";
-import { brands } from "@/lib/data/brands";
-import { categoryById } from "@/lib/data/categories";
 import {
-  Product,
-  products,
+  type Product,
   packageEnergyKcal,
   proteinPer100,
   packageProtein,
   proteinPer100Kcal,
   servingProtein,
   sizeLabel,
-} from "@/lib/data/products";
-import { productPageHref } from "@/lib/page-routing";
+} from "@/lib/data/product-utils";
+
+// Options come from the server page (sorted, with brand, category and page link), so the product
+// database is not bundled into the browser JavaScript.
+export type CompareProduct = Product & { href: string; brandName: string; categoryName: string };
+const OptionsContext = createContext<CompareProduct[]>([]);
 
 type Metric = {
   label: string;
   value: (product: Product) => string;
   emphasized?: boolean;
 };
-
-const options = [...products].sort((a, b) => {
-  const brandA = brands.find((brand) => brand.id === a.brandId)?.name ?? "";
-  const brandB = brands.find((brand) => brand.id === b.brandId)?.name ?? "";
-  return brandA.localeCompare(brandB, "de") || a.name.localeCompare(b.name, "de") || (a.packageSize ?? 0) - (b.packageSize ?? 0);
-});
-
-const validIds = new Set(options.map((product) => product.id));
 
 const metrics: Metric[] = [
   { label: "Protein pro 100 g/ml", value: (product) => formatGrams(proteinPer100(product)), emphasized: true },
@@ -46,9 +39,9 @@ const metrics: Metric[] = [
   { label: "Salz pro 100 g/ml", value: (product) => formatNutrition(product, "salt") },
 ];
 
-export function ProductComparisonTool() {
+export function ProductComparisonTool({ options }: { options: CompareProduct[] }) {
   const searchParams = useSearchParams();
-  const [selectedIds, setSelectedIds] = useState<string[]>(() => initialSelection(searchParams));
+  const [selectedIds, setSelectedIds] = useState<string[]>(() => initialSelection(searchParams, options));
   const [copied, setCopied] = useState(false);
   const selectedProducts = selectedIds.map((id) => options.find((product) => product.id === id)).filter(isProduct);
 
@@ -71,12 +64,12 @@ export function ProductComparisonTool() {
   };
 
   return (
+    <OptionsContext.Provider value={options}>
     <div>
-      <section className="rounded-lg border border-ash bg-mist p-4 md:p-6" aria-labelledby="selection-title">
+      <section className="rounded-[18px] border border-ash bg-mist p-4 md:p-6" aria-labelledby="selection-title">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
           <div>
-            <p className="text-xs font-medium text-slate">Auswahl</p>
-            <h2 id="selection-title" className="mt-2 text-2xl font-medium tracking-[-0.02em]">Bis zu vier Produkte</h2>
+            <h2 id="selection-title" className="text-2xl font-semibold tracking-[-0.02em]">Bis zu vier Produkte</h2>
           </div>
           {selectedProducts.length > 0 && (
             <div className="flex flex-wrap gap-2">
@@ -130,8 +123,7 @@ export function ProductComparisonTool() {
         <section className="mt-8" aria-labelledby="comparison-title">
           <div className="flex items-end justify-between gap-4 border-b border-ash pb-4">
             <div>
-              <p className="text-xs font-medium text-slate">Direkter Vergleich</p>
-              <h2 id="comparison-title" className="mt-2 text-3xl font-medium tracking-[-0.02em]">Werte nebeneinander</h2>
+              <h2 id="comparison-title" className="text-3xl font-semibold tracking-[-0.02em]">Werte nebeneinander</h2>
             </div>
             <p className="hidden text-sm text-slate sm:block">{selectedProducts.length}/4 ausgewählt</p>
           </div>
@@ -175,7 +167,7 @@ export function ProductComparisonTool() {
             ))}
           </div>
 
-          <p className="mt-5 max-w-3xl text-sm leading-6 text-slate">Packungswerte werden aus dem hinterlegten 100-g/ml-Wert und der Packungsgröße berechnet. Eine Proteinportion entspricht 10 g.</p>
+          <p className="mt-5 max-w-3xl text-sm leading-6 text-slate">Packungswerte werden aus dem hinterlegten 100-g/ml-Wert und der Packungsgröße berechnet.</p>
         </section>
       ) : (
         <section className="mt-8 border-y border-ash py-12 text-center">
@@ -184,19 +176,20 @@ export function ProductComparisonTool() {
         </section>
       )}
     </div>
+    </OptionsContext.Provider>
   );
 }
 
-function ProductHeading({ product, compact = false }: { product: Product; compact?: boolean }) {
-  const brand = brands.find((item) => item.id === product.brandId)?.name ?? "";
-  const category = categoryById[product.categoryId]?.name ?? "Produkt";
+function ProductHeading({ product, compact = false }: { product: CompareProduct; compact?: boolean }) {
+  const brand = product.brandName;
+  const category = product.categoryName;
 
   return (
     <div className={compact ? "" : "border-r border-ash bg-mist p-4 last:border-r-0"}>
       <span className="inline-flex rounded-md bg-paper px-2 py-1 text-xs font-medium text-slate">{category}</span>
       <h3 className="mt-2 text-lg font-medium leading-tight">{product.name}</h3>
       <p className="mt-1 text-sm text-slate">{brand} · {sizeLabel(product)}</p>
-      <Link href={productPageHref(product)} className="focus-ring mt-4 inline-flex items-center gap-2 rounded-md text-sm font-medium underline decoration-ash underline-offset-4 hover:decoration-marigold">
+      <Link href={product.href} className="focus-ring mt-4 inline-flex items-center gap-2 rounded-md text-sm font-medium underline decoration-ash underline-offset-4 hover:decoration-marigold">
         Details
         <ArrowRight size={17} strokeWidth={1.75} aria-hidden="true" />
       </Link>
@@ -208,14 +201,15 @@ function ProductCombobox({ value, disabledIds, onChange }: { value: string; disa
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
   const containerRef = useRef<HTMLDivElement>(null);
+  const options = useContext(OptionsContext);
   const selected = options.find((product) => product.id === value);
   const filtered = useMemo(() => {
     const normalized = query.trim().toLowerCase();
     return options.filter((product) => {
-      const brand = brands.find((item) => item.id === product.brandId)?.name ?? "";
+      const brand = product.brandName;
       return !normalized || `${product.name} ${brand} ${sizeLabel(product)}`.toLowerCase().includes(normalized);
     }).slice(0, 50);
-  }, [query]);
+  }, [options, query]);
 
   useEffect(() => {
     if (!open) return;
@@ -268,7 +262,7 @@ function ProductCombobox({ value, disabledIds, onChange }: { value: string; disa
                   aria-selected={product.id === value}
                 >
                   <span className="block truncate text-sm font-medium">{product.name}</span>
-                  <span className="block truncate text-xs text-slate">{brands.find((item) => item.id === product.brandId)?.name} · {sizeLabel(product)}</span>
+                  <span className="block truncate text-xs text-slate">{product.brandName} · {sizeLabel(product)}</span>
                 </button>
               );
             })}
@@ -280,14 +274,15 @@ function ProductCombobox({ value, disabledIds, onChange }: { value: string; disa
   );
 }
 
-function initialSelection(searchParams: ReturnType<typeof useSearchParams>) {
+function initialSelection(searchParams: ReturnType<typeof useSearchParams>, options: CompareProduct[]) {
+  const validIds = new Set(options.map((product) => product.id));
   const ids = (searchParams.get("products")?.split(",") ?? [searchParams.get("product") ?? ""])
     .filter((id) => validIds.has(id))
     .slice(0, 4);
   return [...ids, "", "", "", ""].slice(0, 4);
 }
 
-function isProduct(product: Product | undefined): product is Product {
+function isProduct(product: CompareProduct | undefined): product is CompareProduct {
   return Boolean(product);
 }
 

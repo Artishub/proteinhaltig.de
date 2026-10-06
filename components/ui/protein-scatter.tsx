@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import type { ProductSummary } from "@/lib/product-summary";
+import type { ScatterPoint as ProductSummary } from "@/lib/product-summary";
 import styles from "./ui.module.css";
 
 type Hover = { item: ProductSummary; x: number; y: number };
@@ -111,7 +111,7 @@ export function ProteinScatter({ items, categories, sourceShare, highShare }: {
                 key={item.id}
                 href={item.href}
                 className={muted ? styles.scatterDotMuted : styles.scatterDot}
-                aria-label={`${item.brand} ${item.name}: ${numberFormat.format(item.per100)} g Protein und ${item.kcal} kcal pro 100 ${item.unit}`}
+                aria-label={`${item.brand} ${item.name}, ${numberFormat.format(item.per100)} g, ${item.kcal} kcal`}
                 tabIndex={muted ? -1 : 0}
                 onPointerEnter={(event) => show(item, event.currentTarget)}
                 onFocus={(event) => show(item, event.currentTarget)}

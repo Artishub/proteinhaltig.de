@@ -1,10 +1,10 @@
 "use client";
 
 import { FormEvent, KeyboardEvent, useEffect, useMemo, useRef, useState } from "react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Search } from "lucide-react";
-import { brands } from "@/lib/data/brands";
-import { products } from "@/lib/data/products";
+import { useSearchIndex } from "@/components/use-search-index";
 
 const frequentSearches = ["Proteinriegel", "Skyr", "Protein Pudding", "Whey"];
 
@@ -15,19 +15,12 @@ export function HeaderSearch() {
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
 
-  const results = useMemo(() => {
-    const value = query.trim().toLowerCase();
-    if (!value) return [];
-    return products
-      .filter((product) => {
-        const brand = brands.find((item) => item.id === product.brandId)?.name ?? "";
-        return `${product.name} ${brand}`.toLowerCase().includes(value);
-      })
-      .slice(0, 5);
-  }, [query]);
+  const { prepare, search } = useSearchIndex();
+  const results = useMemo(() => search(query, 5), [search, query]);
 
   useEffect(() => {
     if (!open) return;
+    prepare();
     inputRef.current?.focus();
 
     const close = (event: PointerEvent) => {
@@ -35,7 +28,7 @@ export function HeaderSearch() {
     };
     document.addEventListener("pointerdown", close);
     return () => document.removeEventListener("pointerdown", close);
-  }, [open]);
+  }, [open, prepare]);
 
   const go = (value: string) => {
     const q = value.trim();
@@ -99,7 +92,7 @@ export function HeaderSearch() {
         >
           {!query.trim() ? (
             <div className="p-2">
-              <p className="px-2 pb-2 pt-1 text-xs font-medium text-slate">Häufig gesucht</p>
+              <p className="px-2 pb-2 pt-1 text-xs text-slate">Vorschläge</p>
               {frequentSearches.map((term) => (
                 <button
                   key={term}
@@ -113,20 +106,17 @@ export function HeaderSearch() {
               ))}
             </div>
           ) : results.length ? (
-            results.map((product) => {
-              const brand = brands.find((item) => item.id === product.brandId)?.name ?? "";
-              return (
-                <button
-                  key={product.id}
-                  type="button"
-                  onClick={() => go(product.name)}
-                  className="focus-ring grid w-full gap-1 border-b border-ash px-3 py-3 text-left last:border-0 hover:bg-paper"
-                >
-                  <span className="font-medium">{product.name}</span>
-                  <span className="text-xs text-slate">{brand} · Suche öffnen</span>
-                </button>
-              );
-            })
+            results.map(([href, brand, name, , size]) => (
+              <Link
+                key={href}
+                href={href}
+                onClick={() => setOpen(false)}
+                className="focus-ring grid w-full gap-1 border-b border-ash px-3 py-3 text-left last:border-0 hover:bg-paper"
+              >
+                <span className="font-medium">{brand} {name}</span>
+                <span className="text-xs text-slate">{size}</span>
+              </Link>
+            ))
           ) : (
             <button type="button" onClick={() => go(query)} className="focus-ring w-full px-3 py-3 text-left hover:bg-paper">
               Suche nach „{query}“

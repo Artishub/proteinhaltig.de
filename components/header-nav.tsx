@@ -63,24 +63,24 @@ export function HeaderNav({ items }: { items: HeaderNavItem[] }) {
                 aria-hidden="true"
               />
             </button>
-            {expanded && (
-              <div
-                className="absolute left-0 top-10 z-40 min-w-52 overflow-hidden rounded-lg border border-ash bg-mist p-2 shadow-[0_18px_50px_rgba(23,32,29,0.1)]"
-                role="menu"
-              >
-                {item.children.map((child) => (
-                  <Link
-                    key={child.href}
-                    href={child.href}
-                    onClick={() => setOpen(null)}
-                    className="focus-ring block rounded-md px-3 py-2.5 text-ink hover:bg-paper"
-                    role="menuitem"
-                  >
-                    {child.label}
-                  </Link>
-                ))}
-              </div>
-            )}
+            {/* Always in the HTML so crawlers see the links; hidden until opened. */}
+            <div
+              hidden={!expanded}
+              className="absolute left-0 top-10 z-40 min-w-52 overflow-hidden rounded-lg border border-ash bg-mist p-2 shadow-[0_18px_50px_rgba(23,32,29,0.1)]"
+              role="menu"
+            >
+              {item.children.map((child) => (
+                <Link
+                  key={child.href}
+                  href={child.href}
+                  onClick={() => setOpen(null)}
+                  className="focus-ring block rounded-md px-3 py-2.5 text-ink hover:bg-paper"
+                  role="menuitem"
+                >
+                  {child.label}
+                </Link>
+              ))}
+            </div>
           </div>
         );
       })}

@@ -1,0 +1,7 @@
+.group h2 { margin: 0; font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 600; letter-spacing: -.02em; scroll-margin-top: 6rem; }
+.list { display: grid; gap: .75rem; margin-top: 1.2rem; }
+.item { max-width: 52rem; padding: 1.2rem 1.3rem; border: 1px solid color-mix(in srgb, var(--ink) 11%, transparent); border-radius: 18px; background: var(--mist); }
+.item h3 { margin: 0; font-size: 1.1rem; font-weight: 600; }
+.item p { margin: .5rem 0 0; color: var(--slate); line-height: 1.6; }
+.item a { display: inline-block; margin-top: .6rem; color: var(--accent-strong); font-weight: 600; }
+.item a:hover { text-decoration: underline; text-underline-offset: 3px; }

@@ -3,19 +3,20 @@ import { CookieConsent, CookieSettingsButton } from "@/components/cookie-consent
 import { HeaderNav, type HeaderNavItem } from "@/components/header-nav";
 import { HeaderSearch } from "@/components/header-search";
 import { MobileNav } from "@/components/mobile-nav";
+import { NewsletterForm } from "@/components/newsletter-form";
 import { SiteLogo } from "@/components/site-logo";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 const nav: HeaderNavItem[] = [
   { href: "/de/produkte", label: "Produkte" },
   { href: "/de/produkte/vergleich", label: "Vergleichen" },
-  { href: "/de/marken", label: "Alle Marken" },
-  { href: "/de/kategorien", label: "Produkte nach Kategorie" },
+  { href: "/de/marken", label: "Marken" },
+  { href: "/de/kategorien", label: "Kategorien" },
+  { href: "/de/proteinbedarf-rechner", label: "Proteinbedarf" },
   {
     label: "Ratgeber",
     children: [
-      { href: "/de/proteinbedarf-rechner", label: "Proteinbedarf-Rechner" },
-      { href: "/de/wissen", label: "Wissenswertes" },
+      { href: "/de/wissen", label: "Wissen" },
       { href: "/de/faq", label: "FAQ" },
     ],
   },
@@ -45,15 +46,20 @@ export default function LocaleLayout({ children }: { children: React.ReactNode }
       </header>
       {children}
       <footer className="border-t border-ash bg-mist">
-        <div className="mx-auto grid max-w-page gap-6 px-4 py-12 text-sm text-slate md:grid-cols-[1fr_auto]">
+        <div className="mx-auto grid max-w-page gap-10 px-4 py-12 text-sm text-slate md:grid-cols-[1fr_minmax(0,26rem)]">
           <div className="space-y-4">
             <p>Proteinhaltig.de ist ein unabhängiges Informationsprojekt.<br />Angaben ohne Gewähr.</p>
+            <div className="flex flex-wrap gap-4 pt-2">
+              <Link href="/de/impressum" className="hover:text-ink">Impressum</Link>
+              <Link href="/de/datenschutz" className="hover:text-ink">Datenschutz</Link>
+              <Link href="/de/nutzungsbedingungen" className="hover:text-ink">Nutzung</Link>
+              <CookieSettingsButton className="hover:text-ink" />
+            </div>
           </div>
-          <div className="flex flex-wrap gap-4">
-            <Link href="/de/impressum" className="hover:text-ink">Impressum</Link>
-            <Link href="/de/datenschutz" className="hover:text-ink">Datenschutz</Link>
-            <Link href="/de/nutzungsbedingungen" className="hover:text-ink">Nutzung</Link>
-            <CookieSettingsButton className="hover:text-ink" />
+          <div className="space-y-3">
+            <p className="font-semibold text-ink">Newsletter</p>
+            <p>Neue Produkte und korrigierte Werte, höchstens einmal im Monat.</p>
+            <NewsletterForm compact />
           </div>
         </div>
       </footer>
