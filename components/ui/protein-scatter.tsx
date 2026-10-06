@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { ScatterPoint as ProductSummary } from "@/lib/product-summary";
 import styles from "./ui.module.css";
@@ -9,7 +10,8 @@ type Hover = { item: ProductSummary; x: number; y: number };
 const numberFormat = new Intl.NumberFormat("de-DE", { maximumFractionDigits: 1 });
 const pad = { top: 18, right: 14, bottom: 44, left: 42 };
 
-// Protein (g) against energy (kcal) per 100 g or ml. Every dot is one product page.
+// Protein (g) against energy (kcal) per 100 g or ml. Every dot opens one product page. Dots are not <a> links:
+// 670 links from the homepage would dilute internal linking; product pages are linked from tables and categories.
 // Guides: protein × 4 kcal = 12 % or 20 % of the energy (EU 1924/2006 "Proteinquelle" / "hoher Proteingehalt").
 export function ProteinScatter({ items, categories, sourceShare, highShare }: {
   items: ProductSummary[];
@@ -17,6 +19,7 @@ export function ProteinScatter({ items, categories, sourceShare, highShare }: {
   sourceShare: number;
   highShare: number;
 }) {
+  const router = useRouter();
   const plotRef = useRef<HTMLDivElement>(null);
   const [hover, setHover] = useState<Hover | null>(null);
   const [category, setCategory] = useState("all");
@@ -107,19 +110,15 @@ export function ProteinScatter({ items, categories, sourceShare, highShare }: {
           {ordered.map((item) => {
             const muted = category !== "all" && item.categoryId !== category;
             return (
-              <a
+              <g
                 key={item.id}
-                href={item.href}
                 className={muted ? styles.scatterDotMuted : styles.scatterDot}
-                aria-label={`${item.brand} ${item.name}, ${numberFormat.format(item.per100)} g, ${item.kcal} kcal`}
-                tabIndex={muted ? -1 : 0}
                 onPointerEnter={(event) => show(item, event.currentTarget)}
-                onFocus={(event) => show(item, event.currentTarget)}
-                onBlur={() => setHover(null)}
+                onClick={() => router.push(item.href)}
               >
                 <circle cx={x(item.kcal)} cy={y(Math.min(item.per100, maxProtein))} r={9} className={styles.scatterHit} />
                 <circle cx={x(item.kcal)} cy={y(Math.min(item.per100, maxProtein))} r={4.5} />
-              </a>
+              </g>
             );
           })}
         </svg>
