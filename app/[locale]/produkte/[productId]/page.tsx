@@ -52,9 +52,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const brandName = brandById[product.brandId]?.name ?? "";
   const hero = heroAmount(product);
   const per100 = `${formatNumber(proteinPer100(product))} g pro 100 ${product.unit}`;
-  const lead = hero.basis === "per100" ? per100 : `${formatNumber(hero.grams)} g Protein ${hero.label}, ${per100}`;
+  const lead = hero.basis === "per100" ? `${formatNumber(proteinPer100(product))} g Protein pro 100 ${product.unit}` : `${formatNumber(hero.grams)} g Protein ${hero.label}, ${per100}`;
   const core = `${brandName} ${product.name}: ${lead}, ${Math.round(product.nutritionPer100.energyKcal)} kcal pro 100 ${product.unit}.`;
-  const description = core.length <= 125 ? `${core} Mit Nährwerten, Quelle und Vergleich.` : core;
+  // Snippets cut at about 160 characters; add the closing sentence only when it fits.
+  const suffix = " Mit Nährwerten, Quelle und Vergleich.";
+  const description = core.length + suffix.length <= 160 ? `${core}${suffix}` : core;
   const title = productMetaTitle(product.name, brandName);
 
   return {

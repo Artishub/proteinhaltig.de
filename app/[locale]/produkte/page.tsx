@@ -10,7 +10,7 @@ import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
   title: "Produktdatenbank",
-  description: "Suche und filtere Proteinprodukte nach Marke, Kategorie, Packungsgröße und Proteinwerten.",
+  description: "Alle Proteinprodukte der Datenbank: filtere nach Marke, Kategorie und Packungsgröße und sortiere nach Protein pro 100 g, pro Portion oder pro 100 kcal.",
   path: "/de/produkte",
 });
 
