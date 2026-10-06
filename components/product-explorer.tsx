@@ -277,6 +277,7 @@ export function ProductExplorer({ items: pageProducts, brands, categories }: { i
                       <div className="mt-7 flex flex-col items-start gap-2">
                         <Link
                           href={`/de/produkte/vergleich?product=${product.id}`}
+                          rel="nofollow"
                           className="focus-ring inline-flex h-10 items-center justify-center rounded-md border border-ash bg-paper px-4 text-sm font-medium hover:border-marigold"
                         >
                           Zum Vergleich
