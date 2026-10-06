@@ -3,8 +3,8 @@ import Link from "next/link";
 import { Suspense } from "react";
 import { ProductExplorer } from "@/components/product-explorer";
 import { brandById, brands } from "@/lib/data/brands";
-import { categories, categoryById } from "@/lib/data/categories";
-import { products } from "@/lib/data/products";
+import { categories } from "@/lib/data/categories";
+import { products, proteinPer100, uniqueProductRepresentatives, type Product } from "@/lib/data/products";
 import { isProductPage, productPageHref } from "@/lib/page-routing";
 import { pageMetadata } from "@/lib/seo";
 
@@ -35,48 +35,27 @@ export default function ProductsPage() {
           {pageCount} Produkte nach Protein pro 100 g, pro Portion und pro 100 kcal. Filtere nach Marke, Kategorie und Packung.
         </p>
       </div>
-      <Suspense fallback={<div className="border-t border-ash py-6 text-sm text-slate">Produkte werden geladen...</div>}>
+      <Suspense fallback={<ExplorerFallback products={pageProducts} />}>
         <ProductExplorer items={explorerItems} brands={brands.map(({ id, name }) => ({ id, name }))} categories={categories.map(({ id, name }) => ({ id, name }))} />
       </Suspense>
-      <ProductDirectory />
     </main>
   );
 }
 
-function ProductDirectory() {
+// Server HTML before the explorer hydrates: the explorer's first page (protein per 100 g, highest first).
+function ExplorerFallback({ products: pageProducts }: { products: Product[] }) {
+  const top = uniqueProductRepresentatives(pageProducts).sort((a, b) => proteinPer100(b) - proteinPer100(a)).slice(0, 15);
+  const format = new Intl.NumberFormat("de-DE", { maximumFractionDigits: 1 });
   return (
-    <section className="mt-12 border-t border-ash pt-8">
-      <h2 className="text-2xl font-medium tracking-[-0.02em]">Alle Produkte nach Kategorie</h2>
-      <p className="mt-2 max-w-2xl text-sm leading-6 text-slate">Öffne eine Kategorie und rufe jedes Produkt direkt auf.</p>
-      <div className="mt-5 grid gap-3 md:grid-cols-2">
-        {categories.map((category) => {
-          const items = products
-            .filter((product) => product.categoryId === category.id && isProductPage(product))
-            .sort((a, b) => {
-              const brandCompare = (brandById[a.brandId]?.name ?? "").localeCompare(brandById[b.brandId]?.name ?? "", "de");
-              return brandCompare || a.name.localeCompare(b.name, "de");
-            });
-
-          if (!items.length) return null;
-
-          return (
-            <details key={category.id} className="rounded-lg border border-ash bg-mist px-4 py-3">
-              <summary className="focus-ring cursor-pointer rounded-md font-medium">
-                {categoryById[category.id]?.name ?? category.name} <span className="font-normal text-slate">({items.length})</span>
-              </summary>
-              <ul className="mt-4 grid gap-x-5 gap-y-2 text-sm sm:grid-cols-2">
-                {items.map((product) => (
-                  <li key={product.id}>
-                    <Link href={productPageHref(product)} className="focus-ring inline-flex max-w-full rounded-md underline decoration-ash underline-offset-4 hover:decoration-marigold">
-                      <span className="truncate">{brandById[product.brandId]?.name ?? "Marke"} · {product.name}</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </details>
-          );
-        })}
-      </div>
-    </section>
+    <ol className="divide-y divide-ash border-y border-ash text-sm">
+      {top.map((product) => (
+        <li key={product.id} className="flex items-baseline justify-between gap-4 py-3">
+          <Link href={productPageHref(product)} className="focus-ring min-w-0 truncate rounded-md hover:underline">
+            {brandById[product.brandId]?.name} {product.name}
+          </Link>
+          <span className="shrink-0 tabular-nums text-slate">{format.format(proteinPer100(product))} g / 100 {product.unit}</span>
+        </li>
+      ))}
+    </ol>
   );
 }

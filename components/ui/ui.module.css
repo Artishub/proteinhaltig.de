@@ -101,6 +101,7 @@
 .scatterHit { fill: transparent; stroke: none; }
 .scatterDot:hover circle:last-child, .scatterDot:focus-visible circle:last-child { r: 7px; fill: var(--stage-ink); }
 .scatterDot:focus-visible { outline: none; }
+.scatterDot { cursor: pointer; }
 .scatterTooltip { position: absolute; z-index: 5; display: grid; gap: .15rem; width: max-content; max-width: 16rem; padding: .6rem .75rem; border-radius: 10px; background: var(--stage-ink); color: #1f1a16; font-size: .82rem; line-height: 1.35; transform: translate(-50%, calc(-100% - 12px)); pointer-events: none; box-shadow: 0 14px 30px -14px rgba(0, 0, 0, .6); }
 .scatterTooltip small { color: #5c5148; }
 
