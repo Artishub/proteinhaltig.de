@@ -1,5 +1,7 @@
 # Kontakt-Postfach und Newsletter einrichten
 
+> **Stand 07.10.2026: Newsletter auf proteinhaltig.de pausiert.** Formular, Datenschutz-Abschnitt und API hängen an `newsletterEnabled` in `lib/site.ts` (aktuell `false`). Zum Einschalten: Schritte 2 und 3 unten, dann `newsletterEnabled = true` setzen und die Bestätigungsseite `app/[locale]/newsletter/bestaetigt/page.tsx` aus Commit `e113c87` wiederherstellen (`git checkout e113c87 -- 'app/[locale]/newsletter/bestaetigt'`).
+
 Gilt für proteinhaltig.de, zuckerhaltig.de und ai-vergleich.de. Pro Domain einmal durchgehen; ein Brevo-Konto reicht für alle drei.
 
 ## 1. kontakt@… per Cloudflare Email Routing (kostenlos)

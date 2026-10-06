@@ -1,5 +1,7 @@
 // Newsletter sign-up with double opt-in via Brevo. Brevo sends the confirmation mail; the address only
 // lands on the list after the click. Configure in Coolify: BREVO_API_KEY, BREVO_LIST_ID, BREVO_DOI_TEMPLATE_ID.
+import { newsletterEnabled } from "@/lib/site";
+
 export const dynamic = "force-dynamic";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
@@ -9,7 +11,7 @@ export async function POST(request: Request) {
   const apiKey = process.env.BREVO_API_KEY;
   const listId = Number(process.env.BREVO_LIST_ID);
   const templateId = Number(process.env.BREVO_DOI_TEMPLATE_ID);
-  if (!apiKey || !listId || !templateId) {
+  if (!newsletterEnabled || !apiKey || !listId || !templateId) {
     return Response.json({ error: "Der Newsletter ist noch nicht eingerichtet." }, { status: 503 });
   }
 
