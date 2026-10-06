@@ -17,7 +17,18 @@ export const indexingWaves = indexedProducts.waves;
 
 // Brand and category landing pages. Empty until the user approves a wave; until then they render `noindex, follow`.
 export const searchIndexableBrandIds: string[] = [];
-export const searchIndexableCategoryIds: string[] = [];
+// 2026-10-06: all 8 category pages, approved by the user. They replace the 670-link product directory as
+// the indexable hubs that link every product page (Startseite → Kategorie → Produkt).
+export const searchIndexableCategoryIds: string[] = [
+  "protein-bar",
+  "protein-yogurt",
+  "protein-pudding",
+  "protein-drink",
+  "protein-powder",
+  "skyr-quark",
+  "plant-protein",
+  "protein-snack",
+];
 
 export function isSearchIndexableBrand(brandId: string) {
   return searchIndexableBrandIds.includes(brandId);
