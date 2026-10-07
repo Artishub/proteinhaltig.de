@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 const storageKey = "cookie-consent";
 const openEvent = "cookie-consent:open";
-const googleAnalyticsId = "G-4W55FH97DW";
+const googleAnalyticsId = "G-QF7C7P291E";
 
 type Consent = "granted" | "denied";
 

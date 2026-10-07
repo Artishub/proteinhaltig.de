@@ -6,6 +6,7 @@ import { MobileNav } from "@/components/mobile-nav";
 import { NewsletterForm } from "@/components/newsletter-form";
 import { SiteLogo } from "@/components/site-logo";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { newsletterEnabled } from "@/lib/site";
 
 const nav: HeaderNavItem[] = [
   { href: "/de/produkte", label: "Produkte" },
@@ -56,11 +57,13 @@ export default function LocaleLayout({ children }: { children: React.ReactNode }
               <CookieSettingsButton className="hover:text-ink" />
             </div>
           </div>
-          <div className="space-y-3">
-            <p className="font-semibold text-ink">Newsletter</p>
-            <p>Neue Produkte und korrigierte Werte, höchstens einmal im Monat.</p>
-            <NewsletterForm compact />
-          </div>
+          {newsletterEnabled && (
+            <div className="space-y-3">
+              <p className="font-semibold text-ink">Newsletter</p>
+              <p>Neue Produkte und korrigierte Werte, höchstens einmal im Monat.</p>
+              <NewsletterForm compact />
+            </div>
+          )}
         </div>
       </footer>
       <CookieConsent />

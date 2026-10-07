@@ -1,15 +1,15 @@
 import type { Metadata } from "next";
 import { CookieSettingsButton } from "@/components/cookie-consent";
 import { pageMetadata } from "@/lib/seo";
-import { contactEmail } from "@/lib/site";
+import { contactEmail, newsletterEnabled } from "@/lib/site";
 
 export const metadata: Metadata = pageMetadata({
   title: "Datenschutz",
-  description: "Datenschutzhinweise von Proteinhaltig.de zu Hosting, Cloudflare, Google Analytics mit Einwilligung, Newsletter und Kontakt per E-Mail.",
+  description: "Datenschutzhinweise von Proteinhaltig.de zu Hosting, Cloudflare, Google Analytics mit Einwilligung und Kontakt per E-Mail.",
   path: "/de/datenschutz",
 });
 
-const updatedAt = "6. Oktober 2026";
+const updatedAt = "7. Oktober 2026";
 const linkClass = "underline decoration-smoke underline-offset-4 hover:decoration-ink";
 
 export default function DatenschutzPage() {
@@ -62,15 +62,17 @@ export default function DatenschutzPage() {
           </p>
         </section>
 
-        <section id="newsletter">
-          <h2>Newsletter</h2>
-          <p className="mt-3">
-            Wenn du den Newsletter bestellst, verarbeiten wir deine E-Mail-Adresse sowie Zeitpunkt der Anmeldung und der Bestätigung. Die Anmeldung läuft im Double-Opt-in-Verfahren: Du bekommst zuerst eine E-Mail mit einem Bestätigungslink und erst nach dem Klick wirst du in die Liste aufgenommen. Rechtsgrundlage ist deine Einwilligung (Art. 6 Abs. 1 lit. a DSGVO). Du kannst sie jederzeit über den Abmeldelink in jeder E-Mail oder per Nachricht an uns widerrufen; danach löschen wir deine Adresse aus der Liste.
-          </p>
-          <p>
-            Für Anmeldung und Versand nutzen wir Brevo der Brevo GmbH, Köpenicker Str. 126, 10179 Berlin, einer Tochtergesellschaft der Sendinblue SAS, 17 rue de Salneuve, 75017 Paris, Frankreich. Mit Brevo besteht ein Vertrag zur Auftragsverarbeitung. Brevo kann für Versandstatistiken erfassen, ob eine E-Mail geöffnet und welche Links darin angeklickt wurden. Weitere Informationen: <a href="https://www.brevo.com/de/legal/privacypolicy/" target="_blank" rel="noreferrer" className={linkClass}>Datenschutzerklärung von Brevo</a>.
-          </p>
-        </section>
+        {newsletterEnabled && (
+          <section id="newsletter">
+            <h2>Newsletter</h2>
+            <p className="mt-3">
+              Wenn du den Newsletter bestellst, verarbeiten wir deine E-Mail-Adresse sowie Zeitpunkt der Anmeldung und der Bestätigung. Die Anmeldung läuft im Double-Opt-in-Verfahren: Du bekommst zuerst eine E-Mail mit einem Bestätigungslink und erst nach dem Klick wirst du in die Liste aufgenommen. Rechtsgrundlage ist deine Einwilligung (Art. 6 Abs. 1 lit. a DSGVO). Du kannst sie jederzeit über den Abmeldelink in jeder E-Mail oder per Nachricht an uns widerrufen; danach löschen wir deine Adresse aus der Liste.
+            </p>
+            <p>
+              Für Anmeldung und Versand nutzen wir Brevo der Brevo GmbH, Köpenicker Str. 126, 10179 Berlin, einer Tochtergesellschaft der Sendinblue SAS, 17 rue de Salneuve, 75017 Paris, Frankreich. Mit Brevo besteht ein Vertrag zur Auftragsverarbeitung. Brevo kann für Versandstatistiken erfassen, ob eine E-Mail geöffnet und welche Links darin angeklickt wurden. Weitere Informationen: <a href="https://www.brevo.com/de/legal/privacypolicy/" target="_blank" rel="noreferrer" className={linkClass}>Datenschutzerklärung von Brevo</a>.
+            </p>
+          </section>
+        )}
 
         <section>
           <h2>Kontakt per E-Mail</h2>
