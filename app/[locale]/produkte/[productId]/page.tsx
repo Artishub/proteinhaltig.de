@@ -20,6 +20,7 @@ import {
 import { isProductPage, productPageHref, productPageSizes, sizeAnchor } from "@/lib/page-routing";
 import { heroAmount, type HeroAmount } from "@/lib/product-hero";
 import { productFacts } from "@/lib/product-facts";
+import { productMetaTitle } from "@/lib/product-meta";
 import {
   categoryPeers,
   higherProteinAlternatives,
@@ -57,7 +58,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   // Snippets cut at about 160 characters; add the closing sentence only when it fits.
   const suffix = " Mit Nährwerten, Quelle und Vergleich.";
   const description = core.length + suffix.length <= 160 ? `${core}${suffix}` : core;
-  const title = productMetaTitle(product.name, brandName);
+  const title = productMetaTitle(product, brandName);
 
   return {
     ...pageMetadata({ title, description, path: `/de/produkte/${product.id}`, type: "article", absoluteTitle: title }),
@@ -340,17 +341,4 @@ function formatOptional(value: number | null, suffix: string) {
 
 function formatDate(value: string) {
   return new Intl.DateTimeFormat("de-DE").format(new Date(value));
-}
-
-function shortTitle(value: string, maxLength: number) {
-  if (value.length <= maxLength) return value;
-  const shortened = value.slice(0, maxLength - 3);
-  const lastSpace = shortened.lastIndexOf(" ");
-  return `${shortened.slice(0, lastSpace > 20 ? lastSpace : maxLength - 3)}...`;
-}
-
-function productMetaTitle(productName: string, brandName: string) {
-  const suffix = ": Protein & Nährwerte";
-  const maxProductLength = 60 - brandName.length - suffix.length - 1;
-  return `${brandName} ${shortTitle(productName, maxProductLength)}${suffix}`;
 }
