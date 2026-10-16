@@ -6,6 +6,7 @@ import ui from "@/components/ui/ui.module.css";
 import { brandById } from "@/lib/data/brands";
 import { categories, categoryById } from "@/lib/data/categories";
 import { proteinPer100, proteinPer100Kcal } from "@/lib/data/products";
+import { skyrStats } from "@/lib/content/skyr";
 import { categoryProducts, groupStats, tableRow } from "@/lib/listing";
 import { fitTitle, pageMetadata } from "@/lib/seo";
 import { isSearchIndexableCategory } from "@/lib/seo-index";
@@ -44,6 +45,7 @@ export default async function CategoryPage({ params }: PageProps) {
 
   const unit = stats.units.size === 1 ? [...stats.units][0] : "g bzw. ml";
   const brandIds = Array.from(new Set(items.map((item) => item.brandId))).sort((a, b) => (brandById[a]?.name ?? "").localeCompare(brandById[b]?.name ?? "", "de"));
+  const skyr = category.id === "skyr-quark" ? skyrStats(items) : null;
   const fullName = (id: string) => {
     const product = items.find((item) => item.id === id)!;
     return `${brandById[product.brandId]?.name ?? ""} ${product.name}`.trim();
@@ -62,6 +64,12 @@ export default async function CategoryPage({ params }: PageProps) {
           {stats.count} Produkte von {brandIds.length} Marken. Im Schnitt {format(stats.average)} g Protein pro 100 {unit}; am meisten hat {fullName(stats.max.id)} mit {format(proteinPer100(stats.max))} g.
           {stats.densityMax.id !== stats.max.id ? ` Pro 100 kcal liegt ${fullName(stats.densityMax.id)} vorn (${format(proteinPer100Kcal(stats.densityMax) ?? 0)} g).` : ""}
         </p>
+        {skyr && (
+          <p className={ui.lead}>
+            Naturskyr hat {format(skyr.min)} bis {format(skyr.max)} g Protein pro 100 g ({skyr.naturalCount} Produkte), 500 g Skyr liefern also {format(skyr.min * 5)} bis {format(skyr.max * 5)} g Protein.
+            {skyr.flavoured ? ` Mit Frucht oder Vanille sind es ${format(skyr.flavoured.min)} bis ${format(skyr.flavoured.max)} g pro 100 g.` : ""}
+          </p>
+        )}
         <dl className={ui.statGrid}>
           <div className={ui.statCard}><dt>Produkte</dt><dd>{stats.count}</dd></div>
           <div className={ui.statCard}><dt>Ø Protein</dt><dd>{format(stats.average)} g<small>pro 100 {unit}</small></dd></div>

@@ -2,6 +2,7 @@ import { brandById } from "@/lib/data/brands";
 import { products, proteinPer100, proteinPer100Kcal, type Product } from "@/lib/data/products";
 import { isProductPage } from "@/lib/page-routing";
 import { heroAmount } from "@/lib/product-hero";
+import { skyrStats } from "@/lib/content/skyr";
 import { dgeProteinUrl, highProteinMinShare, proteinReferenceIntakeGrams, proteinSourceMinShare } from "@/lib/protein-context";
 
 // Questions follow Search Console queries (skyr, joghurt, pudding, riegel, bedarf). Every number in an answer
@@ -20,12 +21,9 @@ const median = (values: number[]) => {
 const fullName = (product: Product) => `${brandById[product.brandId]?.name ?? ""} ${product.name}`.trim();
 
 function skyrAnswer() {
-  const skyr = pages.filter((product) => /skyr/i.test(product.name) && !/drink/i.test(product.name));
-  const natural = skyr.filter((product) => /natur/i.test(product.name));
-  const values = (natural.length >= 3 ? natural : skyr).map(proteinPer100);
-  const flavoured = skyr.filter((product) => !/natur/i.test(product.name)).map(proteinPer100);
-  const flavourPart = flavoured.length >= 3 ? ` Sorten mit Frucht oder Vanille liegen bei ${format(Math.min(...flavoured))} bis ${format(Math.max(...flavoured))} g.` : "";
-  return `Naturskyr hat ${format(Math.min(...values))} bis ${format(Math.max(...values))} g Protein pro 100 g (${values.length} Produkte in der Datenbank). Ein 500-g-Becher mit 11 g pro 100 g liefert damit 55 g Protein.${flavourPart}`;
+  const stats = skyrStats(pages)!;
+  const flavourPart = stats.flavoured ? ` Sorten mit Frucht oder Vanille liegen bei ${format(stats.flavoured.min)} bis ${format(stats.flavoured.max)} g.` : "";
+  return `Naturskyr hat ${format(stats.min)} bis ${format(stats.max)} g Protein pro 100 g (${stats.naturalCount} Produkte in der Datenbank). 500 g Skyr liefern damit ${format(stats.min * 5)} bis ${format(stats.max * 5)} g Protein.${flavourPart}`;
 }
 
 function yogurtAnswer() {
