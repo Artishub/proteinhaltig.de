@@ -1,3 +1,7 @@
+import { skyrStats } from "@/lib/content/skyr";
+import { products } from "@/lib/data/products";
+import { isProductPage } from "@/lib/page-routing";
+
 export type Article = {
   slug: string;
   title: string;
@@ -11,6 +15,11 @@ export type Article = {
     height: number;
   };
 };
+
+const format = (value: number) => new Intl.NumberFormat("de-DE", { maximumFractionDigits: 1 }).format(value);
+const skyr = skyrStats(products.filter(isProductPage));
+// Answers "wie viel Protein hat 500 g Skyr" with the database's natural skyr range.
+const skyrSentence = skyr ? `Naturskyr hat in der Datenbank ${format(skyr.min)} bis ${format(skyr.max)} g Protein pro 100 g. 500 g Skyr liefern also ${format(skyr.min * 5)} bis ${format(skyr.max * 5)} g Protein.` : null;
 
 export const articles: Article[] = [
   {
@@ -60,6 +69,7 @@ export const articles: Article[] = [
     },
     body: [
       "Protein-Joghurt, Skyr und Quark sind oft alltagstauglicher als Spezialprodukte, weil die Packungen größer und die Zutatenlisten kürzer sein können.",
+      ...(skyrSentence ? [skyrSentence] : []),
       "Der 100-g-Wert zeigt die Dichte. Die Bechergröße zeigt, wie viel Protein tatsächlich zusammenkommt.",
       "Gerade bei 200-g- und 500-g-Packungen lohnt der Blick auf Gesamtprotein, Zucker und Kalorien pro Packung.",
     ],
