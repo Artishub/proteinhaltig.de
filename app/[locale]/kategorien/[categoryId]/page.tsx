@@ -16,6 +16,19 @@ type PageProps = { params: Promise<{ categoryId: string; locale: string }> };
 const numberFormat = new Intl.NumberFormat("de-DE", { maximumFractionDigits: 1 });
 const format = (value: number) => numberFormat.format(value);
 
+// Search Console shows how people ask for a category; the heading uses their words where they differ from the
+// category name. The page also points to the stronger category when that one answers the question better.
+const searchHeading: Record<string, string> = {
+  "protein-yogurt": "Joghurt mit viel Protein",
+};
+const strongerAlternative: Record<string, string> = {
+  "protein-yogurt": "skyr-quark",
+};
+
+function headingFor(categoryId: string, name: string) {
+  return searchHeading[categoryId] ? `${searchHeading[categoryId]}: ${name} im Vergleich` : `${name}: Protein im Vergleich`;
+}
+
 export function generateStaticParams() {
   return categories.filter((category) => categoryProducts(category.id).length > 0).map((category) => ({ categoryId: category.id }));
 }
@@ -27,13 +40,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!category || !stats) return { title: "Kategorie nicht gefunden", robots: { index: false, follow: true } };
   return {
     ...pageMetadata({
-      title: `${category.name}: Protein im Vergleich`,
-      absoluteTitle: fitTitle(`${category.name}: Protein im Vergleich`),
-      description: `${stats.count} ${category.name}-Produkte nach Protein pro 100 g, pro Portion und pro 100 kcal. Durchschnitt ${format(stats.average)} g, mit Quelle und Prüfdatum.`,
+      title: headingFor(category.id, category.name),
+      absoluteTitle: fitTitle(headingFor(category.id, category.name)),
+      description: metaDescription(category.id, category.name, stats),
       path: `/de/kategorien/${category.id}`,
     }),
     robots: isSearchIndexableCategory(category.id) ? { index: true, follow: true } : { index: false, follow: true },
   };
+}
+
+function metaDescription(categoryId: string, name: string, stats: NonNullable<ReturnType<typeof groupStats>>) {
+  const base = `${stats.count} ${name}-Produkte nach Protein pro 100 g, pro Portion und pro 100 kcal. Durchschnitt ${format(stats.average)} g`;
+  const otherId = strongerAlternative[categoryId];
+  const other = otherId ? groupStats(categoryProducts(otherId)) : null;
+  if (other && categoryById[otherId] && proteinPer100(other.max) > proteinPer100(stats.max)) return `${base}. ${categoryById[otherId].name} bis ${format(proteinPer100(other.max))} g, mit Quelle und Prüfdatum.`;
+  return `${base}, mit Quelle und Prüfdatum.`;
 }
 
 export default async function CategoryPage({ params }: PageProps) {
@@ -46,6 +67,9 @@ export default async function CategoryPage({ params }: PageProps) {
   const unit = stats.units.size === 1 ? [...stats.units][0] : "g bzw. ml";
   const brandIds = Array.from(new Set(items.map((item) => item.brandId))).sort((a, b) => (brandById[a]?.name ?? "").localeCompare(brandById[b]?.name ?? "", "de"));
   const skyr = category.id === "skyr-quark" ? skyrStats(items) : null;
+  const otherId = strongerAlternative[category.id];
+  const other = otherId ? groupStats(categoryProducts(otherId)) : null;
+  const otherFullName = (product: NonNullable<typeof other>["max"]) => `${brandById[product.brandId]?.name ?? ""} ${product.name}`.trim();
   const fullName = (id: string) => {
     const product = items.find((item) => item.id === id)!;
     return `${brandById[product.brandId]?.name ?? ""} ${product.name}`.trim();
@@ -59,11 +83,16 @@ export default async function CategoryPage({ params }: PageProps) {
         <span aria-current="page">{category.name}</span>
       </nav>
       <header className={ui.pageHead}>
-        <h1>{category.name}: Protein im Vergleich</h1>
+        <h1>{headingFor(category.id, category.name)}</h1>
         <p className={ui.lead}>
-          {stats.count} Produkte von {brandIds.length} Marken. Im Schnitt {format(stats.average)} g Protein pro 100 {unit}; am meisten hat {fullName(stats.max.id)} mit {format(proteinPer100(stats.max))} g.
+          {stats.count} Produkte von {brandIds.length} {brandIds.length === 1 ? "Marke" : "Marken"}. Im Schnitt {format(stats.average)} g Protein pro 100 {unit}; am meisten hat {fullName(stats.max.id)} mit {format(proteinPer100(stats.max))} g.
           {stats.densityMax.id !== stats.max.id ? ` Pro 100 kcal liegt ${fullName(stats.densityMax.id)} vorn (${format(proteinPer100Kcal(stats.densityMax) ?? 0)} g).` : ""}
         </p>
+        {other && categoryById[otherId] && proteinPer100(other.max) > proteinPer100(stats.max) && (
+          <p className={ui.lead}>
+            Mehr Protein pro 100 g gibt es bei <Link href={`/de/kategorien/${otherId}`}>{categoryById[otherId].name}</Link>: bis zu {format(proteinPer100(other.max))} g bei {otherFullName(other.max)}.
+          </p>
+        )}
         {skyr && (
           <p className={ui.lead}>
             Naturskyr hat {format(skyr.min)} bis {format(skyr.max)} g Protein pro 100 g ({skyr.naturalCount} Produkte), 500 g Skyr liefern also {format(skyr.min * 5)} bis {format(skyr.max * 5)} g Protein.
